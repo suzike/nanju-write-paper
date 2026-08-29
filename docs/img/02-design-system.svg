@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="640" viewBox="0 0 1440 640" font-family="'Source Han Serif SC','Noto Serif SC',Georgia,serif">
+  <rect width="1440" height="640" fill="#f9f5ea"/>
+  <text x="52" y="52" font-family="'JetBrains Mono',Consolas,monospace" font-size="14" letter-spacing="3" fill="#cd642d">DESIGN TOKENS</text>
+  <text x="52" y="92" font-size="30" font-weight="700" fill="#231e18">视觉设计系统 · 从 8 张参考卡提取</text>
+
+  <!-- 色板 -->
+  <g font-family="'JetBrains Mono',Consolas,monospace">
+    <rect x="52" y="130" width="152" height="96" rx="10" fill="#231e18"/><text x="66" y="200" font-size="13" fill="#f3eee1">#231e18</text><text x="66" y="218" font-size="11" fill="#a39a8e">墨咖 · 暗底/代码卡</text>
+    <rect x="220" y="130" width="152" height="96" rx="10" fill="#f0ede6" stroke="#ddd6c6"/><text x="234" y="200" font-size="13" fill="#231e18">#f0ede6</text><text x="234" y="218" font-size="11" fill="#77746e">面板米</text>
+    <rect x="388" y="130" width="152" height="96" rx="10" fill="#fbfaf5" stroke="#ddd6c6"/><text x="402" y="200" font-size="13" fill="#231e18">#fbfaf5</text><text x="402" y="218" font-size="11" fill="#77746e">白卡</text>
+    <rect x="556" y="130" width="152" height="96" rx="10" fill="#cd642d"/><text x="570" y="200" font-size="13" fill="#fff">#cd642d</text><text x="570" y="218" font-size="11" fill="#ffe1c9">主橙 · 编号/箭头</text>
+    <rect x="724" y="130" width="152" height="96" rx="10" fill="#eda55f"/><text x="738" y="200" font-size="13" fill="#231e18">#eda55f</text><text x="738" y="218" font-size="11" fill="#5c3a1a">暗页橙</text>
+    <rect x="892" y="130" width="152" height="96" rx="10" fill="#f4dd99"/><text x="906" y="200" font-size="13" fill="#231e18">#f4dd99</text><text x="906" y="218" font-size="11" fill="#77746e">金 · 中间态</text>
+    <rect x="1060" y="130" width="152" height="96" rx="10" fill="#4986a3"/><text x="1074" y="200" font-size="13" fill="#fff">#4986a3</text><text x="1074" y="218" font-size="11" fill="#cfe6ef">蓝点缀 ≤1/页</text>
+    <rect x="1228" y="130" width="152" height="96" rx="10" fill="#2f2a24" stroke="#46413b"/><text x="1242" y="200" font-size="13" fill="#f3eee1">#2f2a24</text><text x="1242" y="218" font-size="11" fill="#a39a8e">暗页浮起层</text>
+  </g>
+
+  <!-- 双主题 mini -->
+  <g>
+    <rect x="52" y="270" width="330" height="230" rx="12" fill="#231e18"/>
+    <rect x="76" y="296" width="200" height="18" rx="4" fill="#f3eee1"/>
+    <rect x="76" y="322" width="120" height="18" rx="4" fill="#f3eee1"/>
+    <rect x="76" y="348" width="96" height="6" fill="#b97b45"/>
+    <circle cx="217" cy="376" r="46" fill="none" stroke="#46413b" stroke-dasharray="4 4"/>
+    <circle cx="217" cy="376" r="16" fill="#cd642d"/>
+    <circle cx="176" cy="346" r="13" fill="#2f2a24" stroke="#46413b"/><circle cx="258" cy="346" r="13" fill="#2f2a24" stroke="#46413b"/>
+    <circle cx="176" cy="406" r="13" fill="#2f2a24" stroke="#46413b"/><circle cx="258" cy="406" r="13" fill="#2f2a24" stroke="#46413b"/>
+    <rect x="76" y="446" width="60" height="22" rx="5" fill="#2f2a24" stroke="#46413b"/><rect x="144" y="446" width="60" height="22" rx="5" fill="#2f2a24" stroke="#46413b"/>
+    <text x="212" y="462" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" fill="#eda55f">→</text>
+    <text x="76" y="490" font-family="'JetBrains Mono',Consolas,monospace" font-size="12" fill="#a39a8e">DARK · 封面 / 总结</text>
+  </g>
+  <g>
+    <rect x="412" y="270" width="330" height="230" rx="12" fill="#f0ede6"/>
+    <rect x="436" y="292" width="34" height="26" rx="4" fill="none" stroke="#cd642d" stroke-width="3"/>
+    <text x="478" y="312" font-size="18" font-weight="700" fill="#231e18">章节标题</text>
+    <rect x="640" y="294" width="82" height="22" rx="5" fill="#231e18"/>
+    <rect x="436" y="336" width="282" height="86" rx="10" fill="#f9f5ea" stroke="#ddd6c6"/>
+    <rect x="452" y="352" width="120" height="14" rx="4" fill="#fbfaf5"/><rect x="588" y="352" width="114" height="14" rx="4" fill="#fbfaf5"/>
+    <rect x="452" y="376" width="250" height="10" fill="#fbfaf5"/><rect x="452" y="392" width="200" height="10" fill="#fbfaf5"/>
+    <rect x="436" y="436" width="4" height="34" fill="#cd642d"/><rect x="448" y="440" width="150" height="12" fill="#231e18"/><rect x="448" y="458" width="230" height="10" fill="#5a5348"/>
+    <text x="436" y="490" font-family="'JetBrains Mono',Consolas,monospace" font-size="12" fill="#77746e">LIGHT · 章节页</text>
+  </g>
+  <!-- 字体系统 -->
+  <g>
+    <text x="800" y="340" font-size="56" font-weight="700" fill="#231e18">南橘 写作</text>
+    <text x="800" y="396" font-family="'JetBrains Mono',Consolas,monospace" font-size="30" fill="#cd642d">Abc 0123 pi-ai</text>
+    <text x="800" y="432" font-size="14" fill="#5a5348">中文标题与正文 = 衬线（Source Han Serif / Noto Serif SC）</text>
+    <text x="800" y="456" font-size="14" fill="#5a5348">编号 / 标签 / 代码 = 等宽（JetBrains Mono / Consolas）</text>
+    <text x="800" y="480" font-size="14" fill="#5a5348">英文胶囊标签 = 等宽 + letter-spacing .22em 大写</text>
+  </g>
+  <text x="52" y="560" font-size="15" fill="#5a5348">语义规则：<tspan fill="#cd642d" font-weight="700">橙 = 动作/强调/编号</tspan> · <tspan font-weight="700" fill="#231e18">黑 = 终点/制品/代码</tspan> · <tspan font-weight="700">金 = 中间态</tspan> · 白卡 = 中性 · <tspan fill="#4986a3" font-weight="700">蓝 = 克制点缀（≤1 处/页）</tspan></text>
+  <text x="52" y="596" font-family="'JetBrains Mono',Consolas,monospace" font-size="12" fill="#77746e">MODULES: sec-head / pill / chip-dark / panel / frow·fcard / state-gold-act-final / callout / points / codecard / tier / arch / seq / fan / ring / chipline / sumlist / dtable / statrow</text>
+</svg>

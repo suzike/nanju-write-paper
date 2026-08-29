@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="880" viewBox="0 0 1440 880" font-family="'Source Han Serif SC','Noto Serif SC',Georgia,serif">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#cd642d"/>
+    </marker>
+    <marker id="art" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#eda55f"/>
+    </marker>
+  </defs>
+  <rect width="1440" height="880" fill="#231e18"/>
+
+  <!-- 头部 -->
+  <text x="52" y="52" font-family="'JetBrains Mono',Consolas,monospace" font-size="14" letter-spacing="3" fill="#eda55f">NANJU-WRITE-PAPER · v1.0.0 · SKILL</text>
+  <text x="52" y="92" font-size="32" font-weight="700" fill="#f3eee1">南橘写作流水线 · 能力全景</text>
+  <text x="52" y="118" font-size="14" fill="#a39a8e">选题输入 → 深度成稿 → 南橘版式成品 · 手动触发 · 全程落盘可续跑</text>
+  <rect x="1246" y="66" width="142" height="36" rx="18" fill="none" stroke="#46413b"/>
+  <text x="1317" y="89" text-anchor="middle" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" letter-spacing="2" fill="#a39a8e">MANUAL</text>
+
+  <!-- PHASE A 容器 -->
+  <rect x="48" y="140" width="600" height="560" rx="16" fill="#2a241d" stroke="#46413b" stroke-dasharray="6 5"/>
+  <text x="72" y="172" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" letter-spacing="2" fill="#eda55f">PHASE A · WRITING GRAPH</text>
+
+  <!-- G0 -->
+  <rect x="80" y="192" width="300" height="52" rx="10" fill="#2f2a24" stroke="#cd642d" stroke-width="1.5"/>
+  <text x="96" y="214" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" fill="#eda55f" font-weight="700">G0</text>
+  <text x="124" y="214" font-size="16" fill="#f3eee1" font-weight="700">写作简报</text>
+  <text x="96" y="233" font-size="12" fill="#a39a8e">八项确认 · 用户放行（缺省：追问1次）</text>
+  <line x1="230" y1="244" x2="230" y2="266" stroke="#cd642d" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- S1 + 子卡 -->
+  <rect x="80" y="270" width="300" height="52" rx="10" fill="#2f2a24" stroke="#46413b"/>
+  <text x="96" y="292" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" fill="#eda55f" font-weight="700">S1</text>
+  <text x="124" y="292" font-size="16" fill="#f3eee1" font-weight="700">四路并行调研</text>
+  <text x="96" y="311" font-size="12" fill="#a39a8e">任务卡四要素 · 工具预算 ≤12 次/路</text>
+  <rect x="398" y="262" width="232" height="34" rx="8" fill="#231e18" stroke="#46413b"/>
+  <text x="412" y="284" font-size="12.5" fill="#f3eee1">Searcher A-D：原理/实践/对比/反方</text>
+  <rect x="398" y="302" width="232" height="34" rx="8" fill="#231e18" stroke="#46413b"/>
+  <text x="412" y="324" font-size="12.5" fill="#f3eee1">claim→source 台账 · ≥80% 放行</text>
+  <line x1="380" y1="296" x2="394" y2="280" stroke="#eda55f" stroke-width="1.5"/>
+  <line x1="380" y1="296" x2="394" y2="318" stroke="#eda55f" stroke-width="1.5"/>
+  <line x1="230" y1="322" x2="230" y2="344" stroke="#cd642d" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- S2 -->
+  <rect x="80" y="348" width="300" height="52" rx="10" fill="#2f2a24" stroke="#46413b"/>
+  <text x="96" y="370" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" fill="#eda55f" font-weight="700">S2</text>
+  <text x="124" y="370" font-size="16" fill="#f3eee1" font-weight="700">证据地图 + 大纲</text>
+  <text x="96" y="389" font-size="12" fill="#a39a8e">状态机 supported/weak/unsourced · 信息 DAG 校验</text>
+  <line x1="230" y1="400" x2="230" y2="422" stroke="#cd642d" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- G1 -->
+  <rect x="80" y="426" width="300" height="52" rx="10" fill="#2f2a24" stroke="#cd642d" stroke-width="1.5"/>
+  <text x="96" y="448" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" fill="#eda55f" font-weight="700">G1</text>
+  <text x="124" y="448" font-size="16" fill="#f3eee1" font-weight="700">大纲闸门</text>
+  <text x="96" y="467" font-size="12" fill="#a39a8e">章节树 + 配图计划 · 用户确认后动笔</text>
+  <line x1="230" y1="478" x2="230" y2="500" stroke="#cd642d" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- S3 + 子卡 -->
+  <rect x="80" y="504" width="300" height="52" rx="10" fill="#2f2a24" stroke="#46413b"/>
+  <text x="96" y="526" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" fill="#eda55f" font-weight="700">S3</text>
+  <text x="124" y="526" font-size="16" fill="#f3eee1" font-weight="700">倒序写作 + 深潜 + 配图</text>
+  <text x="96" y="545" font-size="12" fill="#a39a8e">活人感契约全程约束</text>
+  <rect x="398" y="496" width="232" height="34" rx="8" fill="#231e18" stroke="#46413b"/>
+  <text x="412" y="518" font-size="12.5" fill="#f3eee1">Depth Expander 深潜 · Diagrammer 配图</text>
+  <rect x="398" y="536" width="232" height="34" rx="8" fill="#231e18" stroke="#46413b"/>
+  <text x="412" y="558" font-size="12.5" fill="#f3eee1">节末反提纲 diff ↺ 防越写越水</text>
+  <line x1="380" y1="530" x2="394" y2="514" stroke="#eda55f" stroke-width="1.5"/>
+  <line x1="380" y1="530" x2="394" y2="552" stroke="#eda55f" stroke-width="1.5"/>
+  <line x1="230" y1="556" x2="230" y2="578" stroke="#cd642d" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- S4 -->
+  <rect x="80" y="582" width="300" height="52" rx="10" fill="#2f2a24" stroke="#46413b"/>
+  <text x="96" y="604" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" fill="#eda55f" font-weight="700">S4</text>
+  <text x="124" y="604" font-size="16" fill="#f3eee1" font-weight="700">五角色审查</text>
+  <text x="96" y="623" font-size="12" fill="#a39a8e">事实30 结构20 深度25 文风15 人味10 · ≥8.0</text>
+  <rect x="398" y="586" width="232" height="44" rx="8" fill="none" stroke="#cd642d" stroke-dasharray="5 4"/>
+  <text x="412" y="604" font-size="12.5" fill="#eda55f">打回循环 ≤3 轮</text>
+  <text x="412" y="622" font-size="12" fill="#a39a8e">只修被点名条目 → 再审</text>
+  <path d="M 398 608 C 340 608 330 560 378 536" fill="none" stroke="#eda55f" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#art)"/>
+  <line x1="230" y1="634" x2="230" y2="656" stroke="#cd642d" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- G2 -->
+  <rect x="80" y="660" width="460" height="30" rx="8" fill="#cd642d"/>
+  <text x="96" y="680" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" fill="#fff" font-weight="700">G2</text>
+  <text x="124" y="680" font-size="15" fill="#fff" font-weight="700">终稿归档 → 回灌样例库 + voice-profile</text>
+
+  <!-- PHASE B 容器 -->
+  <rect x="48" y="716" width="600" height="136" rx="16" fill="#2a241d" stroke="#46413b" stroke-dasharray="6 5"/>
+  <text x="72" y="746" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" letter-spacing="2" fill="#eda55f">PHASE B · LAYOUT</text>
+  <text x="72" y="772" font-size="15" fill="#f3eee1">两问四选项：格式（PDF / HTML / 公众号 / 全要）→ 尺寸（A4 / 16:9 / 3:4卡 / 长图）</text>
+  <text x="72" y="798" font-size="15" fill="#f3eee1">手搭模块配图（禁自动布局）→ diagram-check + judge 目检</text>
+  <text x="72" y="824" font-size="15" fill="#f3eee1">导出核验（页数 / MediaBox / 密度 55–75%）→ <tspan fill="#eda55f" font-family="'JetBrains Mono',Consolas,monospace">pi-anatomy.pdf</tspan></text>
+  <path d="M 380 690 C 380 706 380 708 380 714" fill="none" stroke="#cd642d" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- 右列：多 Agent 名册 -->
+  <rect x="680" y="140" width="712" height="252" rx="16" fill="#2a241d" stroke="#46413b"/>
+  <text x="704" y="172" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" letter-spacing="2" fill="#eda55f">MULTI-AGENT · 名册（子 Agent 提示词自包含）</text>
+  <rect x="704" y="192" width="118" height="30" rx="6" fill="#cd642d"/><text x="763" y="212" text-anchor="middle" font-size="13.5" fill="#fff" font-weight="700">信息搜集</text>
+  <text x="838" y="212" font-size="14" fill="#f3eee1">Research Planner · Searcher×2-4（复杂度路由）· Ledger 台账</text>
+  <rect x="704" y="232" width="118" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="763" y="252" text-anchor="middle" font-size="13.5" fill="#f3eee1">编排编辑</text>
+  <text x="838" y="252" font-size="14" fill="#f3eee1">Synthesizer · Outline · R2 结构 20% · R4 文风 15%</text>
+  <rect x="704" y="272" width="118" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="763" y="292" text-anchor="middle" font-size="13.5" fill="#f3eee1">深度扩展</text>
+  <text x="838" y="292" font-size="14" fill="#f3eee1">Depth Expander 深潜 · R3 深度批评 25%（兼 Devil's Advocate）</text>
+  <rect x="704" y="312" width="118" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="763" y="332" text-anchor="middle" font-size="13.5" fill="#f3eee1">方法论人味</text>
+  <text x="838" y="332" font-size="14" fill="#f3eee1">活人感契约固化 · R5 人味审读 10%（detect-only 独立上下文）</text>
+  <line x1="704" y1="358" x2="1368" y2="358" stroke="#3d372f"/>
+  <text x="704" y="380" font-size="13" fill="#a39a8e">子 Agent 只回传「产物路径 + ≤5 行摘要」，全文落盘 research/ 与 reviews/ —— 上下文不爆、会话可断点续跑</text>
+
+  <!-- 右列：产物台账 -->
+  <rect x="680" y="412" width="712" height="168" rx="16" fill="#2a241d" stroke="#46413b"/>
+  <text x="704" y="444" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" letter-spacing="2" fill="#eda55f">ARTIFACTS · 状态全部落盘</text>
+  <g font-family="'JetBrains Mono',Consolas,monospace" font-size="13" fill="#f3eee1">
+    <rect x="704" y="462" width="130" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="716" y="482">brief.md</text>
+    <rect x="844" y="462" width="170" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="856" y="482">research-plan.md</text>
+    <rect x="1024" y="462" width="120" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="1036" y="482">ledger.md</text>
+    <rect x="1154" y="462" width="160" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="1166" y="482">evidence-map.md</text>
+    <rect x="704" y="500" width="120" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="716" y="520">outline.md</text>
+    <rect x="834" y="500" width="130" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="846" y="520">draft-vN.md</text>
+    <rect x="974" y="500" width="140" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="986" y="520">reviews/rN.md</text>
+    <rect x="1124" y="500" width="120" height="30" rx="6" fill="#cd642d"/><text x="1136" y="520">final.md</text>
+    <rect x="704" y="538" width="120" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="716" y="558">sources.md</text>
+    <rect x="834" y="538" width="180" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="846" y="558">voice-profile.md</text>
+    <rect x="1024" y="538" width="150" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="1036" y="558">deviation-log.md</text>
+  </g>
+
+  <!-- 右列：质量三防线 -->
+  <rect x="680" y="600" width="712" height="140" rx="16" fill="#2a241d" stroke="#cd642d" stroke-width="1.5"/>
+  <text x="704" y="632" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" letter-spacing="2" fill="#eda55f">QA · 质量三防线（事故驱动加固）</text>
+  <rect x="704" y="650" width="222" height="30" rx="6" fill="#231e18" stroke="#46413b"/>
+  <text x="718" y="670" font-size="13" fill="#f3eee1">① 样式守卫：画幅定宽校验</text>
+  <rect x="938" y="650" width="222" height="30" rx="6" fill="#231e18" stroke="#46413b"/>
+  <text x="952" y="670" font-size="13" fill="#f3eee1">② 资源监听：404 当场现形</text>
+  <rect x="1172" y="650" width="198" height="30" rx="6" fill="#231e18" stroke="#46413b"/>
+  <text x="1186" y="670" font-size="13" fill="#f3eee1">③ 机器 PASS + judge 目检</text>
+  <text x="704" y="712" font-size="13.5" fill="#a39a8e">配图四防：出边界 · 压线 · 线条紊乱 · 错位重叠 —— diagram-check 机器抓 + 逐图截图目检；密度红线 55–75%</text>
+
+  <!-- 底部脚注 -->
+  <text x="52" y="862" font-family="'JetBrains Mono',Consolas,monospace" font-size="12" fill="#77746e">STYLE: #231e18 espresso · #f9f5ea cream · #cd642d terracotta · serif CJK + mono labels — extracted from 8 reference cards</text>
+</svg>

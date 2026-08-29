@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!-- nanju-write-paper 公众号模板（全内联样式版）
+     用法：浏览器打开本文件 → Ctrl+A 全选 → Ctrl+C → 粘贴到公众号编辑器（格式不丢）
+     规则：只用 <section>/<p>/<span> + 内联 style；不用 class/外部资源/absolute/flex；
+     图表一律降级为纵向卡片堆叠（见 references/diagram-guide.md §8） -->
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><title>nanju-write-paper · 公众号模板</title></head>
+<body style="margin:0;background:#ffffff;">
+<div style="max-width:677px;margin:0 auto;padding:8px 0;font-family:'Source Han Serif SC','Noto Serif SC','Songti SC','STZhongsong','SimSun',serif;">
+
+  <!-- ═══ 封面头（暗卡） ═══ -->
+  <section style="background:#231e18;border-radius:12px;padding:22px 24px;margin-bottom:18px;">
+    <p style="margin:0;font-size:22px;line-height:1.5;font-weight:900;color:#f3eee1;">把深度文章做成一条<span style="border-bottom:6px solid #b97b45;padding-bottom:2px;">生产流水线</span></p>
+    <p style="margin:10px 0 0;font-family:Consolas,'Courier New',monospace;font-size:13px;letter-spacing:3px;color:#eda55f;">THE WRITING PIPELINE</p>
+  </section>
+
+  <!-- ═══ 章节头 ═══ -->
+  <section style="margin:26px 0 10px;">
+    <p style="margin:0;line-height:1.2;">
+      <span style="font-family:Consolas,monospace;font-weight:700;font-size:22px;color:#cd642d;">01</span>
+      <span style="font-size:19px;font-weight:900;color:#231e18;">&nbsp;生产流程</span>
+      <span style="display:inline-block;border:1px solid #ddd6c6;border-radius:999px;padding:2px 12px;font-family:Consolas,monospace;font-size:11px;letter-spacing:3px;color:#77746e;vertical-align:2px;">&nbsp;PIPELINE&nbsp;</span>
+      <span style="display:inline-block;background:#231e18;color:#f3eee1;font-family:Consolas,monospace;font-size:13px;padding:3px 10px;border-radius:6px;vertical-align:2px;">draft.md</span>
+    </p>
+  </section>
+  <p style="margin:8px 0 14px;font-size:17px;font-weight:900;color:#231e18;line-height:1.6;">素材经过四道关卡变成定稿，每一道都有明确的放行条件</p>
+
+  <!-- ═══ 流程图（公众号降级为纵向卡片） ═══ -->
+  <section style="background:#f0ede6;border-radius:12px;padding:16px 14px;margin-bottom:16px;">
+    <p style="margin:0 0 10px;font-family:Consolas,monospace;font-size:12px;letter-spacing:2px;color:#77746e;">PIPELINE · 单章的生命周期</p>
+    <section style="background:#fbfaf5;border:1px solid #ddd6c6;border-radius:8px;padding:10px 14px;">
+      <p style="margin:0;font-size:15px;font-weight:700;color:#231e18;">素材入厂</p>
+      <p style="margin:2px 0 0;font-size:13px;color:#5a5348;">带来源的调研要点</p>
+    </section>
+    <p style="margin:4px 0;text-align:center;font-family:Consolas,monospace;color:#cd642d;font-weight:700;">↓</p>
+    <section style="background:#f4dd99;border-radius:8px;padding:10px 14px;">
+      <p style="margin:0;font-size:15px;font-weight:700;color:#231e18;">起草 <span style="font-weight:400;font-size:13px;color:#5a5348;">倒序写作，主体先行</span></p>
+    </section>
+    <p style="margin:4px 0;text-align:center;font-family:Consolas,monospace;color:#cd642d;font-weight:700;">↓</p>
+    <section style="background:#cd642d;border-radius:8px;padding:10px 14px;">
+      <p style="margin:0;font-size:15px;font-weight:700;color:#ffffff;">审查 <span style="font-weight:400;font-size:13px;color:rgba(255,255,255,.85);">四角色并行打分</span></p>
+    </section>
+    <p style="margin:4px 0;text-align:center;font-family:Consolas,monospace;color:#cd642d;font-weight:700;">↓</p>
+    <section style="background:#231e18;border-radius:8px;padding:10px 14px;">
+      <p style="margin:0;font-size:15px;font-weight:700;color:#f3eee1;">定稿 <span style="font-weight:400;font-size:13px;color:#a39a8e;">归档并回灌样例库</span></p>
+    </section>
+    <p style="margin:10px 0 0;font-size:13px;color:#5a5348;line-height:1.8;">打回时只改被点名的条目 —— 改方向永远比推倒重来便宜。</p>
+  </section>
+
+  <!-- ═══ 提醒框（橙虚线） ═══ -->
+  <section style="border:2px dashed #cd642d;border-radius:10px;padding:10px 14px;margin-bottom:16px;">
+    <p style="margin:0;font-size:14px;color:#231e18;line-height:1.8;"><span style="font-family:Consolas,monospace;color:#cd642d;">NOTE&nbsp;</span>审查是四类视角各查各的：事实、结构、深度、文风。</p>
+  </section>
+
+  <!-- ═══ 要点格 2×2（table 双列） ═══ -->
+  <table style="width:100%;border-collapse:collapse;margin:0 0 6px;" cellpadding="0" cellspacing="0">
+    <tr>
+      <td style="width:50%;vertical-align:top;padding:0 12px 12px 0;">
+        <p style="margin:0;border-left:4px solid #cd642d;padding-left:8px;font-size:15px;font-weight:900;color:#231e18;">证据可溯</p>
+        <p style="margin:6px 0 0;font-size:13px;color:#5a5348;line-height:1.8;">每条事实回指调研台账的来源链接。</p>
+      </td>
+      <td style="width:50%;vertical-align:top;padding:0 0 12px 4px;">
+        <p style="margin:0;border-left:4px solid #cd642d;padding-left:8px;font-size:15px;font-weight:900;color:#231e18;">概念先立后用</p>
+        <p style="margin:6px 0 0;font-size:13px;color:#5a5348;line-height:1.8;">信息按依赖排序，先定义后引用。</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align:top;padding:0 12px 0 0;">
+        <p style="margin:0;border-left:4px solid #cd642d;padding-left:8px;font-size:15px;font-weight:900;color:#231e18;">图文互证</p>
+        <p style="margin:6px 0 0;font-size:13px;color:#5a5348;line-height:1.8;">机制章节必配架构或流程图。</p>
+      </td>
+      <td style="vertical-align:top;padding:0 0 0 4px;">
+        <p style="margin:0;border-left:4px solid #cd642d;padding-left:8px;font-size:15px;font-weight:900;color:#231e18;">循环收敛</p>
+        <p style="margin:6px 0 0;font-size:13px;color:#5a5348;line-height:1.8;">审查最多三轮，不收敛升级裁决。</p>
+      </td>
+    </tr>
+  </table>
+
+  <!-- ═══ 代码卡 ═══ -->
+  <section style="background:#231e18;border-radius:12px;padding:14px 16px;margin:14px 0 18px;">
+    <p style="margin:0 0 6px;font-family:Consolas,monospace;font-size:12px;letter-spacing:1px;color:#eda55f;">review.md 示例</p>
+    <p style="margin:0;font-family:Consolas,monospace;font-size:13px;line-height:1.9;color:#8a8172;"># Review round 1</p>
+    <p style="margin:0;font-family:Consolas,monospace;font-size:13px;line-height:1.9;color:#e9e2d4;">[事实] 第2章 延迟数字缺来源 → 补 ledger#12</p>
+    <p style="margin:0;font-family:Consolas,monospace;font-size:13px;line-height:1.9;color:#e9e2d4;">[深度] 第3章 缺边界条件 → 补反例</p>
+  </section>
+
+  <!-- ═══ 分级条 ═══ -->
+  <section style="border-radius:10px;overflow:hidden;margin-bottom:18px;">
+    <section style="background:#cd642d;padding:9px 14px;"><p style="margin:0;font-size:14px;color:#fff;"><span style="font-family:Consolas,monospace;opacity:.85;">P0&nbsp;&nbsp;</span><b>阻断发布</b><span style="font-size:12px;opacity:.85;">&nbsp;·&nbsp;事实错误 · 引用失效</span></p></section>
+    <section style="background:#f4dd99;padding:9px 14px;"><p style="margin:0;font-size:14px;color:#231e18;"><span style="font-family:Consolas,monospace;opacity:.85;">P1&nbsp;&nbsp;</span><b>本轮必改</b><span style="font-size:12px;opacity:.75;">&nbsp;·&nbsp;结构缺陷 · 深度不足</span></p></section>
+    <section style="background:#fbfaf5;border:1px solid #ddd6c6;border-top:none;padding:9px 14px;"><p style="margin:0;font-size:14px;color:#231e18;"><span style="font-family:Consolas,monospace;color:#cd642d;">P2&nbsp;&nbsp;</span><b>择机优化</b><span style="font-size:12px;color:#77746e;">&nbsp;·&nbsp;措辞与排版</span></p></section>
+  </section>
+
+  <!-- ═══ 总结列表（暗卡） ═══ -->
+  <section style="background:#231e18;border-radius:12px;padding:18px 20px;margin-bottom:18px;">
+    <p style="margin:0 0 10px;font-size:18px;font-weight:900;color:#f3eee1;">提炼 <span style="display:inline-block;border:1px solid #46413b;border-radius:999px;padding:1px 10px;font-family:Consolas,monospace;font-size:11px;letter-spacing:3px;color:#a39a8e;vertical-align:2px;">SUMMARY</span></p>
+    <p style="margin:0 0 4px;padding:8px 0;border-bottom:1px solid #3d372f;"><span style="font-family:Consolas,monospace;color:#eda55f;font-weight:700;">01&nbsp;&nbsp;</span><span style="font-size:15px;font-weight:900;color:#f3eee1;">简报</span><span style="font-size:13px;color:#a39a8e;">&nbsp;八项确认，不写模糊的题&nbsp;·&nbsp;</span><span style="font-family:Consolas,monospace;font-size:13px;color:#f3eee1;">brief.md</span></p>
+    <p style="margin:0 0 4px;padding:8px 0;border-bottom:1px solid #3d372f;"><span style="font-family:Consolas,monospace;color:#eda55f;font-weight:700;">02&nbsp;&nbsp;</span><span style="font-size:15px;font-weight:900;color:#f3eee1;">调研</span><span style="font-size:13px;color:#a39a8e;">&nbsp;四路并行检索，条条带来源&nbsp;·&nbsp;</span><span style="font-family:Consolas,monospace;font-size:13px;color:#f3eee1;">ledger.md</span></p>
+    <p style="margin:0;padding:8px 0;"><span style="font-family:Consolas,monospace;color:#eda55f;font-weight:700;">03&nbsp;&nbsp;</span><span style="font-size:15px;font-weight:900;color:#f3eee1;">审查</span><span style="font-size:13px;color:#a39a8e;">&nbsp;四角色打分，不达标打回&nbsp;·&nbsp;</span><span style="font-family:Consolas,monospace;font-size:13px;color:#f3eee1;">reviews/</span></p>
+  </section>
+
+  <!-- ═══ 芯片链 ═══ -->
+  <section style="text-align:center;margin-bottom:10px;">
+    <span style="display:inline-block;background:#f0ede6;border:1px solid #ddd6c6;border-radius:6px;padding:4px 10px;font-family:Consolas,monospace;font-size:13px;color:#231e18;">brief</span>
+    <span style="font-family:Consolas,monospace;color:#cd642d;font-weight:700;">&nbsp;→&nbsp;</span>
+    <span style="display:inline-block;background:#f0ede6;border:1px solid #ddd6c6;border-radius:6px;padding:4px 10px;font-family:Consolas,monospace;font-size:13px;color:#231e18;">research</span>
+    <span style="font-family:Consolas,monospace;color:#cd642d;font-weight:700;">&nbsp;→&nbsp;</span>
+    <span style="display:inline-block;background:#f0ede6;border:1px solid #ddd6c6;border-radius:6px;padding:4px 10px;font-family:Consolas,monospace;font-size:13px;color:#231e18;">outline</span>
+    <span style="font-family:Consolas,monospace;color:#cd642d;font-weight:700;">&nbsp;→&nbsp;</span>
+    <span style="display:inline-block;background:#f0ede6;border:1px solid #ddd6c6;border-radius:6px;padding:4px 10px;font-family:Consolas,monospace;font-size:13px;color:#231e18;">final</span>
+  </section>
+
+</div>
+</body>
+</html>

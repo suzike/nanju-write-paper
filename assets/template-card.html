@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!-- nanju-write-paper 3:4 卡片模板（1080×1440，与参考图同比例）
+     一章一卡；长内容拆两张卡（面板卡 + 要点卡）。导出 PDF：@page 尺寸已设 -->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>nanju-write-paper · 3:4 卡片模板</title>
+<link rel="stylesheet" href="../assets/theme.css">
+<style>
+  @page { size: 1080px 1440px; margin: 0; }
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <!-- 封面卡 -->
+  <section class="page page--card page--dark" style="display:flex;flex-direction:column;">
+    <h1 class="cover-title">把深度文章<br>做成一条<span class="u-accent">生产流水线</span></h1>
+    <p class="cover-sub">THE WRITING PIPELINE</p>
+    <div style="flex:1;display:flex;align-items:center;">
+      <div class="ring">
+        <div class="node" style="--a:-90deg"><span class="n">01</span><span class="t">调研</span></div>
+        <div class="node" style="--a:-30deg"><span class="n">02</span><span class="t">编排</span></div>
+        <div class="node" style="--a:30deg"><span class="n">03</span><span class="t">写作</span></div>
+        <div class="node" style="--a:90deg"><span class="n">04</span><span class="t">审查</span></div>
+        <div class="node" style="--a:150deg"><span class="n">05</span><span class="t">修订</span></div>
+        <div class="node" style="--a:210deg"><span class="n">06</span><span class="t">定稿</span></div>
+        <div class="hub">每轮审查<br>打回重写</div>
+      </div>
+    </div>
+    <div class="chipline">
+      <span class="c">brief</span><span class="a">→</span><span class="c">research</span><span class="a">→</span>
+      <span class="c">outline</span><span class="a">→</span><span class="c">draft</span><span class="a">→</span>
+      <span class="c">review</span><span class="a">→</span><span class="c">final</span><span class="a">↺</span>
+    </div>
+  </section>
+
+  <!-- 章节卡 -->
+  <section class="page page--card">
+    <div class="sec-head">
+      <span class="sec-num">01</span><span class="sec-title">生产流程</span>
+      <span class="pill">PIPELINE</span>
+      <span class="sec-art">产出 <span class="chip-dark">draft.md</span></span>
+    </div>
+    <p class="deck-sub">素材经过四道关卡变成定稿，每一道都有明确的放行条件</p>
+    <div class="panel">
+      <div class="panel-cap">PIPELINE · 单章的生命周期</div>
+      <div class="frow">
+        <div class="fcard fcard--center"><div class="t">素材入厂</div><div class="d">带来源的要点</div></div>
+        <span class="arrow">→</span>
+        <div class="state state--gold fcard--center" style="display:flex;"><div class="t">起草</div><div class="d">主体先行</div></div>
+        <span class="arrow">→</span>
+        <div class="state state--act fcard--center" style="display:flex;"><div class="t">审查</div><div class="d">并行打分</div></div>
+        <span class="arrow">→</span>
+        <div class="state state--final fcard--center" style="display:flex;"><div class="t">定稿</div><div class="d">归档回灌</div></div>
+      </div>
+      <p class="panel-note">打回时只改被点名的条目 —— 改方向永远比推倒重来便宜。</p>
+      <div class="callout" style="margin-top:1em;">
+        <span class="lab">NOTE</span>
+        <span>审查是四类视角各查各的：事实、结构、深度、文风。</span>
+      </div>
+    </div>
+    <div class="points points--fill" style="margin-top:1.3em;">
+      <div class="point"><h4>证据可溯</h4><p>每条事实回指调研台账的来源链接。</p></div>
+      <div class="point"><h4>概念先立后用</h4><p>信息按依赖排序，先定义后引用。</p></div>
+      <div class="point"><h4>图文互证</h4><p>机制章节必配架构或流程图。</p></div>
+      <div class="point"><h4>循环收敛</h4><p>审查最多三轮，不收敛升级裁决。</p></div>
+    </div>
+    <div class="codecard codecard--dock">
+      <div class="cap">review.md 示例</div>
+      <pre><span class="cm"># Review round 1</span>
+[事实] 第2章 延迟数字缺来源 → 补 ledger#12
+[深度] 第3章 缺边界条件 → 补反例
+[文风] 第1章 "众所周知" 删</pre>
+    </div>
+  </section>
+
+  <!-- 总结卡 -->
+  <section class="page page--card page--dark" style="display:flex;flex-direction:column;">
+    <div class="sec-head">
+      <span class="sec-title">提炼</span>
+      <span class="pill" style="background:transparent;border-color:var(--chip-line);color:var(--tan);">SUMMARY</span>
+      <span class="sec-art mono" style="color:var(--accent-on-dark);">WRITING PIPELINE</span>
+    </div>
+    <p class="deck-sub" style="color:var(--cream);">六道工序，三道闸门；审查不过关，就打回重来</p>
+    <div class="sumlist">
+      <div class="sumrow"><span class="n">01</span><span><span class="t">简报</span><span class="d">八项确认，不写模糊的题</span></span><span class="r">brief.md</span></div>
+      <div class="sumrow"><span class="n">02</span><span><span class="t">调研</span><span class="d">四路并行检索，条条带来源</span></span><span class="r">ledger.md</span></div>
+      <div class="sumrow"><span class="n">03</span><span><span class="t">编排</span><span class="d">证据地图 + 大纲先行确认</span></span><span class="r">outline.md</span></div>
+      <div class="sumrow"><span class="n">04</span><span><span class="t">写作</span><span class="d">倒序起草，深度块补机理</span></span><span class="r">draft.md</span></div>
+      <div class="sumrow"><span class="n">05</span><span><span class="t">审查</span><span class="d">四角色打分，不达标打回</span></span><span class="r">reviews/</span></div>
+      <div class="sumrow"><span class="n">06</span><span><span class="t">排版</span><span class="d">同一设计系统出三格式</span></span><span class="r">final.pdf</span></div>
+    </div>
+    <div class="points" style="margin:1.3em 0;">
+      <div class="point"><h4>来源是底线</h4><p>没有来源的断言，降级为观点或删除。</p></div>
+      <div class="point"><h4>闸门防跑偏</h4><p>简报与大纲两道确认，避免万字返工。</p></div>
+    </div>
+    <div class="chipline">
+      <span class="c">brief</span><span class="a">→</span><span class="c">research</span><span class="a">→</span>
+      <span class="c">outline</span><span class="a">→</span><span class="c">draft</span><span class="a">→</span>
+      <span class="c">review</span><span class="a">→</span><span class="c">final</span><span class="a">↺</span>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

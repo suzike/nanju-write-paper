@@ -1,0 +1,317 @@
+/* ============================================================
+   nanju-write-paper theme.css — 南橘卡片文档设计系统
+   色板与骨架提取自 000-reference 的 8 张参考图
+   画幅：A4(794×1123) / 3:4卡片(1080×1440) / 16:9(1280×720) / 长图(900×auto)
+   ============================================================ */
+
+:root {
+  /* 色板（自参考图取样） */
+  --bg-dark: #231e18;        /* 深咖：暗页背景 / 墨黑块 / 代码卡 */
+  --bg-dark-2: #2f2a24;      /* 暗页上的浮起元素（圆、芯片） */
+  --chip-line: #46413b;      /* 暗页描边 */
+  --cream: #f3eee1;          /* 暗页主文字（奶油白） */
+  --tan: #a39a8e;            /* 暗页次级文字 */
+  --line-dark: #3d372f;      /* 暗页分隔线 */
+
+  --bg-cream: #f9f5ea;       /* 亮页背景（米杏） */
+  --panel: #f0ede6;          /* 米色大面板 */
+  --card: #fbfaf5;           /* 白卡片 */
+  --line-light: #ddd6c6;     /* 亮页描边 */
+  --line-mid: #c9c1af;       /* 虚线基线 */
+
+  --ink: #231e18;            /* 亮页正文墨色 */
+  --ink-soft: #5a5348;       /* 亮页次级文字 */
+  --gray: #77746e;           /* 灰色小标签 */
+
+  --accent: #cd642d;         /* 主橙（亮页块/编号/箭头） */
+  --accent-on-dark: #eda55f; /* 暗页上的橙（副标/高亮） */
+  --accent-underline: #b97b45; /* 暗页标题下的橙条 */
+  --gold: #f4dd99;           /* 黄块（中间态/高亮） */
+  --blue: #4986a3;           /* 蓝点缀（虚线框/侧边条，克制使用） */
+
+  /* 字体 */
+  --serif: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "STZhongsong", "SimSun", serif;
+  --mono: "JetBrains Mono", "Cascadia Code", "SF Mono", Consolas, "Courier New", monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #4b4b52;
+  font-family: var(--serif);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.stage { display: flex; flex-direction: column; align-items: center; gap: 40px; padding: 40px; }
+
+/* ---------- 画幅 ---------- */
+.page {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  background: var(--bg-cream);
+  color: var(--ink);
+  box-shadow: 0 6px 30px rgba(0,0,0,.35);
+}
+.page--dark { background: var(--bg-dark); color: var(--cream); }
+
+/* A4 竖版 */
+.page--a4 {
+  width: 794px; height: 1123px; padding: 46px 52px;
+  --fs-cover: 60px; --fs-num: 46px; --fs-title: 34px; --fs-sub: 25px;
+  --fs-body: 19.5px; --fs-small: 15.5px; --fs-mono: 16px; --fs-micro: 12.5px;
+  --rad-panel: 18px; --rad-card: 10px; --pad-panel: 30px; --gap: 10px;
+}
+/* 3:4 卡片（参考图原生尺寸） */
+.page--card {
+  width: 1080px; height: 1440px; padding: 62px 64px;
+  --fs-cover: 84px; --fs-num: 64px; --fs-title: 48px; --fs-sub: 35px;
+  --fs-body: 27px; --fs-small: 21px; --fs-mono: 22px; --fs-micro: 17px;
+  --rad-panel: 24px; --rad-card: 14px; --pad-panel: 42px; --gap: 14px;
+}
+/* 16:9 宽屏 */
+.page--wide {
+  width: 1280px; height: 720px; padding: 38px 52px;
+  --fs-cover: 52px; --fs-num: 40px; --fs-title: 31px; --fs-sub: 22px;
+  --fs-body: 17px; --fs-small: 13.5px; --fs-mono: 14.5px; --fs-micro: 11.5px;
+  --rad-panel: 16px; --rad-card: 10px; --pad-panel: 22px; --gap: 10px;
+}
+/* 手机长图（宽 900，高随内容） */
+.page--scroll {
+  width: 900px; min-height: 1200px; padding: 52px 54px;
+  --fs-cover: 56px; --fs-num: 44px; --fs-title: 32px; --fs-sub: 24px;
+  --fs-body: 19px; --fs-small: 15px; --fs-mono: 16px; --fs-micro: 12.5px;
+  --rad-panel: 18px; --rad-card: 11px; --pad-panel: 28px; --gap: 10px;
+}
+
+/* ---------- 通用 ---------- */
+.mono { font-family: var(--mono); }
+.kicker {
+  font-family: var(--mono); font-size: var(--fs-micro); color: var(--gray);
+  letter-spacing: .18em; text-transform: uppercase;
+}
+
+/* 章节头：橙编号 + 标题 + 白胶囊 + 右侧制品芯片 */
+.sec-head { display: flex; align-items: center; gap: .4em; }
+.sec-num { font-family: var(--mono); font-weight: 700; color: var(--accent); font-size: var(--fs-num); line-height: 1; }
+.sec-title { font-size: var(--fs-title); font-weight: 900; letter-spacing: .02em; }
+.pill {
+  background: var(--card); border: 1px solid var(--line-light); border-radius: 999px;
+  padding: .32em 1em; font-family: var(--mono); font-size: var(--fs-micro);
+  letter-spacing: .22em; color: var(--gray);
+}
+.sec-art { margin-left: auto; display: flex; align-items: center; gap: .55em; font-size: var(--fs-small); color: var(--gray); }
+.chip-dark {
+  background: var(--bg-dark); color: var(--cream); font-family: var(--mono);
+  border-radius: .5em; padding: .38em .8em; font-size: var(--fs-mono); white-space: nowrap;
+}
+.chip-dark .tag { color: var(--accent-on-dark); font-size: .72em; margin-left: .8em; }
+
+.deck-sub { font-weight: 900; font-size: var(--fs-sub); line-height: 1.4; margin: .65em 0 .7em; }
+
+/* ---------- 米色面板 ---------- */
+.panel { background: var(--panel); border-radius: var(--rad-panel); padding: var(--pad-panel); }
+.panel-cap { font-family: var(--mono); font-size: var(--fs-micro); color: var(--gray); letter-spacing: .14em; margin-bottom: .9em; }
+.panel-note { font-size: var(--fs-small); color: var(--ink-soft); margin-top: 1em; line-height: 1.5; }
+.panel-cap-row { display: flex; align-items: baseline; margin-bottom: .9em; }
+.panel-cap-row .right { margin-left: auto; font-family: var(--mono); font-size: var(--fs-micro); color: var(--gray); }
+
+/* 流程行：白卡/状态块 + 橙箭头 */
+.frow { display: flex; align-items: stretch; gap: var(--gap); }
+.fcard {
+  background: var(--card); border-radius: var(--rad-card); padding: .85em 1em; flex: 1; min-width: 0;
+  box-shadow: 0 1px 0 rgba(35,30,24,.05);
+}
+.fcard .k { font-family: var(--mono); font-size: var(--fs-micro); color: var(--gray); letter-spacing: .1em; }
+.fcard .t { font-weight: 700; font-size: var(--fs-body); line-height: 1.35; margin-top: .18em; }
+.fcard .d { font-size: var(--fs-small); color: var(--ink-soft); line-height: 1.45; margin-top: .2em; }
+.fcard--center { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+
+.arrow { align-self: center; color: var(--accent); font-family: var(--mono); font-weight: 700; flex: none; font-size: var(--fs-body); }
+
+/* 状态块：金=中间态，橙=动作/闸门，黑=终点/制品 */
+.state { border-radius: var(--rad-card); padding: .85em 1em; flex: 1; min-width: 0; }
+.state .t { font-weight: 700; font-size: var(--fs-body); line-height: 1.35; }
+.state .d { font-size: var(--fs-small); margin-top: .2em; opacity: .82; line-height: 1.4; }
+.state--gold { background: var(--gold); color: var(--ink); }
+.state--act { background: var(--accent); color: #fff; }
+.state--final { background: var(--bg-dark); color: var(--cream); }
+
+/* 虚线标注框：橙=提醒/警示，蓝=配置/附注 */
+.callout {
+  border: 2px dashed var(--accent); border-radius: 12px;
+  padding: .8em 1em; display: flex; gap: .7em; align-items: flex-start;
+  font-size: var(--fs-small); line-height: 1.55; color: var(--ink);
+}
+.callout .lab { font-family: var(--mono); color: var(--accent); flex: none; }
+.callout--blue { border-color: var(--blue); }
+.callout--blue .lab { color: var(--blue); }
+
+/* 要点格：橙竖条 + 粗衬线小标题 + 正文（2×2 或单列） */
+.points { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4em 2.4em; }
+.points--fill { flex: 1; align-content: space-evenly; }
+.points--one { grid-template-columns: 1fr; }
+.point h4 { display: flex; align-items: center; gap: .4em; font-size: var(--fs-body); font-weight: 900; line-height: 1.3; }
+.point h4::before { content: ""; flex: none; width: .2em; height: 1.02em; background: var(--accent); border-radius: 1px; }
+.point p { font-size: var(--fs-small); color: var(--ink-soft); line-height: 1.6; margin-top: .35em; }
+.page--dark .point h4::before { background: var(--accent-on-dark); }
+.page--dark .point p { color: var(--tan); }
+
+/* 底部黑色代码卡 */
+.codecard {
+  background: var(--bg-dark); color: #e9e2d4; border-radius: var(--rad-panel);
+  padding: 1.1em 1.3em; font-family: var(--mono); font-size: var(--fs-mono); line-height: 1.75;
+}
+.codecard .cap { color: var(--accent-on-dark); letter-spacing: .1em; margin-bottom: .55em; font-size: .92em; }
+.codecard .cm { color: #8a8172; }
+.codecard pre { font-family: inherit; white-space: pre-wrap; word-break: break-word; }
+.codecard--dock { margin-top: auto; }
+.panel--fill { flex: 1; display: flex; flex-direction: column; }
+.panel--fill .arch { flex: 1; justify-content: space-evenly; }
+.panel--fill .seq { flex: 1; align-content: space-evenly; }
+.panel--fill .panel-note { margin-top: auto; padding-top: 1em; }
+
+/* 分级阈值表（tier） */
+.tier { border-radius: 12px; overflow: hidden; }
+.tier-row { display: flex; align-items: center; gap: 1em; padding: .68em 1.1em; }
+.tier-row .sig { font-family: var(--mono); flex: none; width: 3.4em; opacity: .85; }
+.tier-row .name { font-weight: 900; }
+.tier-row .note { margin-left: auto; font-size: .78em; opacity: .85; text-align: right; }
+.tier-row--1 { background: var(--accent); color: #fff; }
+.tier-row--2 { background: var(--gold); color: var(--ink); }
+.tier-row--3 { background: var(--card); color: var(--ink); }
+.tier-row--3 .sig { color: var(--accent); opacity: 1; }
+.tier-cap {
+  padding: .5em 1.1em; background: var(--card); border-top: 1px dashed var(--line-mid);
+  font-size: var(--fs-small); color: var(--ink-soft);
+}
+.tier-cap .m { font-family: var(--mono); }
+
+/* 紧凑数据表（非分级语义的表格用这个） */
+.dtable { width: 100%; border-collapse: collapse; font-size: var(--fs-small); }
+.dtable th {
+  background: var(--panel); color: var(--ink-soft); font-weight: 700; text-align: left;
+  padding: .5em .7em; border: 1px solid var(--line-light);
+}
+.dtable td { padding: .45em .7em; border: 1px solid var(--line-light); background: var(--card); }
+
+/* ---------- 配图模块：架构图（分层） ---------- */
+.arch { display: flex; flex-direction: column; }
+.arch .layer { display: flex; gap: .7em; align-items: stretch; }
+.arch .ltag {
+  flex: 0 0 5.6em; display: flex; align-items: center; justify-content: flex-end;
+  padding-right: .2em; font-family: var(--mono); font-size: var(--fs-micro);
+  color: var(--gray); letter-spacing: .08em; text-align: right;
+}
+.arch .nodes { flex: 1; display: flex; gap: var(--gap); min-width: 0; }
+.dnode {
+  flex: 1; min-width: 0; background: var(--card); border: 1px solid var(--line-light);
+  border-radius: var(--rad-card); padding: .55em .8em;
+}
+.dnode .t { font-weight: 700; font-size: var(--fs-body); line-height: 1.3; }
+.dnode .d { font-size: var(--fs-small); color: var(--ink-soft); line-height: 1.45; margin-top: .15em; }
+.dnode--accent { background: var(--accent); border-color: var(--accent); color: #fff; }
+.dnode--accent .d { color: rgba(255,255,255,.85); }
+.dnode--gold { background: var(--gold); border-color: var(--gold); }
+.dnode--final { background: var(--bg-dark); border-color: var(--bg-dark); color: var(--cream); }
+.dnode--final .d { color: var(--tan); }
+
+/* 层间竖直箭头（可带小标签芯片） */
+.varrow { display: flex; justify-content: center; align-items: center; gap: .5em; padding: .45em 0 .45em 6em; color: var(--accent); font-family: var(--mono); }
+.varrow .elab {
+  background: var(--card); border: 1px solid var(--line-light); border-radius: .5em;
+  padding: .04em .6em; color: var(--ink-soft); font-size: var(--fs-micro);
+}
+
+/* ---------- 配图模块：汇聚/网关 ---------- */
+.fan { display: flex; gap: 1.6em; align-items: stretch; }
+.fan .col { flex: 1; display: flex; flex-direction: column; gap: .8em; min-width: 0; }
+.fan .link { flex: 0 0 2em; display: flex; align-items: center; justify-content: center; color: var(--accent); font-family: var(--mono); font-size: var(--fs-body); }
+
+/* ---------- 配图模块：时序图（列中心用百分比定位） ----------
+   公式：第 i 列中心 = (i-0.5)/cols*100%
+   消息线：left = min(a,b)%，width = |a-b|%，label left = (a+b)/2%        */
+.seq { --cols: 3; display: grid; grid-template-columns: repeat(var(--cols), 1fr); row-gap: 0; }
+.seq .actor {
+  grid-row: 1; z-index: 1; background: var(--card); border: 1px solid var(--line-light);
+  border-radius: var(--rad-card); text-align: center; padding: .45em .3em;
+  font-weight: 700; font-size: var(--fs-body);
+}
+.seq .actor .sub { display: block; font-weight: 400; font-size: var(--fs-micro); color: var(--gray); font-family: var(--mono); margin-top: .15em; }
+.seq .life { grid-row: 2 / 99; justify-self: center; width: 0; border-left: 2px dashed var(--line-mid); }
+.seq .rowhead { grid-column: 1 / -1; height: 1.2em; }
+.msg { grid-column: 1 / -1; position: relative; height: 2.8em; }
+.msg .ln { position: absolute; top: 50%; left: var(--x1); width: var(--w); border-top: 2px solid var(--accent); }
+.msg .ln::after {
+  content: ""; position: absolute; top: -.34em; right: -2px;
+  border: .34em solid transparent; border-left: .55em solid var(--accent);
+}
+.msg--rtl .ln::after { right: auto; left: -2px; border-left: none; border-right: .55em solid var(--accent); }
+.msg .lab {
+  position: absolute; top: -.15em; left: var(--xm); transform: translateX(-50%);
+  background: var(--bg-cream); padding: .02em .5em; font-family: var(--mono);
+  font-size: var(--fs-small); color: var(--ink-soft); white-space: nowrap;
+}
+.msg--dash .ln { border-top-style: dashed; }
+.panel .msg .lab { background: var(--panel); }
+
+/* ---------- 暗页：封面 ---------- */
+.cover-title { font-size: var(--fs-cover); font-weight: 900; line-height: 1.22; letter-spacing: .01em; }
+.cover-title .u-accent { box-shadow: inset 0 -.12em 0 var(--accent-underline); padding-bottom: .04em; }
+.cover-sub { font-family: var(--mono); color: var(--accent-on-dark); letter-spacing: .14em; margin-top: .7em; font-size: var(--fs-body); }
+
+/* 环形循环图（仅此模块允许绝对定位；角度用内联 --a 指定） */
+.ring { --d: 560px; --r: 215px; --node: 128px; position: relative; width: var(--d); height: var(--d); margin: 0 auto; flex: none; }
+.ring::before { content: ""; position: absolute; inset: 9%; border: 2px dashed var(--chip-line); border-radius: 50%; }
+.ring .hub {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+  background: var(--accent); color: #fff; border-radius: .8em;
+  padding: .7em 1em; text-align: center; font-weight: 700; font-size: var(--fs-small); line-height: 1.45;
+}
+.ring .node {
+  position: absolute; left: 50%; top: 50%;
+  width: var(--node); height: var(--node); margin: calc(var(--node)/-2) 0 0 calc(var(--node)/-2);
+  transform: rotate(var(--a)) translateX(var(--r)) rotate(calc(var(--a) * -1));
+  background: var(--bg-dark-2); border: 1px solid var(--chip-line); border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .1em;
+}
+.ring .node .n { font-family: var(--mono); font-size: var(--fs-micro); color: var(--accent-on-dark); }
+.ring .node .t { font-size: var(--fs-body); font-weight: 700; }
+
+/* 暗页底部芯片链 */
+.chipline { display: flex; flex-wrap: wrap; align-items: center; gap: .55em .5em; }
+.chipline .c {
+  background: var(--bg-dark-2); border: 1px solid var(--chip-line); color: var(--cream);
+  font-family: var(--mono); border-radius: .55em; padding: .45em .85em;
+}
+.chipline .a { color: var(--accent-on-dark); font-family: var(--mono); }
+
+/* ---------- 暗页：总结列表 ---------- */
+.sumlist { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; }
+.sumrow { display: flex; align-items: flex-start; gap: 1em; padding: .8em 0; border-bottom: 1px solid var(--line-dark); }
+.sumrow:last-child { border-bottom: none; }
+.sumrow .n { font-family: var(--mono); color: var(--accent-on-dark); font-weight: 700; flex: none; width: 2.2em; }
+.sumrow .t { display: block; font-weight: 900; line-height: 1.3; }
+.sumrow .d { display: block; color: var(--tan); font-size: .85em; margin-top: .18em; line-height: 1.55; }
+.sumrow .r { margin-left: auto; font-family: var(--mono); opacity: .9; flex: none; }
+
+/* 信息图：数字卡网格（"数字看 X"页专用） */
+.statrow { display: flex; gap: var(--gap); }
+.statrow .fcard { text-align: center; }
+.statrow .big { font-family: var(--mono); font-weight: 700; font-size: var(--fs-sub); color: var(--accent); line-height: 1.1; }
+.statrow .k2 { font-family: var(--mono); font-size: var(--fs-micro); color: var(--gray); letter-spacing: .12em; margin-top: .3em; }
+.page--dark .statrow .fcard { background: var(--bg-dark-2); border: 1px solid var(--chip-line); }
+.page--dark .statrow .big { color: var(--accent-on-dark); }
+.page--dark .statrow .k2 { color: var(--tan); }
+
+/* ---------- 打印 ---------- */
+@page { margin: 0; }
+@media print {
+  body { background: none; }
+  .stage { display: block; padding: 0; gap: 0; }
+  .page { page-break-after: always; box-shadow: none; }
+  .page:last-child { page-break-after: auto; }
+}

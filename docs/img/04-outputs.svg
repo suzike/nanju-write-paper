@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="560" viewBox="0 0 1440 560" font-family="'Source Han Serif SC','Noto Serif SC',Georgia,serif">
+  <defs>
+    <marker id="ar4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#eda55f"/>
+    </marker>
+  </defs>
+  <rect width="1440" height="560" fill="#231e18"/>
+  <text x="52" y="52" font-family="'JetBrains Mono',Consolas,monospace" font-size="14" letter-spacing="3" fill="#eda55f">FORMAT × CANVAS · 两问四选项 = 12 种组合</text>
+  <text x="52" y="92" font-size="30" font-weight="700" fill="#f3eee1">选画幅即选形态：演示 / 文章 / 半图半文 / 连续长文</text>
+
+  <!-- 左：两问 -->
+  <rect x="48" y="126" width="330" height="380" rx="16" fill="#2a241d" stroke="#46413b" stroke-dasharray="6 5"/>
+  <text x="72" y="158" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" letter-spacing="2" fill="#eda55f">Q1 · 格式</text>
+  <g font-size="15" fill="#f3eee1">
+    <rect x="72" y="176" width="282" height="36" rx="8" fill="#2f2a24" stroke="#46413b"/><text x="88" y="200">A · PDF<tspan fill="#a39a8e" font-size="12"> —— 打印/存档/发文件</tspan></text>
+    <rect x="72" y="222" width="282" height="36" rx="8" fill="#2f2a24" stroke="#46413b"/><text x="88" y="246">B · 简单 HTML<tspan fill="#a39a8e" font-size="12"> —— 浏览器直开</tspan></text>
+    <rect x="72" y="268" width="282" height="36" rx="8" fill="#2f2a24" stroke="#46413b"/><text x="88" y="292">C · 公众号 HTML<tspan fill="#a39a8e" font-size="12"> —— 内联样式</tspan></text>
+    <rect x="72" y="314" width="282" height="36" rx="8" fill="#2f2a24" stroke="#46413b"/><text x="88" y="338">D · 三种全要</text>
+  </g>
+  <text x="72" y="386" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" letter-spacing="2" fill="#eda55f">Q2 · 尺寸（C 跳过 / D 只作用 PDF+HTML）</text>
+  <g font-size="15" fill="#f3eee1">
+    <rect x="72" y="402" width="135" height="34" rx="8" fill="#2f2a24" stroke="#46413b"/><text x="84" y="424">A · A4 竖</text>
+    <rect x="219" y="402" width="135" height="34" rx="8" fill="#2f2a24" stroke="#46413b"/><text x="231" y="424">B · 16:9 横</text>
+    <rect x="72" y="444" width="135" height="34" rx="8" fill="#2f2a24" stroke="#46413b"/><text x="84" y="466">C · 3:4 卡片</text>
+    <rect x="219" y="444" width="135" height="34" rx="8" fill="#2f2a24" stroke="#46413b"/><text x="231" y="466">D · 手机长图</text>
+  </g>
+
+  <!-- 右：矩阵 -->
+  <g>
+    <text x="428" y="158" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" letter-spacing="2" fill="#eda55f">形态规则（style-guide §6.8 / §7）</text>
+    <!-- 列头 -->
+    <g font-family="'JetBrains Mono',Consolas,monospace" font-size="13" fill="#a39a8e">
+      <text x="500" y="200">A4 竖</text><text x="660" y="200">16:9 横</text><text x="820" y="200">3:4 卡片</text><text x="980" y="200">手机长图</text>
+    </g>
+    <!-- 行1 PDF -->
+    <text x="428" y="248" font-size="15" fill="#f3eee1" font-weight="700">PDF</text>
+    <rect x="500" y="216" width="100" height="130" rx="8" fill="#2f2a24" stroke="#46413b"/>
+    <rect x="516" y="230" width="68" height="8" fill="#eda55f"/><rect x="516" y="246" width="68" height="5" fill="#46413b"/><rect x="516" y="258" width="68" height="5" fill="#46413b"/><rect x="516" y="276" width="60" height="24" rx="4" fill="#f0ede6"/>
+    <text x="516" y="322" font-size="12" fill="#a39a8e">文章形态·图文并茂</text>
+    <rect x="660" y="216" width="130" height="78" rx="8" fill="#2f2a24" stroke="#46413b"/>
+    <rect x="674" y="228" width="60" height="8" fill="#eda55f"/><rect x="674" y="244" width="102" height="5" fill="#46413b"/><rect x="674" y="256" width="40" height="26" rx="4" fill="#f0ede6"/>
+    <text x="660" y="322" font-size="12" fill="#a39a8e">演示形态·页页视觉主体</text>
+    <rect x="820" y="216" width="86" height="110" rx="8" fill="#2f2a24" stroke="#46413b"/>
+    <rect x="832" y="228" width="50" height="8" fill="#eda55f"/><rect x="832" y="242" width="62" height="5" fill="#46413b"/><rect x="832" y="254" width="62" height="5" fill="#46413b"/><rect x="832" y="272" width="30" height="30" rx="4" fill="#f0ede6"/>
+    <text x="820" y="348" font-size="12" fill="#a39a8e">半图半文·一卡一章</text>
+    <rect x="980" y="216" width="60" height="130" rx="8" fill="#2f2a24" stroke="#46413b"/>
+    <rect x="988" y="226" width="36" height="7" fill="#eda55f"/><rect x="988" y="240" width="44" height="4" fill="#46413b"/><rect x="988" y="250" width="44" height="4" fill="#46413b"/>
+    <text x="980" y="366" font-size="12" fill="#a39a8e">连续长文·按屏检查</text>
+    <!-- 行2 HTML -->
+    <text x="428" y="408" font-size="15" fill="#f3eee1" font-weight="700">HTML</text>
+    <rect x="500" y="380" width="100" height="60" rx="8" fill="#2f2a24" stroke="#46413b"/>
+    <rect x="514" y="392" width="60" height="7" fill="#eda55f"/><rect x="514" y="406" width="72" height="4" fill="#46413b"/><rect x="514" y="416" width="60" height="4" fill="#46413b"/>
+    <text x="500" y="462" font-size="12" fill="#a39a8e">viewport letterbox</text>
+    <rect x="660" y="380" width="130" height="60" rx="8" fill="#2f2a24" stroke="#46413b"/>
+    <rect x="674" y="392" width="60" height="7" fill="#eda55f"/><rect x="674" y="406" width="102" height="4" fill="#46413b"/><rect x="674" y="416" width="40" height="18" rx="4" fill="#f0ede6"/>
+    <text x="660" y="462" font-size="12" fill="#a39a8e">暗色模式加固</text>
+    <rect x="820" y="380" width="86" height="60" rx="8" fill="#2f2a24" stroke="#46413b"/>
+    <rect x="832" y="392" width="50" height="7" fill="#eda55f"/><rect x="832" y="406" width="62" height="4" fill="#46413b"/><rect x="832" y="416" width="30" height="18" rx="4" fill="#f0ede6"/>
+    <text x="820" y="462" font-size="12" fill="#a39a8e">底部安全区</text>
+    <rect x="980" y="380" width="60" height="60" rx="8" fill="#2f2a24" stroke="#46413b"/>
+    <rect x="988" y="390" width="36" height="7" fill="#eda55f"/><rect x="988" y="404" width="44" height="4" fill="#46413b"/>
+    <text x="980" y="462" font-size="12" fill="#a39a8e">≤5000px · 超限切分</text>
+    <!-- 行3 公众号 -->
+    <text x="428" y="512" font-size="15" fill="#f3eee1" font-weight="700">公众号</text>
+    <rect x="500" y="486" width="640" height="52" rx="10" fill="#2f2a24" stroke="#cd642d"/>
+    <text x="516" y="510" font-size="13.5" fill="#f3eee1">全部图表预渲染为 PNG（宽≤1080）供上传 · 白名单内联样式 · 随稿交付 2.35:1 封面 + ≤120 字摘要</text>
+    <text x="516" y="530" font-size="12" fill="#a39a8e">等宽/衬线在微信端被归一化，接受降级 · 降级地图随稿说明 PPT 版砍了什么、细节在哪一章</text>
+  </g>
+</svg>

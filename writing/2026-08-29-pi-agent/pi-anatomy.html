@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<!-- pi 解剖 · 16:9 演示形态 v2：断言式标题 + 页页视觉主体 + 目录/页码（style-guide §6.8 + §7）-->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>pi 解剖：四个工具、六个"不做"，和一个 9.9 万星的开源实验</title>
+<style>
+/* ============================================================
+   nanju-write-paper theme.css — 南橘卡片文档设计系统
+   色板与骨架提取自 000-reference 的 8 张参考图
+   画幅：A4(794×1123) / 3:4卡片(1080×1440) / 16:9(1280×720) / 长图(900×auto)
+   ============================================================ */
+
+:root {
+  /* 色板（自参考图取样） */
+  --bg-dark: #231e18;        /* 深咖：暗页背景 / 墨黑块 / 代码卡 */
+  --bg-dark-2: #2f2a24;      /* 暗页上的浮起元素（圆、芯片） */
+  --chip-line: #46413b;      /* 暗页描边 */
+  --cream: #f3eee1;          /* 暗页主文字（奶油白） */
+  --tan: #a39a8e;            /* 暗页次级文字 */
+  --line-dark: #3d372f;      /* 暗页分隔线 */
+
+  --bg-cream: #f9f5ea;       /* 亮页背景（米杏） */
+  --panel: #f0ede6;          /* 米色大面板 */
+  --card: #fbfaf5;           /* 白卡片 */
+  --line-light: #ddd6c6;     /* 亮页描边 */
+  --line-mid: #c9c1af;       /* 虚线基线 */
+
+  --ink: #231e18;            /* 亮页正文墨色 */
+  --ink-soft: #5a5348;       /* 亮页次级文字 */
+  --gray: #77746e;           /* 灰色小标签 */
+
+  --accent: #cd642d;         /* 主橙（亮页块/编号/箭头） */
+  --accent-on-dark: #eda55f; /* 暗页上的橙（副标/高亮） */
+  --accent-underline: #b97b45; /* 暗页标题下的橙条 */
+  --gold: #f4dd99;           /* 黄块（中间态/高亮） */
+  --blue: #4986a3;           /* 蓝点缀（虚线框/侧边条，克制使用） */
+
+  /* 字体 */
+  --serif: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "STZhongsong", "SimSun", serif;
+  --mono: "JetBrains Mono", "Cascadia Code", "SF Mono", Consolas, "Courier New", monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #4b4b52;
+  font-family: var(--serif);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.stage { display: flex; flex-direction: column; align-items: center; gap: 40px; padding: 40px; }
+
+/* ---------- 画幅 ---------- */
+.page {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  background: var(--bg-cream);
+  color: var(--ink);
+  box-shadow: 0 6px 30px rgba(0,0,0,.35);
+}
+.page--dark { background: var(--bg-dark); color: var(--cream); }
+
+/* A4 竖版 */
+.page--a4 {
+  width: 794px; height: 1123px; padding: 46px 52px;
+  --fs-cover: 60px; --fs-num: 46px; --fs-title: 34px; --fs-sub: 25px;
+  --fs-body: 19.5px; --fs-small: 15.5px; --fs-mono: 16px; --fs-micro: 12.5px;
+  --rad-panel: 18px; --rad-card: 10px; --pad-panel: 30px; --gap: 10px;
+}
+/* 3:4 卡片（参考图原生尺寸） */
+.page--card {
+  width: 1080px; height: 1440px; padding: 62px 64px;
+  --fs-cover: 84px; --fs-num: 64px; --fs-title: 48px; --fs-sub: 35px;
+  --fs-body: 27px; --fs-small: 21px; --fs-mono: 22px; --fs-micro: 17px;
+  --rad-panel: 24px; --rad-card: 14px; --pad-panel: 42px; --gap: 14px;
+}
+/* 16:9 宽屏 */
+.page--wide {
+  width: 1280px; height: 720px; padding: 38px 52px;
+  --fs-cover: 52px; --fs-num: 40px; --fs-title: 31px; --fs-sub: 22px;
+  --fs-body: 17px; --fs-small: 13.5px; --fs-mono: 14.5px; --fs-micro: 11.5px;
+  --rad-panel: 16px; --rad-card: 10px; --pad-panel: 22px; --gap: 10px;
+}
+/* 手机长图（宽 900，高随内容） */
+.page--scroll {
+  width: 900px; min-height: 1200px; padding: 52px 54px;
+  --fs-cover: 56px; --fs-num: 44px; --fs-title: 32px; --fs-sub: 24px;
+  --fs-body: 19px; --fs-small: 15px; --fs-mono: 16px; --fs-micro: 12.5px;
+  --rad-panel: 18px; --rad-card: 11px; --pad-panel: 28px; --gap: 10px;
+}
+
+/* ---------- 通用 ---------- */
+.mono { font-family: var(--mono); }
+.kicker {
+  font-family: var(--mono); font-size: var(--fs-micro); color: var(--gray);
+  letter-spacing: .18em; text-transform: uppercase;
+}
+
+/* 章节头：橙编号 + 标题 + 白胶囊 + 右侧制品芯片 */
+.sec-head { display: flex; align-items: center; gap: .4em; }
+.sec-num { font-family: var(--mono); font-weight: 700; color: var(--accent); font-size: var(--fs-num); line-height: 1; }
+.sec-title { font-size: var(--fs-title); font-weight: 900; letter-spacing: .02em; }
+.pill {
+  background: var(--card); border: 1px solid var(--line-light); border-radius: 999px;
+  padding: .32em 1em; font-family: var(--mono); font-size: var(--fs-micro);
+  letter-spacing: .22em; color: var(--gray);
+}
+.sec-art { margin-left: auto; display: flex; align-items: center; gap: .55em; font-size: var(--fs-small); color: var(--gray); }
+.chip-dark {
+  background: var(--bg-dark); color: var(--cream); font-family: var(--mono);
+  border-radius: .5em; padding: .38em .8em; font-size: var(--fs-mono); white-space: nowrap;
+}
+.chip-dark .tag { color: var(--accent-on-dark); font-size: .72em; margin-left: .8em; }
+
+.deck-sub { font-weight: 900; font-size: var(--fs-sub); line-height: 1.4; margin: .65em 0 .7em; }
+
+/* ---------- 米色面板 ---------- */
+.panel { background: var(--panel); border-radius: var(--rad-panel); padding: var(--pad-panel); }
+.panel-cap { font-family: var(--mono); font-size: var(--fs-micro); color: var(--gray); letter-spacing: .14em; margin-bottom: .9em; }
+.panel-note { font-size: var(--fs-small); color: var(--ink-soft); margin-top: 1em; line-height: 1.5; }
+.panel-cap-row { display: flex; align-items: baseline; margin-bottom: .9em; }
+.panel-cap-row .right { margin-left: auto; font-family: var(--mono); font-size: var(--fs-micro); color: var(--gray); }
+
+/* 流程行：白卡/状态块 + 橙箭头 */
+.frow { display: flex; align-items: stretch; gap: var(--gap); }
+.fcard {
+  background: var(--card); border-radius: var(--rad-card); padding: .85em 1em; flex: 1; min-width: 0;
+  box-shadow: 0 1px 0 rgba(35,30,24,.05);
+}
+.fcard .k { font-family: var(--mono); font-size: var(--fs-micro); color: var(--gray); letter-spacing: .1em; }
+.fcard .t { font-weight: 700; font-size: var(--fs-body); line-height: 1.35; margin-top: .18em; }
+.fcard .d { font-size: var(--fs-small); color: var(--ink-soft); line-height: 1.45; margin-top: .2em; }
+.fcard--center { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+
+.arrow { align-self: center; color: var(--accent); font-family: var(--mono); font-weight: 700; flex: none; font-size: var(--fs-body); }
+
+/* 状态块：金=中间态，橙=动作/闸门，黑=终点/制品 */
+.state { border-radius: var(--rad-card); padding: .85em 1em; flex: 1; min-width: 0; }
+.state .t { font-weight: 700; font-size: var(--fs-body); line-height: 1.35; }
+.state .d { font-size: var(--fs-small); margin-top: .2em; opacity: .82; line-height: 1.4; }
+.state--gold { background: var(--gold); color: var(--ink); }
+.state--act { background: var(--accent); color: #fff; }
+.state--final { background: var(--bg-dark); color: var(--cream); }
+
+/* 虚线标注框：橙=提醒/警示，蓝=配置/附注 */
+.callout {
+  border: 2px dashed var(--accent); border-radius: 12px;
+  padding: .8em 1em; display: flex; gap: .7em; align-items: flex-start;
+  font-size: var(--fs-small); line-height: 1.55; color: var(--ink);
+}
+.callout .lab { font-family: var(--mono); color: var(--accent); flex: none; }
+.callout--blue { border-color: var(--blue); }
+.callout--blue .lab { color: var(--blue); }
+
+/* 要点格：橙竖条 + 粗衬线小标题 + 正文（2×2 或单列） */
+.points { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4em 2.4em; }
+.points--fill { flex: 1; align-content: space-evenly; }
+.points--one { grid-template-columns: 1fr; }
+.point h4 { display: flex; align-items: center; gap: .4em; font-size: var(--fs-body); font-weight: 900; line-height: 1.3; }
+.point h4::before { content: ""; flex: none; width: .2em; height: 1.02em; background: var(--accent); border-radius: 1px; }
+.point p { font-size: var(--fs-small); color: var(--ink-soft); line-height: 1.6; margin-top: .35em; }
+.page--dark .point h4::before { background: var(--accent-on-dark); }
+.page--dark .point p { color: var(--tan); }
+
+/* 底部黑色代码卡 */
+.codecard {
+  background: var(--bg-dark); color: #e9e2d4; border-radius: var(--rad-panel);
+  padding: 1.1em 1.3em; font-family: var(--mono); font-size: var(--fs-mono); line-height: 1.75;
+}
+.codecard .cap { color: var(--accent-on-dark); letter-spacing: .1em; margin-bottom: .55em; font-size: .92em; }
+.codecard .cm { color: #8a8172; }
+.codecard pre { font-family: inherit; white-space: pre-wrap; word-break: break-word; }
+.codecard--dock { margin-top: auto; }
+.panel--fill { flex: 1; display: flex; flex-direction: column; }
+.panel--fill .arch { flex: 1; justify-content: space-evenly; }
+.panel--fill .seq { flex: 1; align-content: space-evenly; }
+.panel--fill .panel-note { margin-top: auto; padding-top: 1em; }
+
+/* 分级阈值表（tier） */
+.tier { border-radius: 12px; overflow: hidden; }
+.tier-row { display: flex; align-items: center; gap: 1em; padding: .68em 1.1em; }
+.tier-row .sig { font-family: var(--mono); flex: none; width: 3.4em; opacity: .85; }
+.tier-row .name { font-weight: 900; }
+.tier-row .note { margin-left: auto; font-size: .78em; opacity: .85; text-align: right; }
+.tier-row--1 { background: var(--accent); color: #fff; }
+.tier-row--2 { background: var(--gold); color: var(--ink); }
+.tier-row--3 { background: var(--card); color: var(--ink); }
+.tier-row--3 .sig { color: var(--accent); opacity: 1; }
+.tier-cap {
+  padding: .5em 1.1em; background: var(--card); border-top: 1px dashed var(--line-mid);
+  font-size: var(--fs-small); color: var(--ink-soft);
+}
+.tier-cap .m { font-family: var(--mono); }
+
+/* 紧凑数据表（非分级语义的表格用这个） */
+.dtable { width: 100%; border-collapse: collapse; font-size: var(--fs-small); }
+.dtable th {
+  background: var(--panel); color: var(--ink-soft); font-weight: 700; text-align: left;
+  padding: .5em .7em; border: 1px solid var(--line-light);
+}
+.dtable td { padding: .45em .7em; border: 1px solid var(--line-light); background: var(--card); }
+
+/* ---------- 配图模块：架构图（分层） ---------- */
+.arch { display: flex; flex-direction: column; }
+.arch .layer { display: flex; gap: .7em; align-items: stretch; }
+.arch .ltag {
+  flex: 0 0 5.6em; display: flex; align-items: center; justify-content: flex-end;
+  padding-right: .2em; font-family: var(--mono); font-size: var(--fs-micro);
+  color: var(--gray); letter-spacing: .08em; text-align: right;
+}
+.arch .nodes { flex: 1; display: flex; gap: var(--gap); min-width: 0; }
+.dnode {
+  flex: 1; min-width: 0; background: var(--card); border: 1px solid var(--line-light);
+  border-radius: var(--rad-card); padding: .55em .8em;
+}
+.dnode .t { font-weight: 700; font-size: var(--fs-body); line-height: 1.3; }
+.dnode .d { font-size: var(--fs-small); color: var(--ink-soft); line-height: 1.45; margin-top: .15em; }
+.dnode--accent { background: var(--accent); border-color: var(--accent); color: #fff; }
+.dnode--accent .d { color: rgba(255,255,255,.85); }
+.dnode--gold { background: var(--gold); border-color: var(--gold); }
+.dnode--final { background: var(--bg-dark); border-color: var(--bg-dark); color: var(--cream); }
+.dnode--final .d { color: var(--tan); }
+
+/* 层间竖直箭头（可带小标签芯片） */
+.varrow { display: flex; justify-content: center; align-items: center; gap: .5em; padding: .45em 0 .45em 6em; color: var(--accent); font-family: var(--mono); }
+.varrow .elab {
+  background: var(--card); border: 1px solid var(--line-light); border-radius: .5em;
+  padding: .04em .6em; color: var(--ink-soft); font-size: var(--fs-micro);
+}
+
+/* ---------- 配图模块：汇聚/网关 ---------- */
+.fan { display: flex; gap: 1.6em; align-items: stretch; }
+.fan .col { flex: 1; display: flex; flex-direction: column; gap: .8em; min-width: 0; }
+.fan .link { flex: 0 0 2em; display: flex; align-items: center; justify-content: center; color: var(--accent); font-family: var(--mono); font-size: var(--fs-body); }
+
+/* ---------- 配图模块：时序图（列中心用百分比定位） ----------
+   公式：第 i 列中心 = (i-0.5)/cols*100%
+   消息线：left = min(a,b)%，width = |a-b|%，label left = (a+b)/2%        */
+.seq { --cols: 3; display: grid; grid-template-columns: repeat(var(--cols), 1fr); row-gap: 0; }
+.seq .actor {
+  grid-row: 1; z-index: 1; background: var(--card); border: 1px solid var(--line-light);
+  border-radius: var(--rad-card); text-align: center; padding: .45em .3em;
+  font-weight: 700; font-size: var(--fs-body);
+}
+.seq .actor .sub { display: block; font-weight: 400; font-size: var(--fs-micro); color: var(--gray); font-family: var(--mono); margin-top: .15em; }
+.seq .life { grid-row: 2 / 99; justify-self: center; width: 0; border-left: 2px dashed var(--line-mid); }
+.seq .rowhead { grid-column: 1 / -1; height: 1.2em; }
+.msg { grid-column: 1 / -1; position: relative; height: 2.8em; }
+.msg .ln { position: absolute; top: 50%; left: var(--x1); width: var(--w); border-top: 2px solid var(--accent); }
+.msg .ln::after {
+  content: ""; position: absolute; top: -.34em; right: -2px;
+  border: .34em solid transparent; border-left: .55em solid var(--accent);
+}
+.msg--rtl .ln::after { right: auto; left: -2px; border-left: none; border-right: .55em solid var(--accent); }
+.msg .lab {
+  position: absolute; top: -.15em; left: var(--xm); transform: translateX(-50%);
+  background: var(--bg-cream); padding: .02em .5em; font-family: var(--mono);
+  font-size: var(--fs-small); color: var(--ink-soft); white-space: nowrap;
+}
+.msg--dash .ln { border-top-style: dashed; }
+.panel .msg .lab { background: var(--panel); }
+
+/* ---------- 暗页：封面 ---------- */
+.cover-title { font-size: var(--fs-cover); font-weight: 900; line-height: 1.22; letter-spacing: .01em; }
+.cover-title .u-accent { box-shadow: inset 0 -.12em 0 var(--accent-underline); padding-bottom: .04em; }
+.cover-sub { font-family: var(--mono); color: var(--accent-on-dark); letter-spacing: .14em; margin-top: .7em; font-size: var(--fs-body); }
+
+/* 环形循环图（仅此模块允许绝对定位；角度用内联 --a 指定） */
+.ring { --d: 560px; --r: 215px; --node: 128px; position: relative; width: var(--d); height: var(--d); margin: 0 auto; flex: none; }
+.ring::before { content: ""; position: absolute; inset: 9%; border: 2px dashed var(--chip-line); border-radius: 50%; }
+.ring .hub {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+  background: var(--accent); color: #fff; border-radius: .8em;
+  padding: .7em 1em; text-align: center; font-weight: 700; font-size: var(--fs-small); line-height: 1.45;
+}
+.ring .node {
+  position: absolute; left: 50%; top: 50%;
+  width: var(--node); height: var(--node); margin: calc(var(--node)/-2) 0 0 calc(var(--node)/-2);
+  transform: rotate(var(--a)) translateX(var(--r)) rotate(calc(var(--a) * -1));
+  background: var(--bg-dark-2); border: 1px solid var(--chip-line); border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .1em;
+}
+.ring .node .n { font-family: var(--mono); font-size: var(--fs-micro); color: var(--accent-on-dark); }
+.ring .node .t { font-size: var(--fs-body); font-weight: 700; }
+
+/* 暗页底部芯片链 */
+.chipline { display: flex; flex-wrap: wrap; align-items: center; gap: .55em .5em; }
+.chipline .c {
+  background: var(--bg-dark-2); border: 1px solid var(--chip-line); color: var(--cream);
+  font-family: var(--mono); border-radius: .55em; padding: .45em .85em;
+}
+.chipline .a { color: var(--accent-on-dark); font-family: var(--mono); }
+
+/* ---------- 暗页：总结列表 ---------- */
+.sumlist { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; }
+.sumrow { display: flex; align-items: flex-start; gap: 1em; padding: .8em 0; border-bottom: 1px solid var(--line-dark); }
+.sumrow:last-child { border-bottom: none; }
+.sumrow .n { font-family: var(--mono); color: var(--accent-on-dark); font-weight: 700; flex: none; width: 2.2em; }
+.sumrow .t { display: block; font-weight: 900; line-height: 1.3; }
+.sumrow .d { display: block; color: var(--tan); font-size: .85em; margin-top: .18em; line-height: 1.55; }
+.sumrow .r { margin-left: auto; font-family: var(--mono); opacity: .9; flex: none; }
+
+/* 信息图：数字卡网格（"数字看 X"页专用） */
+.statrow { display: flex; gap: var(--gap); }
+.statrow .fcard { text-align: center; }
+.statrow .big { font-family: var(--mono); font-weight: 700; font-size: var(--fs-sub); color: var(--accent); line-height: 1.1; }
+.statrow .k2 { font-family: var(--mono); font-size: var(--fs-micro); color: var(--gray); letter-spacing: .12em; margin-top: .3em; }
+.page--dark .statrow .fcard { background: var(--bg-dark-2); border: 1px solid var(--chip-line); }
+.page--dark .statrow .big { color: var(--accent-on-dark); }
+.page--dark .statrow .k2 { color: var(--tan); }
+
+/* ---------- 打印 ---------- */
+@page { margin: 0; }
+@media print {
+  body { background: none; }
+  .stage { display: block; padding: 0; gap: 0; }
+  .page { page-break-after: always; box-shadow: none; }
+  .page:last-child { page-break-after: auto; }
+}
+
+</style>
+<style>
+  @page { size: 1280px 720px; margin: 0; }
+  :root { color-scheme: light; }
+  .statrow .fcard { text-align: center; padding: 1em .8em; }
+  .qcard { background: var(--bg-dark); border-radius: var(--rad-panel); padding: 1em 1.4em; }
+  .qcard .qm { font-family: Georgia, serif; font-size: 48px; color: var(--accent); line-height: .6; }
+  .qcard .qt { font-size: var(--fs-body); line-height: 1.7; color: var(--cream); margin: .4em 0 .7em; }
+  .qcard .qa { font-family: var(--mono); font-size: var(--fs-small); color: var(--tan); }
+  .qcard .qa b { color: var(--accent-on-dark); font-weight: 700; }
+  .toolgrid { display: flex; gap: var(--gap); }
+  .toolgrid .fcard { flex: 1; text-align: center; padding: .9em .7em; }
+  .toolgrid .tn { font-family: var(--mono); font-weight: 700; font-size: var(--fs-sub); color: var(--accent); }
+  .billgrid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .billgrid .fcard { min-height: 120px; }
+  .billgrid .bn { font-family: var(--mono); font-weight: 700; font-size: var(--fs-small); color: var(--accent); letter-spacing: .1em; }
+  .billgrid .t { font-weight: 900; font-size: var(--fs-body); margin-top: .2em; }
+  .billgrid .d { font-size: var(--fs-small); color: var(--ink-soft); line-height: 1.55; margin-top: .35em; }
+  .pageno { position: absolute; right: 26px; bottom: 16px; font-family: var(--mono); font-size: 12px; color: var(--gray); letter-spacing: .1em; }
+  .page--dark .pageno { color: var(--tan); }
+  .dtable td { padding: .72em .85em; }
+  .panel--fill { justify-content: center; gap: 14px; }
+  .panel--fill > .panel-note { margin: 0; }
+  .panel--fill > .points { margin-top: 0; }
+  .toc { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 28px; flex: 1; align-content: space-evenly; }
+  .toc .row { display: flex; align-items: center; gap: .7em; background: var(--card); border: 1px solid var(--line-light); border-radius: 10px; padding: 1.05em 1.1em; }
+  .toc .n { font-family: var(--mono); font-weight: 700; color: var(--accent); font-size: var(--fs-body); width: 1.6em; }
+  .toc .t { font-weight: 900; }
+  .toc .pg { margin-left: auto; font-family: var(--mono); font-size: var(--fs-small); color: var(--gray); }
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <!-- P1 封面 -->
+  <section class="page page--wide page--dark" style="padding:48px 56px;">
+    <div style="display:flex;gap:36px;flex:1;min-height:0;">
+      <div style="flex:1.25;display:flex;flex-direction:column;justify-content:center;">
+        <h1 class="cover-title" style="font-size:58px;">pi 解剖<br>四个工具，六个<span class="u-accent">"不做"</span><br>和一个 9.9 万星的实验</h1>
+        <p class="cover-sub" style="font-size:20px;">A MINIMAL AGENT HARNESS · DEV NOTES</p>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:12px;">
+        <div class="statrow">
+          <div class="fcard" style="background:var(--bg-dark-2);border:1px solid var(--chip-line);"><div class="big" style="font-size:34px;">4</div><div class="k2">TOOLS</div></div>
+          <div class="fcard" style="background:var(--bg-dark-2);border:1px solid var(--chip-line);"><div class="big" style="font-size:34px;">6</div><div class="k2">NO'S</div></div>
+        </div>
+        <div class="statrow">
+          <div class="fcard" style="background:var(--bg-dark-2);border:1px solid var(--chip-line);"><div class="big" style="font-size:34px;">98.8k</div><div class="k2">STARS*</div></div>
+          <div class="fcard" style="background:var(--bg-dark-2);border:1px solid var(--chip-line);"><div class="big" style="font-size:34px;">250+</div><div class="k2">RELEASES</div></div>
+        </div>
+        <div class="fcard" style="flex:none;background:var(--bg-dark-2);border:1px solid var(--chip-line);"><div class="d" style="font-size:var(--fs-small);color:var(--tan);line-height:1.55;">* 单源页面抓取（2026-08-29），未能二次核验。数据与引文的出处见文末来源页。</div></div>
+      </div>
+    </div>
+    <div class="chipline" style="margin-top:26px;">
+      <span class="c">2025-11-30 发布</span><span class="a">→</span>
+      <span class="c">2026-01-31 Ronacher 评述</span><span class="a">→</span>
+      <span class="c">2026-04-08 加入 Earendil</span><span class="a">→</span>
+      <span class="c">2026-08-28 v0.84.4</span>
+    </div>
+    <div class="pageno">01 / 20</div>
+  </section>
+
+  <!-- P2 目录 -->
+  <section class="page page--wide">
+    <div class="sec-head">
+      <span class="sec-num">TOC</span><span class="sec-title">七个问题讲清一个项目</span>
+      <span class="pill">AGENDA</span>
+      <span class="sec-art">篇幅 <span class="chip-dark">20 页 · ≈15 分钟</span></span>
+    </div>
+    <p class="deck-sub">前半回答"它是什么、凭什么"，后半回答"代价是什么"</p>
+    <div class="toc">
+      <div class="row"><span class="n">01</span><span class="t">缘起：为什么又是一个 agent</span><span class="pg">P4</span></div>
+      <div class="row"><span class="n">02</span><span class="t">架构解剖：时序 + 五层薄切 + 数字</span><span class="pg">P5-7</span></div>
+      <div class="row"><span class="n">03</span><span class="t">四工具哲学 + 六个"不做"</span><span class="pg">P8-9</span></div>
+      <div class="row"><span class="n">04</span><span class="t">上手：十分钟到会话树</span><span class="pg">P10-11</span></div>
+      <div class="row"><span class="n">05</span><span class="t">扩展系统 + 完整源码</span><span class="pg">P12-13</span></div>
+      <div class="row"><span class="n">06</span><span class="t">横向定位：底盘 vs 整车</span><span class="pg">P14-15</span></div>
+      <div class="row"><span class="n">07</span><span class="t">批判：六笔账 + 三段原声 + 边界</span><span class="pg">P16-18</span></div>
+      <div class="row"><span class="n">REF</span><span class="t">提炼 + 参考来源</span><span class="pg">P19-20</span></div>
+    </div>
+    <div class="pageno">02 / 20</div>
+  </section>
+
+  <!-- P3 开篇 -->
+  <section class="page page--wide">
+    <div class="sec-head">
+      <span class="sec-num">00</span><span class="sec-title">开篇：三个问题</span>
+      <span class="pill">OPENING</span>
+      <span class="sec-art">方法 <span class="chip-dark">公开材料 only</span></span>
+    </div>
+    <p class="deck-sub">2026 年的 agent 竞赛是一道加法题，pi 反着来：四个工具，六个"不做"</p>
+    <div class="toolgrid" style="flex:1;align-content:center;">
+      <div class="fcard" style="padding:1.4em 1.2em;">
+        <div class="tn">Q1</div>
+        <div class="t" style="font-weight:900;font-size:var(--fs-sub);margin-top:.3em;">它是什么？</div>
+        <div class="d" style="font-size:var(--fs-body);color:var(--ink-soft);line-height:1.7;margin-top:.5em;">Mario Zechner（libGDX 作者）写的极简 agent harness：默认四个工具，README 里有整节"刻意不做什么"。</div>
+      </div>
+      <div class="fcard" style="padding:1.4em 1.2em;border-top:4px solid var(--accent);">
+        <div class="tn">Q2</div>
+        <div class="t" style="font-weight:900;font-size:var(--fs-sub);margin-top:.3em;">凭什么？</div>
+        <div class="d" style="font-size:var(--fs-body);color:var(--ink-soft);line-height:1.7;margin-top:.5em;">极简内核 + 极致可扩展：sub-agent、plan mode、权限门全都有官方扩展答案，OpenClaw 在它之上长成爆款。</div>
+      </div>
+      <div class="fcard" style="padding:1.4em 1.2em;">
+        <div class="tn">Q3</div>
+        <div class="t" style="font-weight:900;font-size:var(--fs-sub);margin-top:.3em;">代价是什么？</div>
+        <div class="d" style="font-size:var(--fs-body);color:var(--ink-soft);line-height:1.7;margin-top:.5em;">无 MCP、无现成生态、TS 门槛、自建维护成本、商业化悬念、好评圈层——六笔账逐条算。</div>
+      </div>
+    </div>
+    <div class="callout callout--blue" style="margin-top:14px;">
+      <span class="lab">METHOD</span>
+      <span>全文基于公开材料（README / 源码 / 博客 / 批评文），引语保留英文原句，单一看源的数据当场标注。没跑过基准，没有利益相关。</span>
+    </div>
+    <div class="pageno">03 / 20</div>
+  </section>
+
+  <!-- P4 缘起 · 时间线 -->
+  <section class="page page--wide">
+    <div class="sec-head">
+      <span class="sec-num">01</span><span class="sec-title">缘起：两年三级跳，从个人项目到爆款底座</span>
+      <span class="pill">WHY</span>
+      <span class="sec-art">动机 <span class="chip-dark">反塞满 · 反黑盒</span></span>
+    </div>
+    <p class="deck-sub">"往上下文窗口里塞了太多东西，还把正在发生的事藏起来"——两个不满，两个设计决策</p>
+    <div class="panel panel--fill" style="display:flex;flex-direction:column;">
+      <div class="frow">
+        <div class="fcard"><div class="k" style="color:var(--accent);font-weight:700;">2025-11-30</div><div class="t">博文宣布 pi</div><div class="d">标题自带 opinionated（固执己见）</div></div>
+        <span class="arrow">→</span>
+        <div class="fcard"><div class="k" style="color:var(--accent);font-weight:700;">2026-01-31</div><div class="t">Ronacher 长文评述</div><div class="d">"a minimal agent harness"（软文，立场后述）</div></div>
+        <span class="arrow">→</span>
+        <div class="fcard"><div class="k" style="color:var(--accent);font-weight:700;">2026-04-08</div><div class="t">《I've sold out》</div><div class="d">带 pi 加入 Earendil，仓库与 npm 包名迁移</div></div>
+        <span class="arrow">→</span>
+        <div class="fcard" style="border-top:4px solid var(--accent);"><div class="k" style="color:var(--accent);font-weight:700;">2026-08-28</div><div class="t">v0.84.4</div><div class="d">8 月 5 连发 · 累计约 250 个 release</div></div>
+      </div>
+      <div style="display:flex;gap:var(--gap);margin-top:14px;flex:1;">
+        <div class="fcard" style="flex:1;"><div class="k">作者是谁</div><div class="t">Mario Zechner = badlogic</div><div class="d">libGDX 作者，开源社区养了十几年。这种履历自带信用：见过项目怎么长大，也见过它怎么死。</div></div>
+        <div class="fcard" style="flex:1;"><div class="k">引爆点</div><div class="t">OpenClaw 的底座</div><div class="d">2026 年初走红的 OpenClaw（旁证称病毒式传播，未量化核实），底层 agent 框架就是 pi。做底盘的项目，因别人的整车被看见。</div></div>
+        <div class="fcard" style="flex:1;background:var(--gold);"><div class="k">定位自白</div><div class="t">"…but this one is yours"</div><div class="d">pi.dev 首页原话：agent harness 有很多，但这一个是你的。所有权，而不是体验，才是卖点。</div></div>
+      </div>
+    </div>
+    <div class="pageno">04 / 20</div>
+  </section>
+
+  <!-- P5 架构 · 时序图 -->
+  <section class="page page--wide">
+    <div class="sec-head">
+      <span class="sec-num">02</span><span class="sec-title">架构解剖：一轮对话是一圈循环，没有步数上限</span>
+      <span class="pill">ARCH · SEQ</span>
+      <span class="sec-art">产出 <span class="chip-dark">agent loop</span></span>
+    </div>
+    <p class="deck-sub">agent loop 就住在 pi-ai 这层：模型指哪打哪，打完把结果递回去接着问</p>
+    <div class="panel panel--fill" style="display:flex;flex-direction:column;">
+      <div class="seq" style="--cols:4;">
+        <div class="actor" style="grid-column:1;">用户<span class="sub">you</span></div>
+        <div class="actor" style="grid-column:2;">pi-ai<span class="sub">agent loop</span></div>
+        <div class="actor" style="grid-column:3;">模型<span class="sub">16+ providers</span></div>
+        <div class="actor" style="grid-column:4;">工具<span class="sub">read/write/edit/bash</span></div>
+        <span class="life" style="grid-column:1;"></span>
+        <span class="life" style="grid-column:2;"></span>
+        <span class="life" style="grid-column:3;"></span>
+        <span class="life" style="grid-column:4;"></span>
+        <div class="rowhead"></div>
+        <div class="msg" style="grid-row:3;--x1:12.5%;--w:25%;--xm:25%;"><span class="ln"></span><span class="lab">帮我修复这个报错</span></div>
+        <div class="msg" style="grid-row:4;--x1:37.5%;--w:25%;--xm:50%;"><span class="ln"></span><span class="lab">prompt + 上下文</span></div>
+        <div class="msg msg--rtl" style="grid-row:5;--x1:37.5%;--w:25%;--xm:50%;"><span class="ln"></span><span class="lab">流式返回 · 工具调用</span></div>
+        <div class="msg" style="grid-row:6;--x1:37.5%;--w:50%;--xm:62.5%;"><span class="ln"></span><span class="lab">执行 read / edit / bash</span></div>
+        <div class="msg msg--dash msg--rtl" style="grid-row:7;--x1:37.5%;--w:50%;--xm:62.5%;"><span class="ln"></span><span class="lab">结果回填</span></div>
+        <div class="msg" style="grid-row:8;--x1:37.5%;--w:25%;--xm:50%;"><span class="ln"></span><span class="lab">再问 ↺ 直到不再调用</span></div>
+      </div>
+      <div class="panel-note" style="margin-top:auto;">改一个错字一圈收工，跨文件重构十几圈不稀奇；TypeBox 校验 · thinking · token/成本统计同在这层。层薄的好处：出问题能定位到包——模型抽风、循环卡死、界面错乱各归其主。</div>
+    </div>
+    <div class="pageno">05 / 20</div>
+  </section>
+
+  <!-- P6 架构 · 五层薄切 -->
+  <section class="page page--wide">
+    <div class="sec-head">
+      <span class="sec-num">02</span><span class="sec-title">五层薄切：每层都薄得能一眼看完</span>
+      <span class="pill">ARCH</span>
+      <span class="sec-art">产出 <span class="chip-dark">pi-mono × 5 包</span></span>
+    </div>
+    <p class="deck-sub">上下文纪律是底线：只有 AGENTS.md 被注入，系统提示词可整体替换</p>
+    <div class="panel panel--fill">
+      <div class="arch">
+        <div class="layer"><span class="ltag">pi-coding-agent</span>
+          <div class="nodes">
+            <div class="dnode"><div class="t">CLI 组装层</div><div class="d">会话 · 扩展 · 主题 · 上下文文件</div></div>
+            <div class="dnode"><div class="d" style="margin-top:.1em;">三种模式：交互 TUI / print 单发 / headless（JSON 流 + RPC，可当组件嵌进自己的程序）</div></div>
+          </div>
+        </div>
+        <div class="varrow">↓ <span class="elab">事件流</span></div>
+        <div class="layer"><span class="ltag">pi-agent-core</span>
+          <div class="nodes">
+            <div class="dnode dnode--accent"><div class="t">Agent 运行时（薄层）</div><div class="d">Agent 类 · 状态 · 事件订阅 · 消息排队 · 传输抽象 —— "Everything is an event"</div></div>
+          </div>
+        </div>
+        <div class="varrow">↓ <span class="elab">统一调用</span></div>
+        <div class="layer"><span class="ltag">pi-ai</span>
+          <div class="nodes">
+            <div class="dnode dnode--final"><div class="t">统一多 provider LLM API + agent loop</div><div class="d">Anthropic / OpenAI / Google / xAI / Groq / Cerebras / OpenRouter + GLM / Qwen / Kimi / DeepSeek / MiniMax</div></div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;gap:var(--gap);margin-top:14px;">
+        <div class="fcard" style="flex:1;"><div class="t">pi-tui</div><div class="d">自研终端 UI：差分渲染，只重绘变化的部分</div></div>
+        <div class="fcard" style="flex:1;"><div class="t">pi-telemetry</div><div class="d">厂商中立遥测；博客时代还没有，是后来长出来的</div></div>
+        <div class="fcard fcard--center" style="flex:.9;background:var(--gold);"><div class="t" style="font-family:var(--mono);color:var(--accent);">&lt;1000</div><div class="d">启动 tokens；省下的全留给代码</div></div>
+      </div>
+    </div>
+    <div class="pageno">06 / 20</div>
+  </section>
+
+  <!-- P7 数字看 pi -->
+  <section class="page page--wide">
+    <div class="sec-head">
+      <span class="sec-num">02</span><span class="sec-title">十个数字，勾出一个项目的轮廓</span>
+      <span class="pill">BY THE NUMBERS</span>
+      <span class="sec-art">抓取 <span class="chip-dark">2026-08-29</span></span>
+    </div>
+    <p class="deck-sub">节奏像呼吸一样稳定：月均 5 个 release，两年发版 250 次</p>
+    <div class="bigboost" style="display:flex;flex-direction:column;gap:14px;flex:1;justify-content:space-evenly;">
+      <div class="statrow">
+        <div class="fcard" style="flex:1;border-top:4px solid var(--accent);"><div class="big">98.8k*</div><div class="k2">GITHUB STARS</div></div>
+        <div class="fcard" style="flex:1;"><div class="big">250+</div><div class="k2">RELEASES 累计</div></div>
+        <div class="fcard" style="flex:1;"><div class="big">v0.84.4</div><div class="k2">最新版 · 8 月 5 连发</div></div>
+        <div class="fcard" style="flex:1;"><div class="big">5</div><div class="k2">NPM 包 · 单仓五层</div></div>
+      </div>
+      <div class="statrow">
+        <div class="fcard" style="flex:1;"><div class="big">&lt;1000</div><div class="k2">启动 TOKENS</div></div>
+        <div class="fcard" style="flex:1;"><div class="big">24</div><div class="k2">斜杠命令</div></div>
+        <div class="fcard" style="flex:1;border-top:4px solid var(--gold);"><div class="big">50+</div><div class="k2">官方扩展示例</div></div>
+        <div class="fcard" style="flex:1;"><div class="big">~30</div><div class="k2">API KEY PROVIDERS</div></div>
+      </div>
+      <div class="statrow">
+        <div class="fcard" style="flex:1;"><div class="big">6</div><div class="k2">刻意不做 · 每个都有替代路径</div></div>
+        <div class="fcard" style="flex:1;"><div class="big">3</div><div class="k2">运行模式 · TUI / print / headless</div></div>
+      </div>
+      <div class="callout"><span class="lab">WEAK</span><span>* 星数为单源页面抓取（2026-08-29），未二次核验；「50+」「~30」为官网与 npm registry 口径。订阅登录另认 Claude Pro/Max、ChatGPT Codex、GitHub Copilot 三家。</span></div>
+    </div>
+    <div class="pageno">07 / 20</div>
+  </section>
+
+  <!-- P8 四工具哲学 -->
+  <section class="page page--wide">
+    <div class="sec-head">
+      <span class="sec-num">03</span><span class="sec-title">四工具够用：模糊匹配是 edit 的机关</span>
+      <span class="pill">PHILOSOPHY</span>
+      <span class="sec-art">产出 <span class="chip-dark">read/write/edit/bash</span></span>
+    </div>
+    <p class="deck-sub">模型自己的判断力是第一道防线——系统提示词全文不到 1000 tokens</p>
+    <div class="toolgrid">
+      <div class="fcard"><div class="tn">read</div><div class="d" style="margin-top:.4em;">分页 + 行号，按 offset 翻页，能读图片</div></div>
+      <div class="fcard"><div class="tn">write</div><div class="d" style="margin-top:.4em;">整文件覆盖，没有花活</div></div>
+      <div class="fcard" style="border-top:4px solid var(--accent);"><div class="tn">edit</div><div class="d" style="margin-top:.4em;">diff 格式 + <b>模糊匹配</b>：容忍空格缩进漂移，成功率就上来了</div></div>
+      <div class="fcard"><div class="tn">bash</div><div class="d" style="margin-top:.4em;">执行命令 + 超时；长驻进程交给 tmux</div></div>
+    </div>
+    <div class="qcard" style="margin-top:14px;">
+      <div class="qm">"</div>
+      <div class="qt">You don't need to ask for permission. The user expects you to work autonomously until the task is complete. —— 遇到不认识的符号，先列出候选来源，挨个查证，把理解锚在可验证的代码或文档上。</div>
+      <div class="qa">SYSTEM PROMPT · <b>grep/find/ls 只读工具默认关，--tools 想开就开</b></div>
+    </div>
+    <div style="display:flex;gap:var(--gap);margin-top:14px;flex:1;">
+      <div class="fcard" style="flex:1;"><div class="k">安全 · 姿态一</div><div class="t">容器化</div><div class="d">无内置权限系统，按启动用户权限跑；官方点名 Docker / Gondolin / OpenShell。</div></div>
+      <div class="fcard" style="flex:1;"><div class="k">安全 · 姿态二</div><div class="t">只读模式</div><div class="d">pi --tools read,grep,find,ls —— 只带眼睛不带手，不靠弹窗靠裁剪。</div></div>
+      <div class="fcard" style="flex:1;"><div class="k">安全 · 姿态三</div><div class="t">供应链纪律</div><div class="d">--ignore-scripts 跳过生命周期脚本 + 依赖锁版 + 最小存活期 + 白名单。</div></div>
+    </div>
+    <div class="pageno">08 / 20</div>
+  </section>
+
+  <!-- P9 六个No -->
+  <section class="page page--wide">
+    <div class="sec-head">
+      <span class="sec-num">03</span><span class="sec-title">六个"No"是立场，不是缺口</span>
+      <span class="pill">PHILOSOPHY</span>
+      <span class="sec-art">产出 <span class="chip-dark">fig-3</span></span>
+    </div>
+    <p class="deck-sub">每个 No 后面那句"你可以自己造"才是正主，第五章看官方交的作业</p>
+    <div class="panel panel--fill">
+      <table class="dtable" style="font-size:var(--fs-body);">
+        <tr><th style="width:34%;">刻意不做</th><th>官方给的替代路径（README Philosophy 原文意译）</th></tr>
+        <tr><td><b>No MCP</b></td><td>用带 README 的 CLI 工具（见 Skills），或写扩展加上 MCP 支持</td></tr>
+        <tr><td><b>No sub-agents</b></td><td>用 tmux 起 pi 实例，或写扩展，或装别人做好的包</td></tr>
+        <tr><td><b>No permission popups</b></td><td>放容器里跑，或用扩展写自己的确认流程</td></tr>
+        <tr><td><b>No plan mode</b></td><td>计划写成文件，或写扩展，或装包</td></tr>
+        <tr><td><b>No built-in to-dos</b></td><td>原话是"它们会把模型搞糊涂"，用 TODO.md 或扩展</td></tr>
+        <tr><td><b>No background bash</b></td><td>用 tmux，全量可观测，直接交互</td></tr>
+      </table>
+      <div class="callout" style="margin-top:14px;">
+        <span class="lab">NOTE</span>
+        <span>第一遍读以为是偷懒的体面说法，第二遍才反应过来：这六个 No 是立场，不是缺口。</span>
+      </div>
+      <div class="points" style="margin-top:12px;">
+        <div class="point"><h4>怎么读这张表</h4><p>左列是"不做的事"，右列全是"你自己动手的路径"——没有一条是"等官方做"。</p></div>
+        <div class="point"><h4>怎么验证</h4><p>本表为 README Philosophy 段原文逐字意译，可对照仓库复核。</p></div>
+      </div>
+    </div>
+    <div class="pageno">09 / 20</div>
+  </section>
+
+  <!-- P10 上手 · 安装 -->
+  <section class="page page--wide">
+    <div class="sec-head">
+      <span class="sec-num">04</span><span class="sec-title">十分钟跑起来，第一个坑在 Node 版本</span>
+      <span class="pill">HANDS-ON</span>
+      <span class="sec-art">产出 <span class="chip-dark">quick start</span></span>
+    </div>
+    <p class="deck-sub">双轨登录：API key 按量付费走模型厂，/login 订阅走包月，pi 不抽成</p>
+    <div class="panel panel--fill" style="display:flex;flex-direction:column;">
+      <div style="display:flex;gap:var(--gap);flex:1;min-height:0;">
+        <div class="codecard" style="flex:1.1;align-self:stretch;">
+          <div class="cap">quick start</div>
+          <pre><span class="cm"># 安装（Node ≥ 22.19.0，v0.84.4）</span>
+npm install -g --ignore-scripts \
+  @earendil-works/pi-coding-agent
+
+<span class="cm"># 登录二选一</span>
+export ANTHROPIC_API_KEY=sk-ant-...
+pi
+<span class="cm"># 或交互里走订阅</span>
+/login
+
+<span class="cm"># 会话操作</span>
+pi -c        <span class="cm"># 继续最近会话</span>
+pi -r        <span class="cm"># 浏览历史会话</span>
+pi --fork id <span class="cm"># 分叉新会话</span></pre>
+        </div>
+        <div style="flex:1.3;display:flex;flex-direction:column;gap:12px;min-width:0;">
+          <div class="fcard"><div class="k">坑 1</div><div class="t">Node 版本</div><div class="d">engines 写死 ≥22.19.0，不少默认 LTS 还停在 20，先 node -v。Windows 有 install.ps1 + 内置 powershell 工具，Termux 也有文档。</div></div>
+          <div class="fcard"><div class="k">登录</div><div class="t">双轨制</div><div class="d">API key 约 30 家按量付费；/login 认三家订阅（Claude Pro/Max、ChatGPT Codex、Copilot）。本地模型：llama.cpp 一等公民 + Ollama。</div></div>
+          <div class="fcard"><div class="k">账</div><div class="t">两轨怎么选</div><div class="d">API 贵时一晚烧几十块但模型随便挑；订阅额度内随便用。pi 对两轨功能零差异——它不关心你从哪儿付钱。</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="pageno">10 / 20</div>
+  </section>
+
+  <!-- P11 会话树 -->
+  <section class="page page--wide">
+    <div class="sec-head">
+      <span class="sec-num">04</span><span class="sec-title">会话是一棵树：跳分支不改历史，只换路径</span>
+      <span class="pill">HANDS-ON</span>
+      <span class="sec-art">产出 <span class="chip-dark">/tree</span></span>
+    </div>
+    <p class="deck-sub">Esc×2 进树视图是最有辨识度的操作；Enter 与 Alt+Enter 是两种排队语义</p>
+    <div class="panel panel--fill" style="display:flex;flex-direction:column;">
+      <div class="frow" style="margin-bottom:14px;">
+        <div class="fcard fcard--center" style="flex:.9;"><div class="k">STEP 1</div><div class="t">安装</div><div class="d">npm -g · Node≥22.19</div></div>
+        <span class="arrow">→</span>
+        <div class="fcard fcard--center" style="flex:.9;"><div class="k">STEP 2</div><div class="t">登录</div><div class="d">API key 或 /login 订阅</div></div>
+        <span class="arrow">→</span>
+        <div class="fcard fcard--center" style="flex:.9;"><div class="k">STEP 3</div><div class="t">首会话</div><div class="d">pi 敲下第一句</div></div>
+        <span class="arrow">→</span>
+        <div class="state state--gold" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;"><div class="t">会话树</div><div class="d">Esc×2 进树视图</div></div>
+      </div>
+      <div style="display:flex;gap:var(--gap);flex:1;">
+        <div class="fcard" style="flex:1;"><div class="k">树怎么存</div><div class="t">JSONL + id/parentId</div><div class="d">消息、工具调用、压缩摘要都是节点；当前所在位置叫 active leaf。跳分支不改历史，被放弃的分支自动做摘要挂在岔路口。</div></div>
+        <div class="fcard" style="flex:1;"><div class="k">怎么跳</div><div class="t">/fork vs /clone</div><div class="d">/fork：从历史消息开新会话，"回到过去改个决定"；/clone：当前分支整个复制，"平行世界再来一遍"。</div></div>
+        <div class="fcard" style="flex:1;"><div class="k">怎么排队</div><div class="t">Enter vs Alt+Enter</div><div class="d">Enter 是 steering，本轮工具跑完就插入，用来纠偏；Alt+Enter 是 follow-up，全部干完才送，用来喂任务。</div></div>
+      </div>
+      <div class="callout callout--blue" style="margin-top:12px;">
+        <span class="lab">KEYS · 迁移</span>
+        <span>Ctrl+L 换模型 · Ctrl+P 轮换 · Shift+Tab 思考档 · /compact 有 · CLAUDE.md 也认——Claude Code 用户肌肉记忆大体能用，24 个命令 /hotkeys 查全。</span>
+      </div>
+    </div>
+    <div class="pageno">11 / 20</div>
+  </section>
+
+  <!-- P12 扩展系统 · 汇聚 -->
+  <section class="page page--wide">
+    <div class="sec-head">
+      <span class="sec-num">05</span><span class="sec-title">被拒掉的能力，扩展系统里全能造回来</span>
+      <span class="pill">EXTENSIONS</span>
+      <span class="sec-art">产出 <span class="chip-dark">ExtensionAPI</span></span>
+    </div>
+    <p class="deck-sub">API 就三件事：registerTool · registerCommand · on("tool_call")</p>
+    <div class="panel panel--fill" style="display:flex;flex-direction:column;">
+      <div class="fan" style="margin-bottom:12px;">
+        <div class="col">
+          <div class="dnode"><div class="t">Extensions</div><div class="d">TS 代码：工具 · 命令 · 事件 · 快捷键 · TUI</div></div>
+          <div class="dnode"><div class="t">Skills</div><div class="d">agentskills.io 标准，/skill:name 调用</div></div>
+        </div>
+        <span class="link">→</span>
+        <div class="col">
+          <div class="dnode"><div class="t">Prompt Templates</div><div class="d">/模板名展开，{{变量}} 占位</div></div>
+          <div class="dnode"><div class="t">Themes</div><div class="d">整套换皮</div></div>
+        </div>
+        <span class="link">→</span>
+        <div class="col" style="justify-content:center;">
+          <div class="dnode dnode--accent" style="text-align:center;"><div class="t">自造能力</div><div class="d">sub-agent · plan mode · 权限门 · 沙箱 · 自定义压缩</div></div>
+          <div class="dnode dnode--final" style="text-align:center;"><div class="t">pi package</div><div class="d">pi install npm:/git: 一条命令分发</div></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:var(--gap);flex:1;">
+        <div class="fcard" style="flex:1;"><div class="k">API 三件套</div><div class="t">能拦截每一次工具调用</div><div class="d">扩展 = 默认导出的工厂函数，放 ~/.pi/agent/extensions/ 或 .pi/extensions/，/reload 立即生效。tool_call 事件返回 { block: true } 即可阻止。</div></div>
+        <div class="fcard" style="flex:1;"><div class="k">官方作业</div><div class="t">50+ 扩展示例</div><div class="d">subagent/、plan-mode/、permission-gate、sandbox/、等结果打 Doom 的扩展——六个"No"每个都有参考实现。社区有 oh-my-pi（LSP+浏览器+子代理）、pi-mom（Slack）。</div></div>
+        <div class="fcard" style="flex:1;"><div class="k">提醒</div><div class="t">先读源码再装</div><div class="d">pi 包以完整系统权限运行（官方原话）。作者把自己的开发会话全公开在 Hugging Face——这个项目是被它自己造出来的。</div></div>
+      </div>
+    </div>
+    <div class="pageno">12 / 20</div>
+  </section>
+
+  <!-- P13 扩展 · 源码 -->
+  <section class="page page--wide">
+    <div class="sec-head">
+      <span class="sec-num">05</span><span class="sec-title">半分钟读完你 agent 的全部行为</span>
+      <span class="pill">EXTENSIONS</span>
+      <span class="sec-art">产出 <span class="chip-dark">protected-paths.ts</span></span>
+    </div>
+    <p class="deck-sub">拦截 tool_call 事件，命中保护路径就返回 block</p>
+    <div class="panel panel--fill" style="display:flex;flex-direction:column;">
+      <div style="display:flex;gap:var(--gap);flex:1;min-height:0;">
+        <div class="codecard" style="flex:1.6;font-size:14px;line-height:1.5;padding:1em 1.1em;">
+          <div class="cap">packages/coding-agent/examples/extensions/protected-paths.ts</div>
+<pre>import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+
+export default function (pi: ExtensionAPI) {
+  const protectedPaths = [".env", ".git/", "node_modules/"];
+
+  pi.on("tool_call", async (event, ctx) =&gt; {
+    if (event.toolName !== "write" &amp;&amp; event.toolName !== "edit") {
+      return undefined;
+    }
+    const path = event.input.path as string;
+    const isProtected = protectedPaths.some((p) =&gt; path.includes(p));
+    if (isProtected) {
+      if (ctx.hasUI) {
+        ctx.ui.notify(`Blocked write to protected path: ${path}`, "warning");
+      }
+      return { block: true, reason: `Path "${path}" is protected` };
+    }
+    return undefined;
+  });
+}</pre>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:12px;min-width:0;">
+          <div class="fcard"><div class="k">READ</div><div class="t">三件套</div><div class="d">registerTool 注册工具 · registerCommand 注册命令 · on("tool_call") 拦截事件，返回 { block: true, reason } 即可阻止。</div></div>
+          <div class="fcard"><div class="k">ECO</div><div class="t">社区已经造好的</div><div class="d">oh-my-pi（hash 锚定编辑+LSP+浏览器+子代理）、pi-mom（Slack 委派）、@termdraw/pi（画图）、pi-doom（等结果时打 Doom）。</div></div>
+          <div class="callout" style="margin-top:auto;"><span class="lab">NOTE</span><span>半分钟读完 = 你真的可以拥有你的 agent 的全部行为。</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="pageno">13 / 20</div>
+  </section>
+
+  <!-- P14 横向对比 · 核心六维 -->
+  <section class="page page--wide">
+    <div class="sec-head">
+      <span class="sec-num">06</span><span class="sec-title">分歧点只有一个：能力边界由谁决定</span>
+      <span class="pill">COMPARE</span>
+      <span class="sec-art">产出 <span class="chip-dark">fig-6</span></span>
+    </div>
+    <p class="deck-sub">Claude Code 和 OpenCode 把 MCP 当标配，pi 刻意不做——这是分水岭</p>
+    <div class="panel panel--fill">
+      <table class="dtable" style="font-size:var(--fs-body);">
+        <tr><th style="width:16%;">维度</th><th style="width:28%;">pi</th><th style="width:28%;">Claude Code</th><th style="width:28%;">OpenCode</th></tr>
+        <tr><td><b>定位</b></td><td>极简 agent harness</td><td>官方全能 coding 工具</td><td>开源多形态 agent</td></tr>
+        <tr><td><b>许可</b></td><td>MIT，全开源</td><td>闭源订阅制（通识，存疑）</td><td>开源（Anomaly）</td></tr>
+        <tr><td><b>MCP</b></td><td>刻意不做，可扩展补</td><td>有</td><td>有</td></tr>
+        <tr><td><b>sub-agent</b></td><td>无内置，有示例扩展</td><td>有</td><td>有</td></tr>
+        <tr><td><b>扩展模型</b></td><td>TS 扩展 + pi package</td><td>MCP + hooks + skills</td><td>MCP + plugins + SDK</td></tr>
+        <tr><td><b>计费</b></td><td>免费，无定价页</td><td>订阅制</td><td>未标注</td></tr>
+      </table>
+      <div class="points" style="margin-top:14px;">
+        <div class="point"><h4>空缺即诚实</h4><p>表格空着的格子是未取得一手数据的地方，宁可空着不编。</p></div>
+        <div class="point"><h4>完整九维</h4><p>内置工具 / 模型 / 形态三行对照见完整版文章第 06 章。</p></div>
+      </div>
+    </div>
+    <div class="pageno">14 / 20</div>
+  </section>
+
+  <!-- P15 底盘 vs 整车 -->
+  <section class="page page--wide">
+    <div class="sec-head">
+      <span class="sec-num">06</span><span class="sec-title">选底盘还是选整车，取决于你想不想要所有权</span>
+      <span class="pill">COMPARE</span>
+      <span class="sec-art">补充 <span class="chip-dark">模型自由度</span></span>
+    </div>
+    <p class="deck-sub">没有对错，只有你想要什么</p>
+    <div style="display:flex;gap:14px;flex:1;">
+      <div class="fcard" style="flex:1;border-top:6px solid var(--accent);padding:1.4em 1.5em;display:flex;flex-direction:column;justify-content:center;">
+        <div class="t" style="font-weight:900;font-size:var(--fs-sub);">底盘：pi</div>
+        <div class="d" style="font-size:var(--fs-body);color:var(--ink-soft);line-height:1.9;margin-top:.6em;">每一处都能改：扩展、skills、主题全是你的代码；半分钟读完一个扩展的全部行为。<br>代价：组装和维护归你——大仓检索靠 grep 加耐心，并行靠 tmux 自排，自建扩展随模型升级自己修。</div>
+      </div>
+      <div class="fcard" style="flex:1;border-top:6px solid var(--bg-dark);padding:1.4em 1.5em;display:flex;flex-direction:column;justify-content:center;">
+        <div class="t" style="font-weight:900;font-size:var(--fs-sub);">整车：Claude Code / OpenCode</div>
+        <div class="d" style="font-size:var(--fs-body);color:var(--ink-soft);line-height:1.9;margin-top:.6em;">上路就能开：MCP、sub-agent、权限确认、plan mode、后台任务全是产品功能，IDE 插件和桌面端齐备。<br>代价：路线是别人画的，能力边界由厂商决定，模型选择受订阅框架约束。</div>
+      </div>
+    </div>
+    <div class="callout callout--blue" style="margin-top:14px;">
+      <span class="lab">BONUS</span>
+      <span>pi 的 /model 会话内热切换 + 跨 provider 上下文接力：上半场 Claude 读库、下半场 DeepSeek 干活，一条工作流混用两家模型是常规操作。</span>
+    </div>
+    <div class="pageno">15 / 20</div>
+  </section>
+
+  <!-- P16 批判 · 六笔账 -->
+  <section class="page page--wide">
+    <div class="sec-head">
+      <span class="sec-num">07</span><span class="sec-title">极简不是免费的：六笔账每笔都有出处</span>
+      <span class="pill">CRITIQUE</span>
+      <span class="sec-art">产出 <span class="chip-dark">六笔账</span></span>
+    </div>
+    <p class="deck-sub">前四笔是"少"的代价，后两笔是"火"的代价</p>
+    <div class="billgrid" style="flex:1;align-content:space-evenly;">
+      <div class="fcard"><div class="bn">BILL 01</div><div class="t">无 MCP</div><div class="d">头号拥趸都列为第一缺点；2026 年 MCP 已是事实标准，现成服务器全接不了。</div></div>
+      <div class="fcard"><div class="bn">BILL 02</div><div class="t">无现成生态</div><div class="d">"no community skills, nothing"——能力获取基本等于自己写代码。</div></div>
+      <div class="fcard"><div class="bn">BILL 03</div><div class="t">TS 门槛</div><div class="d">深度定制的入场券是会写 TypeScript（推断，无用户引语）。</div></div>
+      <div class="fcard"><div class="bn">BILL 04</div><div class="t">自建维护成本</div><div class="d">自建扩展是自己的代码，模型升级行为漂移了得自己修。</div></div>
+      <div class="fcard"><div class="bn">BILL 05</div><div class="t">商业化悬念</div><div class="d">"enshitification?"质疑 vs MIT 承诺 + Fair Source 分层；迁移成本已真实发生。</div></div>
+      <div class="fcard"><div class="bn">BILL 06</div><div class="t">规模边界</div><div class="d">大仓检索靠 grep 加耐心，多任务并行靠 tmux——编排复杂度回到你手上。</div></div>
+    </div>
+    <div class="callout" style="margin-top:12px;"><span class="lab">HONEST</span><span>Earendil 靠什么把 pi 变成生意，我没查明白。pi.dev 上没有定价页，这是我能确认的全部。</span></div>
+    <div class="pageno">16 / 20</div>
+  </section>
+
+  <!-- P17 批判 · 三段原声 -->
+  <section class="page page--wide">
+    <div class="sec-head">
+      <span class="sec-num">07</span><span class="sec-title">三段原声：引语逐字，立场标注</span>
+      <span class="pill">CRITIQUE</span>
+      <span class="sec-art">立场 <span class="chip-dark">已披露</span></span>
+    </div>
+    <p class="deck-sub">好评圈层的账也要算：最重要的几篇好评，作者要么在 Earendil，要么和它互相依存</p>
+    <div style="display:flex;flex-direction:column;gap:14px;flex:1;justify-content:center;">
+      <div class="qcard">
+        <div class="qm">"</div>
+        <div class="qt">The most obvious omission is support for MCP. There is no MCP support in it.</div>
+        <div class="qa">— Armin Ronacher（Flask 作者）· <b>立场：自称 shill，与 Zechner 同在 Earendil</b> · 自己人说"缺失最明显"，分量反而更重</div>
+      </div>
+      <div class="qcard">
+        <div class="qm">"</div>
+        <div class="qt">pi is MIT licensed. It will stay MIT licensed. Nothing changes. —— 但未来商业功能会走 Fair Source。</div>
+        <div class="qa">— Mario Zechner，官宣博文 · <b>背景：r/LocalLLaMA 立帖"enshitification?"</b> · 截至发稿无背刺实锤，风险是结构性的</div>
+      </div>
+      <div class="qcard">
+        <div class="qm">"</div>
+        <div class="qt">Or not, I don't know :)</div>
+        <div class="qa">— Ronacher 谈 MCP 桥接方案的可靠性 · <b>拥趸对核心替代路径的态度是"我不知道"</b> · 另：HN 广传的"linear flow 沮丧"是在骂别家，不是骂 pi</div>
+      </div>
+    </div>
+    <div class="pageno">17 / 20</div>
+  </section>
+
+  <!-- P18 不该用清单 -->
+  <section class="page page--wide">
+    <div class="sec-head">
+      <span class="sec-num">07</span><span class="sec-title">五种情况别用 pi，一种情况闭眼入</span>
+      <span class="pill">CRITIQUE</span>
+      <span class="sec-art">产出 <span class="chip-dark">fig-7</span></span>
+    </div>
+    <p class="deck-sub">反方视角的适用边界，每一条都有出处</p>
+    <div class="panel panel--fill">
+      <div class="points" style="flex:1;align-content:space-evenly;">
+        <div class="point"><h4>依赖 MCP 服务器生态</h4><p>接工具要写 TS 扩展或桥接，而桥接可靠性连拥趸都承认"我不知道"。（Ronacher 原话）</p></div>
+        <div class="point"><h4>要开箱即用的全家桶</h4><p>sub-agent、内置 git、find、社区 skills 都没有，且这是设计立场不是功能路线图。（Reddit 实测 + "nothing"）</p></div>
+        <div class="point"><h4>不会 TS 又想深度定制</h4><p>定制的入场券是会写 TypeScript；"重写 internals" 的另一面就是门槛。（推断，非用户引语）</p></div>
+        <div class="point"><h4>IDE / GUI 重度用户</h4><p>纯终端 harness，无官方图形前端；线性对话流是刻意选定的交互。</p></div>
+        <div class="point"><h4>对许可分层过敏的组织</h4><p>核心 MIT 承诺在，但 Fair Source 商业层已写入路线，预期分化。（RFC 0015 转述）</p></div>
+        <div class="point"><h4>反过来，谁适合</h4><p>想完全掌控 harness、愿意读源码、用 TypeScript 的高级开发者与 agent 构建者。</p></div>
+      </div>
+    </div>
+    <div class="pageno">18 / 20</div>
+  </section>
+
+  <!-- P19 总结（暗） -->
+  <section class="page page--wide page--dark">
+    <div class="sec-head">
+      <span class="sec-title">提炼：pi 的价值不在"更好用"，在"可拥有"</span>
+      <span class="pill" style="background:transparent;border-color:var(--chip-line);color:var(--tan);">SUMMARY</span>
+      <span class="sec-art mono" style="color:var(--accent-on-dark);">pi · A MINIMAL AGENT HARNESS</span>
+    </div>
+    <p class="deck-sub" style="color:var(--cream);">你能读完它的全部行为，改掉其中任何一处，然后真正拥有你的 agent</p>
+    <div class="sumlist">
+      <div class="sumrow"><span class="n">01</span><span><span class="t">缘起是什么</span><span class="d">对"塞满上下文、黑盒操作"投反对票，顺手被 OpenClaw 点爆</span></span><span class="r">L26/L21</span></div>
+      <div class="sumrow"><span class="n">02</span><span><span class="t">架构巧在哪</span><span class="d">五层薄切，agent loop 住在模型接入层里，启动 &lt;1000 tokens</span></span><span class="r">L1/L2/L7</span></div>
+      <div class="sumrow"><span class="n">03</span><span><span class="t">四工具的底气</span><span class="d">覆盖 coding 全部动作原语，六个"No"各有替代路径，安全挪到环境侧</span></span><span class="r">L3/L4/L5</span></div>
+      <div class="sumrow"><span class="n">04</span><span><span class="t">上手难不难</span><span class="d">一条 npm 命令，双轨登录，会话树和消息排队值得练熟</span></span><span class="r">L10-L12</span></div>
+      <div class="sumrow"><span class="n">05</span><span><span class="t">扩展的真相</span><span class="d">"没有的"官方示例全能造，但示例和产品之间隔着你自己写的代码</span></span><span class="r">L13-L15</span></div>
+      <div class="sumrow"><span class="n">06</span><span><span class="t">账单有哪些</span><span class="d">无 MCP、无生态、TS 门槛、自建维护、商业化悬念、好评圈层</span></span><span class="r">L22-L24</span></div>
+    </div>
+    <div style="flex:1;"></div>
+    <p style="font-size:var(--fs-body);font-weight:700;line-height:1.7;color:var(--tan);margin-bottom:14px;">想开现成的车，另外两家更合适；想拥有一台完全按自己想法改装的，pi 值得这场折腾。完整论述（含九维对照表与全部引文）见完整版 final.md 第 06-07 章。</p>
+    <div class="pageno">19 / 20</div>
+  </section>
+
+  <!-- P20 来源 -->
+  <section class="page page--wide">
+    <div class="sec-head">
+      <span class="sec-num">REF</span><span class="sec-title">每一条都能点开验证</span>
+      <span class="pill">SOURCES</span>
+      <span class="sec-art">抓取 <span class="chip-dark">2026-08-29</span></span>
+    </div>
+    <p class="deck-sub">weak 来源已在正文标注口径</p>
+    <div class="panel panel--fill">
+      <div class="srclist" style="flex:1;">
+        <p>pi 官网与文档 — pi.dev</p>
+        <p>仓库与 README（Philosophy / Quick Start / Extensions / Sessions）— github.com/earendil-works/pi</p>
+        <p>npm 包元数据（engines / 版本）— registry.npmjs.org/@earendil-works/pi-coding-agent/latest</p>
+        <p>Zechner 设计博文（2025-11-30）— mariozechner.at/posts/2025-11-30-pi-coding-agent</p>
+        <p>Zechner《I've sold out》（2026-04-08）— mariozechner.at/posts/2026-04-08-ive-sold-out</p>
+        <p>Ronacher 评述（2026-01-31，立场见正文）— lucumr.pocoo.org/2026/1/31/pi/</p>
+        <p>protected-paths.ts 扩展源码 — github.com/earendil-works/pi/blob/main/packages/coding-agent/examples/extensions</p>
+        <p>会话文档 — …/packages/coding-agent/docs/sessions.md</p>
+        <p>GitHub Releases（v0.84.4，2026-08-28）— github.com/earendil-works/pi/releases</p>
+        <p>Reddit 实测评（转引）— reddit.com/r/AI_Agent_Reviews/comments/1t62nnj</p>
+        <p>r/LocalLLaMA 商业化质疑帖（转引）— reddit.com/r/LocalLLaMA/comments/1u6a499</p>
+        <p>对比数据（Claude Code / OpenCode）— code.claude.com/docs/en/overview · opencode.ai/docs（空缺处为未取得一手数据）</p>
+      </div>
+      <div class="callout" style="margin-top:12px;">
+        <span class="lab">WEAK</span>
+        <span>GitHub 星数 98.8k 为单源页面抓取（2026-08-29）；oh-my-pi 等社区包描述来自官网与二手综述，未逐仓核验；Claude Code 闭源为业内通识，已按存疑处理。</span>
+      </div>
+      <div class="callout" style="margin-top:10px;">
+        <span class="lab">MAP</span>
+        <span>降级地图：本 PPT 为压缩版——九维对照全表在完整版 §06；三段原声的完整上下文在 §07；26 条调研台账在 research/ledger.md；PPT 删减的叙述性论证均在 final.md 同名章节。</span>
+      </div>
+    </div>
+    <div class="pageno">20 / 20</div>
+  </section>
+
+</div>
+</body>
+</html>

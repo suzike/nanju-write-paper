@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="780" viewBox="0 0 1440 780" font-family="'Source Han Serif SC','Noto Serif SC',Georgia,serif">
+  <rect width="1440" height="780" fill="#f9f5ea"/>
+  <text x="52" y="52" font-family="'JetBrains Mono',Consolas,monospace" font-size="14" letter-spacing="3" fill="#cd642d">PAGE ANATOMY</text>
+  <text x="52" y="92" font-size="30" font-weight="700" fill="#231e18">三种页面骨架 · 每一区块都有名字</text>
+
+  <!-- 封面（暗） -->
+  <rect x="80" y="120" width="380" height="430" rx="12" fill="#231e18"/>
+  <rect x="108" y="148" width="180" height="20" rx="4" fill="#f3eee1"/>
+  <rect x="108" y="176" width="130" height="20" rx="4" fill="#f3eee1"/>
+  <rect x="108" y="204" width="90" height="7" fill="#b97b45"/>
+  <rect x="108" y="226" width="150" height="12" fill="#eda55f"/>
+  <circle cx="270" cy="346" r="72" fill="none" stroke="#46413b" stroke-dasharray="4 4"/>
+  <rect x="242" y="328" width="56" height="36" rx="8" fill="#cd642d"/>
+  <circle cx="200" cy="292" r="20" fill="#2f2a24" stroke="#46413b"/><circle cx="340" cy="292" r="20" fill="#2f2a24" stroke="#46413b"/>
+  <circle cx="180" cy="346" r="20" fill="#2f2a24" stroke="#46413b"/><circle cx="360" cy="346" r="20" fill="#2f2a24" stroke="#46413b"/>
+  <circle cx="200" cy="400" r="20" fill="#2f2a24" stroke="#46413b"/><circle cx="340" cy="400" r="20" fill="#2f2a24" stroke="#46413b"/>
+  <rect x="108" y="462" width="66" height="24" rx="6" fill="#2f2a24" stroke="#46413b"/><rect x="182" y="462" width="66" height="24" rx="6" fill="#2f2a24" stroke="#46413b"/>
+  <text x="256" y="479" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" fill="#eda55f">→</text>
+  <rect x="108" y="502" width="120" height="12" fill="#2f2a24" stroke="#46413b"/>
+  <text x="80" y="580" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" fill="#cd642d" font-weight="700">COVER · 封面（暗）</text>
+  <g font-size="13.5" fill="#5a5348">
+    <text x="80" y="610">① 衬线大标题 ≤3 行 ② 关键词下橙条 ③ 橙色等宽副标</text>
+    <text x="80" y="636">④ 环形图：六节点+中心橙块 ⑤ 底部芯片链：主线流程</text>
+  </g>
+
+  <!-- 章节（亮） -->
+  <rect x="530" y="120" width="380" height="430" rx="12" fill="#f9f5ea" stroke="#ddd6c6"/>
+  <rect x="556" y="142" width="44" height="34" rx="4" fill="none" stroke="#cd642d" stroke-width="3"/>
+  <text x="566" y="167" font-family="'JetBrains Mono',Consolas,monospace" font-size="17" font-weight="700" fill="#cd642d">01</text>
+  <rect x="608" y="148" width="110" height="22" fill="#231e18"/>
+  <rect x="726" y="150" width="64" height="20" rx="10" fill="#fbfaf5" stroke="#ddd6c6"/>
+  <rect x="800" y="150" width="86" height="20" rx="5" fill="#231e18"/>
+  <rect x="556" y="196" width="300" height="16" fill="#231e18"/>
+  <rect x="556" y="230" width="328" height="120" rx="12" fill="#f0ede6"/>
+  <rect x="572" y="246" width="130" height="16" rx="4" fill="#fbfaf5"/><rect x="716" y="246" width="150" height="16" rx="4" fill="#cd642d"/>
+  <rect x="572" y="272" width="290" height="10" fill="#fbfaf5"/><rect x="572" y="290" width="250" height="10" fill="#fbfaf5"/>
+  <rect x="572" y="316" width="296" height="22" rx="8" fill="none" stroke="#cd642d" stroke-dasharray="5 4"/>
+  <rect x="556" y="372" width="5" height="40" fill="#cd642d"/><rect x="570" y="376" width="120" height="12" fill="#231e18"/><rect x="570" y="394" width="140" height="10" fill="#5a5348"/>
+  <rect x="756" y="372" width="5" height="40" fill="#cd642d"/><rect x="770" y="376" width="110" height="12" fill="#231e18"/><rect x="770" y="394" width="100" height="10" fill="#5a5348"/>
+  <rect x="556" y="440" width="328" height="84" rx="12" fill="#231e18"/>
+  <rect x="572" y="456" width="100" height="10" fill="#eda55f"/><rect x="572" y="476" width="290" height="9" fill="#e9e2d4"/><rect x="572" y="492" width="240" height="9" fill="#e9e2d4"/>
+  <text x="530" y="580" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" fill="#cd642d" font-weight="700">SECTION · 章节页（亮，信息最重）</text>
+  <g font-size="13.5" fill="#5a5348">
+    <text x="530" y="610">① 橙编号+黑衬线标题+白胶囊 ② 右上制品芯片 ③ 一句话副标</text>
+    <text x="530" y="636">④ 米色面板主图 ⑤ 虚线标注（橙提醒/蓝配置） ⑥ 2×2 要点格 ⑦ 页底黑代码卡</text>
+  </g>
+
+  <!-- 总结（暗） -->
+  <rect x="980" y="120" width="380" height="430" rx="12" fill="#231e18"/>
+  <rect x="1006" y="142" width="90" height="22" fill="#f3eee1"/>
+  <rect x="1106" y="144" width="70" height="18" rx="9" fill="none" stroke="#46413b"/>
+  <rect x="1006" y="184" width="300" height="14" fill="#f3eee1"/>
+  <g fill="#eda55f" font-family="'JetBrains Mono',Consolas,monospace" font-size="13">
+    <text x="1006" y="228">01</text><text x="1006" y="272">02</text><text x="1006" y="316">03</text><text x="1006" y="360">04</text><text x="1006" y="404">05</text><text x="1006" y="448">06</text>
+  </g>
+  <g fill="#f3eee1">
+    <rect x="1040" y="216" width="90" height="13"/><rect x="1040" y="260" width="110" height="13"/><rect x="1040" y="304" width="100" height="13"/><rect x="1040" y="348" width="118" height="13"/><rect x="1040" y="392" width="96" height="13"/><rect x="1040" y="436" width="104" height="13"/>
+  </g>
+  <g fill="#3d372f">
+    <rect x="1006" y="240" width="328" height="1.5"/><rect x="1006" y="284" width="328" height="1.5"/><rect x="1006" y="328" width="328" height="1.5"/><rect x="1006" y="372" width="328" height="1.5"/><rect x="1006" y="416" width="328" height="1.5"/>
+  </g>
+  <rect x="1006" y="478" width="5" height="30" fill="#cd642d"/><rect x="1020" y="482" width="140" height="11" fill="#f3eee1"/><rect x="1020" y="498" width="240" height="10" fill="#a39a8e"/>
+  <text x="980" y="580" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" fill="#cd642d" font-weight="700">SUMMARY · 总结页（暗）</text>
+  <g font-size="13.5" fill="#5a5348">
+    <text x="980" y="610">① 标题+SUMMARY 胶囊 ② 一句话总括</text>
+    <text x="980" y="636">③ sumlist：橙编号+词条+描述+制品名 ④ 关键点 ⑤ 芯片链</text>
+  </g>
+</svg>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<!-- nanju-write-paper A4 模板：封面(暗) + 章节页×2(亮) + 总结页(暗)
+     打印：@page 尺寸已按 A4 设置；导出 PDF 用 scripts/html2pdf.sh 或 Playwright page.pdf -->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>nanju-write-paper · A4 模板</title>
+<link rel="stylesheet" href="../assets/theme.css">
+<style>
+  @page { size: 794px 1123px; margin: 0; }
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <!-- 封面 -->
+  <section class="page page--a4 page--dark" style="display:flex;flex-direction:column;">
+    <h1 class="cover-title">深度技术文章的<br><span class="u-accent">标准生产</span>流水线</h1>
+    <p class="cover-sub">FROM TOPIC TO FINAL DRAFT</p>
+    <div style="flex:1;display:flex;align-items:center;">
+      <div class="ring" style="--d:400px;--r:152px;--node:96px;">
+        <div class="node" style="--a:-90deg"><span class="n">01</span><span class="t">调研</span></div>
+        <div class="node" style="--a:-30deg"><span class="n">02</span><span class="t">编排</span></div>
+        <div class="node" style="--a:30deg"><span class="n">03</span><span class="t">写作</span></div>
+        <div class="node" style="--a:90deg"><span class="n">04</span><span class="t">审查</span></div>
+        <div class="node" style="--a:150deg"><span class="n">05</span><span class="t">修订</span></div>
+        <div class="node" style="--a:210deg"><span class="n">06</span><span class="t">定稿</span></div>
+        <div class="hub">每轮审查<br>打回重写</div>
+      </div>
+    </div>
+    <div class="chipline">
+      <span class="c">brief</span><span class="a">→</span><span class="c">research</span><span class="a">→</span>
+      <span class="c">outline</span><span class="a">→</span><span class="c">draft</span><span class="a">→</span>
+      <span class="c">review</span><span class="a">→</span><span class="c">final</span><span class="a">↺</span>
+    </div>
+  </section>
+
+  <!-- 章节页 1：流程 + 要点 + 代码卡 -->
+  <section class="page page--a4">
+    <div class="sec-head">
+      <span class="sec-num">01</span><span class="sec-title">生产流程</span>
+      <span class="pill">PIPELINE</span>
+      <span class="sec-art">产出 <span class="chip-dark">draft.md</span></span>
+    </div>
+    <p class="deck-sub">素材经过四道关卡变成定稿，每一道都有明确的放行条件</p>
+    <div class="panel">
+      <div class="panel-cap">PIPELINE · 单章的生命周期</div>
+      <div class="frow">
+        <div class="fcard"><div class="k">INPUT</div><div class="t">素材入厂</div><div class="d">条条带来源</div></div>
+        <span class="arrow">→</span>
+        <div class="state state--gold"><div class="t">起草</div><div class="d">倒序写作，主体先行</div></div>
+        <span class="arrow">→</span>
+        <div class="state state--act"><div class="t">审查</div><div class="d">四角色并行打分</div></div>
+        <span class="arrow">→</span>
+        <div class="state state--final"><div class="t">定稿</div><div class="d">归档回灌</div></div>
+      </div>
+      <p class="panel-note">打回时只改被点名的条目 —— 改方向永远比推倒重来便宜。</p>
+      <div class="callout" style="margin-top:1em;">
+        <span class="lab">NOTE</span>
+        <span>审查不是挑错字，是四类视角各查各的：事实、结构、深度、文风。</span>
+      </div>
+    </div>
+    <div class="points points--fill" style="margin-top:1.2em;">
+      <div class="point"><h4>证据可溯</h4><p>每条事实都能回指到调研台账里的来源链接。</p></div>
+      <div class="point"><h4>概念先立后用</h4><p>信息按依赖排序，任何概念不得先于定义被引用。</p></div>
+      <div class="point"><h4>图文互证</h4><p>机制章节配架构或流程图，图与正文互相印证。</p></div>
+      <div class="point"><h4>循环收敛</h4><p>审查最多三轮，不收敛就升级人工裁决。</p></div>
+    </div>
+    <div class="codecard codecard--dock">
+      <div class="cap">review.md 示例</div>
+      <pre><span class="cm"># Review round 1</span>
+[事实] 第2章 延迟数字缺来源 → 补 ledger#12
+[深度] 第3章 只讲了用法，缺边界条件 → 补反例
+[文风] 第1章 "众所周知" 删</pre>
+    </div>
+  </section>
+
+  <!-- 章节页 2：架构图 + 分级表 -->
+  <section class="page page--a4">
+    <div class="sec-head">
+      <span class="sec-num">02</span><span class="sec-title">系统分层</span>
+      <span class="pill">ARCHITECTURE</span>
+      <span class="sec-art">产出 <span class="chip-dark">design.md</span></span>
+    </div>
+    <p class="deck-sub">三层职责清晰，层与层之间只走统一协议</p>
+    <div class="panel">
+      <div class="arch">
+        <div class="layer"><span class="ltag">接入层</span>
+          <div class="nodes">
+            <div class="dnode"><div class="t">Web</div><div class="d">浏览器端</div></div>
+            <div class="dnode"><div class="t">API</div><div class="d">第三方调用</div></div>
+            <div class="dnode"><div class="t">CLI</div><div class="d">本地终端</div></div>
+          </div>
+        </div>
+        <div class="varrow">↓ <span class="elab">统一协议</span></div>
+        <div class="layer"><span class="ltag">控制层</span>
+          <div class="nodes">
+            <div class="dnode dnode--accent"><div class="t">调度核心</div><div class="d">任务编排与限流</div></div>
+            <div class="dnode"><div class="t">规则引擎</div><div class="d">校验与策略</div></div>
+          </div>
+        </div>
+        <div class="varrow">↓ <span class="elab">读写分离</span></div>
+        <div class="layer"><span class="ltag">存储层</span>
+          <div class="nodes">
+            <div class="dnode dnode--final"><div class="t">主库</div><div class="d">事务数据</div></div>
+            <div class="dnode"><div class="t">缓存</div><div class="d">热数据</div></div>
+            <div class="dnode"><div class="t">对象存储</div><div class="d">大文件</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="tier" style="margin-top:1.1em;">
+        <div class="tier-row tier-row--1"><span class="sig">P0</span><span class="name">阻断发布</span><span class="note">事实错误 · 引用失效</span></div>
+        <div class="tier-row tier-row--2"><span class="sig">P1</span><span class="name">本轮必改</span><span class="note">结构缺陷 · 深度不足</span></div>
+        <div class="tier-row tier-row--3"><span class="sig">P2</span><span class="name">择机优化</span><span class="note">措辞与排版</span></div>
+        <div class="tier-cap"><span class="m">threshold</span> — 加权总分 ≥ 8.0 且无 P0 才放行</div>
+      </div>
+    </div>
+    <div class="points" style="margin-top:1.2em;">
+      <div class="point"><h4>层间解耦</h4><p>跨层调用一律走协议，不允许直连存储。</p></div>
+      <div class="point"><h4>语义上色</h4><p>橙=核心动作，黑=终点，黄=中间态，主次立现。</p></div>
+      <div class="point"><h4>失败可见</h4><p>降级路径画虚线，不让异常藏在图外。</p></div>
+      <div class="point"><h4>一屏一事</h4><p>一张图只回答一个问题，多了就拆。</p></div>
+    </div>
+    <div class="codecard codecard--dock">
+      <div class="cap">design.md 示例</div>
+      <pre><span class="cm"># 分层约定</span>
+layers: [接入层, 控制层, 存储层]
+rule: 跨层调用必须走统一协议，禁止直连存储</pre>
+    </div>
+  </section>
+
+  <!-- 总结页 -->
+  <section class="page page--a4 page--dark" style="display:flex;flex-direction:column;">
+    <div class="sec-head">
+      <span class="sec-title" style="font-size:var(--fs-title);">提炼</span>
+      <span class="pill" style="background:transparent;border-color:var(--chip-line);color:var(--tan);">SUMMARY</span>
+      <span class="sec-art mono" style="color:var(--accent-on-dark);">WRITING PIPELINE</span>
+    </div>
+    <p class="deck-sub" style="color:var(--cream);">六道工序，三道闸门；审查不过关，就打回重来</p>
+    <div class="sumlist">
+      <div class="sumrow"><span class="n">01</span><span><span class="t">简报</span><span class="d">八项确认，不写模糊的题</span></span><span class="r">brief.md</span></div>
+      <div class="sumrow"><span class="n">02</span><span><span class="t">调研</span><span class="d">四路并行检索，条条带来源</span></span><span class="r">ledger.md</span></div>
+      <div class="sumrow"><span class="n">03</span><span><span class="t">编排</span><span class="d">证据地图 + 大纲，用户确认后才动笔</span></span><span class="r">outline.md</span></div>
+      <div class="sumrow"><span class="n">04</span><span><span class="t">写作</span><span class="d">倒序起草，深度块补足机理</span></span><span class="r">draft.md</span></div>
+      <div class="sumrow"><span class="n">05</span><span><span class="t">审查</span><span class="d">四角色打分，不达标打回</span></span><span class="r">reviews/</span></div>
+      <div class="sumrow"><span class="n">06</span><span><span class="t">排版</span><span class="d">同一套设计系统出三格式</span></span><span class="r">final.pdf</span></div>
+    </div>
+    <div class="points" style="margin:1.2em 0;">
+      <div class="point"><h4>来源是底线</h4><p>没有来源的断言，一律降级为观点或删除。</p></div>
+      <div class="point"><h4>闸门防跑偏</h4><p>简报与大纲两道用户确认，避免万字返工。</p></div>
+    </div>
+    <div class="chipline">
+      <span class="c">brief</span><span class="a">→</span><span class="c">research</span><span class="a">→</span>
+      <span class="c">outline</span><span class="a">→</span><span class="c">draft</span><span class="a">→</span>
+      <span class="c">review</span><span class="a">→</span><span class="c">final</span><span class="a">↺</span>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<!-- 配图风格标本页：6 张卡，每张展示一类图式（给用户评审用） -->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>nanju-write-paper · 配图风格标本</title>
+<link rel="stylesheet" href="../assets/theme.css">
+<style>@page { size: 1080px 1440px; margin: 0; }</style>
+</head>
+<body>
+<div class="stage">
+
+  <!-- 1 流程图 -->
+  <section class="page page--card" style="display:flex;flex-direction:column;">
+    <p class="kicker">SPECIMEN 01 · 流程图 FLOW</p>
+    <div style="flex:1;display:flex;align-items:center;">
+      <div class="panel" style="width:100%;">
+        <div class="panel-cap">PIPELINE · 单章的生命周期</div>
+        <div class="frow">
+          <div class="fcard fcard--center"><div class="t">素材入厂</div><div class="d">带来源要点</div></div>
+          <span class="arrow">→</span>
+          <div class="state state--gold" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;"><div class="t">起草</div><div class="d">主体先行</div></div>
+          <span class="arrow">→</span>
+          <div class="state state--act" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;"><div class="t">审查</div><div class="d">并行打分</div></div>
+          <span class="arrow">→</span>
+          <div class="state state--final" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;"><div class="t">定稿</div><div class="d">归档回灌</div></div>
+        </div>
+        <p class="panel-note">没通过就不出手，直到检查通过为止。</p>
+        <p style="margin-top:1em;font-family:var(--mono);font-size:var(--fs-small);">
+          <span style="color:var(--accent);">loop</span>&nbsp;&nbsp;&nbsp;&nbsp;贯穿整个任务，跑多少次取决于活儿有多少<br>
+          <span style="color:var(--accent);">verifier</span>&nbsp;&nbsp;干完后用干净上下文再验一次，只报告不修
+        </p>
+        <div class="callout" style="margin-top:1.1em;">
+          <span class="lab">NOTE</span><span>打回时只改被点名的条目 —— 改方向永远比推倒重来便宜。</span>
+        </div>
+        <div class="callout callout--blue" style="margin-top:.8em;">
+          <span class="lab">CFG</span><span>审查阈值与轮数上限写在简报里，改配置不改流程。</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 架构图 -->
+  <section class="page page--card" style="display:flex;flex-direction:column;">
+    <p class="kicker">SPECIMEN 02 · 分层架构图 ARCHITECTURE</p>
+    <div style="flex:1;display:flex;align-items:center;">
+      <div class="panel" style="width:100%;">
+        <div class="panel-cap-row"><span class="panel-cap" style="margin:0;">ARCH · 三层职责</span><span class="right">design.md</span></div>
+        <div class="arch">
+          <div class="layer"><span class="ltag">接入层</span>
+            <div class="nodes">
+              <div class="dnode"><div class="t">Web</div><div class="d">浏览器端</div></div>
+              <div class="dnode"><div class="t">API</div><div class="d">第三方调用</div></div>
+              <div class="dnode"><div class="t">CLI</div><div class="d">本地终端</div></div>
+            </div>
+          </div>
+          <div class="varrow">↓ <span class="elab">统一协议</span></div>
+          <div class="layer"><span class="ltag">控制层</span>
+            <div class="nodes">
+              <div class="dnode dnode--accent"><div class="t">调度核心</div><div class="d">任务编排 · 限流 · 重试</div></div>
+              <div class="dnode"><div class="t">规则引擎</div><div class="d">校验与策略</div></div>
+            </div>
+          </div>
+          <div class="varrow">↓ <span class="elab">读写分离</span></div>
+          <div class="layer"><span class="ltag">存储层</span>
+            <div class="nodes">
+              <div class="dnode dnode--final"><div class="t">主库</div><div class="d">事务数据</div></div>
+              <div class="dnode"><div class="t">缓存</div><div class="d">热数据</div></div>
+              <div class="dnode"><div class="t">对象存储</div><div class="d">大文件</div></div>
+            </div>
+          </div>
+        </div>
+        <p class="panel-note">跨层调用一律走协议，不允许直连存储 —— 层间解耦是演化成本的保险。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 时序图 -->
+  <section class="page page--card" style="display:flex;flex-direction:column;">
+    <p class="kicker">SPECIMEN 03 · 时序图 SEQUENCE</p>
+    <div style="flex:1;display:flex;align-items:center;">
+      <div class="panel" style="width:100%;">
+        <div class="panel-cap">SEQ · 一次读取请求（3 方协作）</div>
+        <div class="seq" style="--cols:3;">
+          <div class="actor" style="grid-column:1;">客户端<span class="sub">client</span></div>
+          <div class="actor" style="grid-column:2;">服务端<span class="sub">server</span></div>
+          <div class="actor" style="grid-column:3;">缓存<span class="sub">cache</span></div>
+          <span class="life" style="grid-column:1;"></span>
+          <span class="life" style="grid-column:2;"></span>
+          <span class="life" style="grid-column:3;"></span>
+          <div class="rowhead"></div>
+          <div class="msg" style="grid-row:3;--x1:16.67%;--w:33.33%;--xm:33.33%;"><span class="ln"></span><span class="lab">GET /note/42</span></div>
+          <div class="msg" style="grid-row:4;--x1:50%;--w:33.33%;--xm:66.67%;"><span class="ln"></span><span class="lab">查热点键</span></div>
+          <div class="msg msg--dash msg--rtl" style="grid-row:5;--x1:50%;--w:33.33%;--xm:66.67%;"><span class="ln"></span><span class="lab">未命中 · 回源主库</span></div>
+          <div class="msg msg--rtl" style="grid-row:6;--x1:16.67%;--w:33.33%;--xm:33.33%;"><span class="ln"></span><span class="lab">200 · 正文 + 版本号</span></div>
+        </div>
+        <p class="panel-note">虚线 = 回程/降级路径（主库省略未画）；标签自带底色，永不压线。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 分级阈值 -->
+  <section class="page page--card" style="display:flex;flex-direction:column;">
+    <p class="kicker">SPECIMEN 04 · 分级阈值 TIER</p>
+    <div style="flex:1;display:flex;align-items:center;">
+      <div class="panel" style="width:100%;">
+        <div class="panel-cap-row"><span class="panel-cap" style="margin:0;">审查意见分级</span><span class="right">review.md</span></div>
+        <div class="tier">
+          <div class="tier-row tier-row--1"><span class="sig">P0</span><span class="name">阻断发布</span><span class="note">事实错误 · 引用失效</span></div>
+          <div class="tier-row tier-row--2"><span class="sig">P1</span><span class="name">本轮必改</span><span class="note">结构缺陷 · 深度不足</span></div>
+          <div class="tier-row tier-row--3"><span class="sig">P2</span><span class="name">择机优化</span><span class="note">措辞与排版</span></div>
+          <div class="tier-cap"><span class="m">threshold</span> — 加权总分 ≥ 8.0 且无 P0 才放行</div>
+        </div>
+        <p class="panel-note">语义上色：橙=阻断，金=必改，白=可选。颜色即优先级。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 汇聚网关 -->
+  <section class="page page--card" style="display:flex;flex-direction:column;">
+    <p class="kicker">SPECIMEN 05 · 汇聚网关 FAN-IN</p>
+    <div style="flex:1;display:flex;align-items:center;">
+      <div class="panel" style="width:100%;">
+        <div class="panel-cap-row"><span class="panel-cap" style="margin:0;">发布闸门</span><span class="right">release.md</span></div>
+        <div class="fan">
+          <div class="col">
+            <div class="dnode"><div class="t">事实核查</div><div class="d">逐条对来源</div></div>
+            <div class="dnode"><div class="t">结构编辑</div><div class="d">DAG · 衔接 · 冗余</div></div>
+            <div class="dnode"><div class="t">深度批评</div><div class="d">机制 · 边界 · 反例</div></div>
+          </div>
+          <span class="link">→</span>
+          <div class="col" style="justify-content:center;">
+            <div class="dnode dnode--accent" style="text-align:center;padding:1.2em .8em;"><div class="t" style="font-size:var(--fs-sub);">闸门</div><div class="d">加权 ≥ 8.0 · 无 P0</div></div>
+            <span class="arrow" style="align-self:center;">↓</span>
+            <div class="dnode dnode--final" style="text-align:center;padding:1.2em .8em;"><div class="t" style="font-size:var(--fs-sub);">发布</div><div class="d">归档 + 回灌样例库</div></div>
+          </div>
+        </div>
+        <p class="panel-note">三路审查汇聚到一个量化闸门，谁也不许绕过。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 环形循环（暗页） -->
+  <section class="page page--card page--dark" style="display:flex;flex-direction:column;">
+    <p class="kicker" style="color:var(--tan);">SPECIMEN 06 · 环形循环 RING（封面/总结专用）</p>
+    <div style="flex:1;display:flex;align-items:center;">
+      <div class="ring">
+        <div class="node" style="--a:-90deg"><span class="n">01</span><span class="t">调研</span></div>
+        <div class="node" style="--a:-30deg"><span class="n">02</span><span class="t">编排</span></div>
+        <div class="node" style="--a:30deg"><span class="n">03</span><span class="t">写作</span></div>
+        <div class="node" style="--a:90deg"><span class="n">04</span><span class="t">审查</span></div>
+        <div class="node" style="--a:150deg"><span class="n">05</span><span class="t">修订</span></div>
+        <div class="node" style="--a:210deg"><span class="n">06</span><span class="t">定稿</span></div>
+        <div class="hub">每轮审查<br>打回重写</div>
+      </div>
+    </div>
+    <div class="chipline">
+      <span class="c">brief</span><span class="a">→</span><span class="c">research</span><span class="a">→</span>
+      <span class="c">outline</span><span class="a">→</span><span class="c">draft</span><span class="a">→</span>
+      <span class="c">review</span><span class="a">→</span><span class="c">final</span><span class="a">↺</span>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

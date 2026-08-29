@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="620" viewBox="0 0 1440 620" font-family="'Source Han Serif SC','Noto Serif SC',Georgia,serif">
+  <defs>
+    <marker id="ar5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#eda55f"/>
+    </marker>
+  </defs>
+  <rect width="1440" height="620" fill="#231e18"/>
+  <text x="52" y="52" font-family="'JetBrains Mono',Consolas,monospace" font-size="14" letter-spacing="3" fill="#eda55f">REVIEW LOOP × QA DEFENSE</text>
+  <text x="52" y="92" font-size="30" font-weight="700" fill="#f3eee1">五角色审查打分 + 三道质量防线</text>
+
+  <!-- 左：五角色权重条 -->
+  <rect x="48" y="126" width="700" height="330" rx="16" fill="#2a241d" stroke="#46413b"/>
+  <text x="72" y="158" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" letter-spacing="2" fill="#eda55f">S4 · 五角色并行审查（各维 0-10 分，加权总分）</text>
+  <g font-size="15" fill="#f3eee1">
+    <text x="72" y="200">R1 事实核查</text>
+    <rect x="220" y="184" width="420" height="24" rx="6" fill="#2f2a24" stroke="#46413b"/>
+    <rect x="220" y="184" width="420" height="24" rx="6" fill="#cd642d"/>
+    <text x="652" y="202" font-family="'JetBrains Mono',Consolas,monospace" fill="#eda55f" font-weight="700">30%</text>
+    <text x="72" y="248">R2 结构编辑</text>
+    <rect x="220" y="232" width="420" height="24" rx="6" fill="#2f2a24" stroke="#46413b"/>
+    <rect x="220" y="232" width="280" height="24" rx="6" fill="#cd642d"/>
+    <text x="652" y="250" font-family="'JetBrains Mono',Consolas,monospace" fill="#eda55f" font-weight="700">20%</text>
+    <text x="72" y="296">R3 深度批评</text>
+    <rect x="220" y="280" width="420" height="24" rx="6" fill="#2f2a24" stroke="#46413b"/>
+    <rect x="220" y="280" width="350" height="24" rx="6" fill="#cd642d"/>
+    <text x="652" y="298" font-family="'JetBrains Mono',Consolas,monospace" fill="#eda55f" font-weight="700">25%</text>
+    <text x="72" y="344">R4 文风编辑</text>
+    <rect x="220" y="328" width="420" height="24" rx="6" fill="#2f2a24" stroke="#46413b"/>
+    <rect x="220" y="328" width="210" height="24" rx="6" fill="#cd642d"/>
+    <text x="652" y="346" font-family="'JetBrains Mono',Consolas,monospace" fill="#eda55f" font-weight="700">15%</text>
+    <text x="72" y="392">R5 人味审读</text>
+    <rect x="220" y="376" width="420" height="24" rx="6" fill="#2f2a24" stroke="#46413b"/>
+    <rect x="220" y="376" width="140" height="24" rx="6" fill="#cd642d"/>
+    <text x="652" y="394" font-family="'JetBrains Mono',Consolas,monospace" fill="#eda55f" font-weight="700">10%</text>
+  </g>
+  <line x1="220" y1="416" x2="640" y2="416" stroke="#3d372f"/>
+  <text x="72" y="440" font-size="13.5" fill="#a39a8e">R3 兼 Devil's Advocate：输出"必须回应清单"，3 轮未销项的 claim 降级</text>
+  <rect x="72" y="460" width="280" height="44" rx="10" fill="none" stroke="#cd642d" stroke-width="1.5"/>
+  <text x="88" y="480" font-size="14" fill="#f3eee1">PASS：加权 ≥ 8.0 且无 P0</text>
+  <text x="88" y="498" font-size="12.5" fill="#a39a8e">公式 0.3R1+0.2R2+0.25R3+0.15R4+0.1R5</text>
+  <rect x="372" y="460" width="268" height="44" rx="10" fill="none" stroke="#cd642d" stroke-width="1.5"/>
+  <text x="388" y="480" font-size="14" fill="#f3eee1">打回 ≤3 轮，只修点名条目</text>
+  <text x="388" y="498" font-size="12.5" fill="#a39a8e">仍不过 → 升级用户裁决</text>
+
+  <!-- 右：三道防线 + 配图配额 -->
+  <rect x="780" y="126" width="612" height="330" rx="16" fill="#2a241d" stroke="#46413b"/>
+  <text x="804" y="158" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" letter-spacing="2" fill="#eda55f">PHASE B · 三道防线（事故驱动加固）</text>
+  <g font-size="14.5" fill="#f3eee1">
+    <rect x="804" y="178" width="564" height="44" rx="10" fill="#231e18" stroke="#46413b"/>
+    <text x="822" y="199" font-weight="700" fill="#eda55f" font-family="'JetBrains Mono',Consolas,monospace">①</text><text x="846" y="199">样式守卫 —— .page 宽度必须命中画幅定宽，无样式即 FAIL</text>
+    <rect x="804" y="232" width="564" height="44" rx="10" fill="#231e18" stroke="#46413b"/>
+    <text x="822" y="253" font-weight="700" fill="#eda55f" font-family="'JetBrains Mono',Consolas,monospace">②</text><text x="846" y="253">资源监听 —— requestfailed / console error，404 当场现形</text>
+    <rect x="804" y="286" width="564" height="44" rx="10" fill="#231e18" stroke="#46413b"/>
+    <text x="822" y="307" font-weight="700" fill="#eda55f" font-family="'JetBrains Mono',Consolas,monospace">③</text><text x="846" y="307">机器 PASS 只是必要条件 —— 首次版式必过 judge 目检 + MediaBox 核验</text>
+  </g>
+  <line x1="804" y1="352" x2="1368" y2="352" stroke="#3d372f"/>
+  <text x="804" y="382" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" letter-spacing="2" fill="#eda55f">配图配额（diagram-check 机器抓 + 逐图目检）</text>
+  <g font-size="13.5">
+    <rect x="804" y="398" width="170" height="34" rx="8" fill="#231e18" stroke="#cd642d"/><text x="820" y="420" fill="#f3eee1">真图 ≥4（演示≥5）</text>
+    <rect x="986" y="398" width="170" height="34" rx="8" fill="#231e18" stroke="#cd642d"/><text x="1002" y="420" fill="#f3eee1">图式 ≥3（演示≥4）</text>
+    <rect x="1168" y="398" width="200" height="34" rx="8" fill="#231e18" stroke="#cd642d"/><text x="1184" y="420" fill="#f3eee1">fig-N 对账 · 缺=P1</text>
+  </g>
+  <text x="804" y="452" font-size="13.5" fill="#a39a8e">四防：出边界 · 压线 · 线条紊乱 · 错位重叠 ｜ 表格/代码卡/清单不算"图" ｜ 时序/信息图/架构有触发词</text>
+
+  <!-- 底部：闭环 -->
+  <path d="M 96 500 C 96 540 200 540 300 540 L 1080 540 C 1250 540 1300 520 1330 480" fill="none" stroke="#eda55f" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#ar5)"/>
+  <text x="560" y="566" font-size="16" fill="#f3eee1" font-weight="700">构建 → 机器检查 → judge 目检 → 修 → 复检 → 导出核验（页数/MediaBox）—— 任何一环 FAIL 都到不了交付</text>
+  <text x="52" y="600" font-family="'JetBrains Mono',Consolas,monospace" font-size="12" fill="#77746e">实战：R2 抓到字数违约 · R3 抓到深度不足 · judge 抓到 CSS 假通过与 3 处溢出 —— 全部在交付前修毕</text>
+</svg>

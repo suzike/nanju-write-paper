@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!-- nanju-write-paper 16:9 宽屏模板（1280×720，PPT 感）
+     一页一主题，左右双面板；导出 PDF：@page 已设 1280×720 -->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>nanju-write-paper · 16:9 宽屏模板</title>
+<link rel="stylesheet" href="../assets/theme.css">
+<style>
+  @page { size: 1280px 720px; margin: 0; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <section class="page page--wide">
+    <div class="sec-head">
+      <span class="sec-num">02</span><span class="sec-title">调用链路</span>
+      <span class="pill">SEQUENCE</span>
+      <span class="sec-art">产出 <span class="chip-dark">trace.md</span></span>
+    </div>
+    <p class="deck-sub">左边看静态分层，右边看一次请求的动态协作</p>
+    <div style="display:flex;gap:14px;flex:1;min-height:0;">
+      <div class="panel panel--fill" style="flex:1;">
+        <div class="panel-cap">ARCH · 分层职责</div>
+        <div class="arch">
+          <div class="layer"><span class="ltag">接入层</span>
+            <div class="nodes">
+              <div class="dnode"><div class="t">Web / API</div><div class="d">流量入口与鉴权</div></div>
+              <div class="dnode"><div class="t">CLI</div><div class="d">本地终端</div></div>
+            </div>
+          </div>
+          <div class="varrow">↓ <span class="elab">统一协议</span></div>
+          <div class="layer"><span class="ltag">控制层</span>
+            <div class="nodes">
+              <div class="dnode dnode--accent"><div class="t">调度核心</div><div class="d">编排 · 限流 · 重试</div></div>
+              <div class="dnode"><div class="t">规则引擎</div><div class="d">校验与策略</div></div>
+            </div>
+          </div>
+          <div class="varrow">↓ <span class="elab">读写分离</span></div>
+          <div class="layer"><span class="ltag">存储层</span>
+            <div class="nodes">
+              <div class="dnode dnode--final"><div class="t">主库</div><div class="d">事务</div></div>
+              <div class="dnode"><div class="t">缓存</div><div class="d">热数据</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel--fill" style="flex:1;">
+        <div class="panel-cap">SEQ · 一次读取请求</div>
+        <div class="seq" style="--cols:3;">
+          <div class="actor" style="grid-column:1;">客户端<span class="sub">client</span></div>
+          <div class="actor" style="grid-column:2;">服务端<span class="sub">server</span></div>
+          <div class="actor" style="grid-column:3;">缓存<span class="sub">cache</span></div>
+          <span class="life" style="grid-column:1;"></span>
+          <span class="life" style="grid-column:2;"></span>
+          <span class="life" style="grid-column:3;"></span>
+          <div class="rowhead"></div>
+          <div class="msg" style="grid-row:3;--x1:16.67%;--w:33.33%;--xm:33.33%;">
+            <span class="ln"></span><span class="lab">GET /note/42</span>
+          </div>
+          <div class="msg" style="grid-row:4;--x1:50%;--w:33.33%;--xm:66.67%;">
+            <span class="ln"></span><span class="lab">查热点键</span>
+          </div>
+          <div class="msg msg--dash msg--rtl" style="grid-row:5;--x1:50%;--w:33.33%;--xm:66.67%;">
+            <span class="ln"></span><span class="lab">未命中 · 回源主库</span>
+          </div>
+          <div class="msg msg--rtl" style="grid-row:6;--x1:16.67%;--w:33.33%;--xm:33.33%;">
+            <span class="ln"></span><span class="lab">200 · 正文 + 版本号</span>
+          </div>
+        </div>
+        <p class="panel-note">缓存未命中时由服务端回源（主库省略未画），客户端无感知；虚线 = 回程/降级路径。</p>
+      </div>
+    </div>
+  </section>
+</div>
+</body>
+</html>

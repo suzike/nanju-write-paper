@@ -42,7 +42,7 @@
   <text x="530" y="580" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" fill="#cd642d" font-weight="700">SECTION · 章节页（亮，信息最重）</text>
   <g font-size="13.5" fill="#5a5348">
     <text x="530" y="610">① 橙编号+黑衬线标题+白胶囊 ② 右上制品芯片 ③ 一句话副标</text>
-    <text x="530" y="636">④ 米色面板主图 ⑤ 虚线标注（橙提醒/蓝配置） ⑥ 2×2 要点格 ⑦ 页底黑代码卡</text>
+    <text x="530" y="636">④ 面板主图 ⑤ 虚线标注 ⑥ 2×2 要点格 ⑦ 黑代码卡</text>
   </g>
 
   <!-- 总结（暗） -->

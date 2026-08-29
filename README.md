@@ -1,10 +1,6 @@
 # nanju-write-paper · 南橘写作流水线
 
 <p align="center">
-  <img src="docs/img/01-panorama.svg" alt="nanju-write-paper 能力全景图" width="100%">
-</p>
-
-<p align="center">
   <img src="https://img.shields.io/badge/version-1.1.0-cd642d?style=flat-square" alt="version">
   <img src="https://img.shields.io/badge/license-MIT-231e18?style=flat-square" alt="license">
   <img src="https://img.shields.io/badge/phase-写作%20%2B%20排版-f0ede6?style=flat-square" alt="phases">
@@ -12,6 +8,10 @@
   <img src="https://img.shields.io/badge/画幅-A4%20%7C%2016:9%20%7C%203:4%20%7C%20长图-f4dd99?style=flat-square" alt="canvas">
   <img src="https://img.shields.io/badge/platform-Windows%20%E9%A6%96%E9%80%89-4986a3?style=flat-square" alt="platform">
   <img src="https://img.shields.io/badge/validated-20%2F20%20pages%20pass-cd642d?style=flat-square" alt="validated">
+</p>
+
+<p align="center">
+  <img src="docs/img/01-panorama.svg" alt="nanju-write-paper 能力全景图" width="100%">
 </p>
 
 **一个双阶段 Agent Skill：把「选题输入」变成「深度技术长文」，再把「长文」变成「南橘卡片版式成品」。**

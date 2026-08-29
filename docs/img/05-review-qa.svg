@@ -60,7 +60,7 @@
     <rect x="986" y="398" width="170" height="34" rx="8" fill="#231e18" stroke="#cd642d"/><text x="1002" y="420" fill="#f3eee1">图式 ≥3（演示≥4）</text>
     <rect x="1168" y="398" width="200" height="34" rx="8" fill="#231e18" stroke="#cd642d"/><text x="1184" y="420" fill="#f3eee1">fig-N 对账 · 缺=P1</text>
   </g>
-  <text x="804" y="452" font-size="13.5" fill="#a39a8e">四防：出边界 · 压线 · 线条紊乱 · 错位重叠 ｜ 表格/代码卡/清单不算"图" ｜ 时序/信息图/架构有触发词</text>
+  <text x="804" y="452" font-size="13.5" fill="#a39a8e">四防：出边界·压线·紊乱·重叠 ｜ 表格/清单不算图 ｜ 时序/信息图/架构有触发词</text>
 
   <!-- 底部：闭环 -->
   <path d="M 96 500 C 96 540 200 540 300 540 L 1080 540 C 1250 540 1300 520 1330 480" fill="none" stroke="#eda55f" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#ar5)"/>

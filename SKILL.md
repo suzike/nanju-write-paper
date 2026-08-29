@@ -56,7 +56,7 @@ description: "南橘写作流水线：从选题输入到深度技术长文再到
 1. 两问四选项确认（已明确项复述确认免问）。
 2. 读 [references/style-guide.md](references/style-guide.md)（视觉权威）与 [references/md-mapping.md](references/md-mapping.md)（元素映射）。
 3. 从 [assets/](assets/) 模板改造：`template-a4.html` / `template-card.html` / `template-wide.html` / `wechat-template.html`。**产物必须是单文件**：发布前把 `theme.css` 全文内联进 `<style>`（产物与源文件可能不同目录，相对链接会断）；公众号版天然全内联。
-4. 配图：手搭模块或固定坐标 SVG，**禁用 Mermaid 自动排版**；执行 **配图配额硬约束**（diagram-guide §1.5：真图 ≥4、图式 ≥3 种、fig-N 对账、表格清单不算图；时序/信息图/架构有触发词）；构建后执行 diagram-check（注意 `[clipped-*]` 抓整页裁切）+ 逐图截图目检；SVG 图机器检查不覆盖，必须人工截图看。**工作文件的 CSS 引用按 HTML 实际目录层级写**（`../../assets/theme.css` 之类），diagram-check 第 0 步的样式守卫会拦截路径错误。
+4. 配图：手搭模块或固定坐标 SVG，**禁用 Mermaid 自动排版**；执行 **配图配额硬约束**（diagram-guide §1.5：真图 ≥4、图式 ≥3 种、fig-N 对账、表格清单不算图；时序/信息图/架构有触发词）；构建后执行 diagram-check（注意 `[clipped-*]` 抓整页裁切）+ 逐图截图目检；**SVG 对外分发（README/网页）必须跑 assets/svg-autofit.js 做回退字体收字**（diagram-guide §5.1）。**工作文件的 CSS 引用按 HTML 实际目录层级写**（`../../assets/theme.css` 之类），diagram-check 第 0 步的样式守卫会拦截路径错误。
 5. 导出与验收闭环（渲染 → 检查 → 修 → 复检）：
    - **渲染程序标准**：浏览器打开页面时同步监听 `requestfailed` 与 console error（404 的 CSS/图片在这里现形）；机器检查 PASS 只是必要条件，**首次版式必须再过一轮 judge/人工目检**——机器检查在无样式、空数据时可能假通过。
    - **跨介质交付规范（style-guide §7 十条例）**：公众号图表一律预渲染 PNG + 随稿封面图/摘要；长图 890-1080px 宽、单张 ≤5000px、超限切分；3:4 安全区；打印场景提示深色页墨耗；A4 显式 @page+页码+break-inside；HTML 带 viewport/color-scheme/letterbox；多画幅交付附**降级地图**（PPT 压缩了什么、细节在完整版哪一章）。

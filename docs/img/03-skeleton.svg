@@ -26,7 +26,7 @@
   <!-- 章节（亮） -->
   <rect x="530" y="120" width="380" height="430" rx="12" fill="#f9f5ea" stroke="#ddd6c6"/>
   <rect x="556" y="142" width="44" height="34" rx="4" fill="none" stroke="#cd642d" stroke-width="3"/>
-  <text x="566" y="167" font-family="'JetBrains Mono',Consolas,monospace" font-size="17" font-weight="700" fill="#cd642d">01</text>
+  <text x="566" y="167" font-family="'JetBrains Mono',Consolas,monospace" font-size="15.0" font-weight="700" fill="#cd642d">01</text>
   <rect x="608" y="148" width="110" height="22" fill="#231e18"/>
   <rect x="726" y="150" width="64" height="20" rx="10" fill="#fbfaf5" stroke="#ddd6c6"/>
   <rect x="800" y="150" width="86" height="20" rx="5" fill="#231e18"/>

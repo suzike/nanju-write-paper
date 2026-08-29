@@ -44,7 +44,7 @@
   <rect x="80" y="348" width="300" height="52" rx="10" fill="#2f2a24" stroke="#46413b"/>
   <text x="96" y="370" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" fill="#eda55f" font-weight="700">S2</text>
   <text x="124" y="370" font-size="16" fill="#f3eee1" font-weight="700">证据地图 + 大纲</text>
-  <text x="96" y="389" font-size="12" fill="#a39a8e">状态机 supported/weak/unsourced · 信息 DAG 校验</text>
+  <text x="96" y="389" font-size="11.4" fill="#a39a8e">状态机 supported/weak/unsourced · 信息 DAG 校验</text>
   <line x1="230" y1="400" x2="230" y2="422" stroke="#cd642d" stroke-width="2" marker-end="url(#ar)"/>
 
   <!-- G1 -->
@@ -60,7 +60,7 @@
   <text x="124" y="526" font-size="16" fill="#f3eee1" font-weight="700">倒序写作 + 深潜 + 配图</text>
   <text x="96" y="545" font-size="12" fill="#a39a8e">活人感契约全程约束</text>
   <rect x="398" y="496" width="232" height="34" rx="8" fill="#231e18" stroke="#46413b"/>
-  <text x="412" y="518" font-size="12.5" fill="#f3eee1">Depth Expander 深潜 · Diagrammer 配图</text>
+  <text x="412" y="518" font-size="11.1" fill="#f3eee1">Depth Expander 深潜 · Diagrammer 配图</text>
   <rect x="398" y="536" width="232" height="34" rx="8" fill="#231e18" stroke="#46413b"/>
   <text x="412" y="558" font-size="12.5" fill="#f3eee1">节末反提纲 diff ↺ 防越写越水</text>
   <line x1="380" y1="530" x2="394" y2="514" stroke="#eda55f" stroke-width="1.5"/>
@@ -80,8 +80,8 @@
 
   <!-- G2 -->
   <rect x="80" y="660" width="460" height="30" rx="8" fill="#cd642d"/>
-  <text x="96" y="680" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" fill="#fff" font-weight="700">G2</text>
-  <text x="124" y="680" font-size="15" fill="#fff" font-weight="700">终稿归档 → 回灌样例库 + voice-profile</text>
+  <text x="96" y="680" font-family="'JetBrains Mono',Consolas,monospace" font-size="12.0" fill="#fff" font-weight="700">G2</text>
+  <text x="124" y="680" font-size="12.0" fill="#fff" font-weight="700">终稿归档 → 回灌样例库 + voice-profile</text>
 
   <!-- PHASE B 容器 -->
   <rect x="48" y="716" width="600" height="136" rx="16" fill="#2a241d" stroke="#46413b" stroke-dasharray="6 5"/>
@@ -94,13 +94,13 @@
   <!-- 右列：多 Agent 名册 -->
   <rect x="680" y="140" width="712" height="252" rx="16" fill="#2a241d" stroke="#46413b"/>
   <text x="704" y="172" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" letter-spacing="2" fill="#eda55f">MULTI-AGENT · 名册（子 Agent 提示词自包含）</text>
-  <rect x="704" y="192" width="118" height="30" rx="6" fill="#cd642d"/><text x="763" y="212" text-anchor="middle" font-size="13.5" fill="#fff" font-weight="700">信息搜集</text>
+  <rect x="704" y="192" width="118" height="30" rx="6" fill="#cd642d"/><text x="763" y="212" text-anchor="middle" font-size="12.0" fill="#fff" font-weight="700">信息搜集</text>
   <text x="838" y="212" font-size="14" fill="#f3eee1">Research Planner · Searcher×2-4（复杂度路由）· Ledger 台账</text>
-  <rect x="704" y="232" width="118" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="763" y="252" text-anchor="middle" font-size="13.5" fill="#f3eee1">编排编辑</text>
+  <rect x="704" y="232" width="118" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="763" y="252" text-anchor="middle" font-size="12.0" fill="#f3eee1">编排编辑</text>
   <text x="838" y="252" font-size="14" fill="#f3eee1">Synthesizer · Outline · R2 结构 20% · R4 文风 15%</text>
-  <rect x="704" y="272" width="118" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="763" y="292" text-anchor="middle" font-size="13.5" fill="#f3eee1">深度扩展</text>
+  <rect x="704" y="272" width="118" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="763" y="292" text-anchor="middle" font-size="12.0" fill="#f3eee1">深度扩展</text>
   <text x="838" y="292" font-size="14" fill="#f3eee1">Depth Expander 深潜 · R3 深度批评 25%（兼 Devil's Advocate）</text>
-  <rect x="704" y="312" width="118" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="763" y="332" text-anchor="middle" font-size="13.5" fill="#f3eee1">方法论人味</text>
+  <rect x="704" y="312" width="118" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="763" y="332" text-anchor="middle" font-size="12.0" fill="#f3eee1">方法论人味</text>
   <text x="838" y="332" font-size="14" fill="#f3eee1">活人感契约固化 · R5 人味审读 10%（detect-only 独立上下文）</text>
   <line x1="704" y1="358" x2="1368" y2="358" stroke="#3d372f"/>
   <text x="704" y="380" font-size="13" fill="#a39a8e">子 Agent 只回传「产物路径 + ≤5 行摘要」，全文落盘 research/ 与 reviews/ —— 上下文不爆、会话可断点续跑</text>
@@ -109,28 +109,28 @@
   <rect x="680" y="412" width="712" height="168" rx="16" fill="#2a241d" stroke="#46413b"/>
   <text x="704" y="444" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" letter-spacing="2" fill="#eda55f">ARTIFACTS · 状态全部落盘</text>
   <g font-family="'JetBrains Mono',Consolas,monospace" font-size="13" fill="#f3eee1">
-    <rect x="704" y="462" width="130" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="716" y="482">brief.md</text>
-    <rect x="844" y="462" width="170" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="856" y="482">research-plan.md</text>
-    <rect x="1024" y="462" width="120" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="1036" y="482">ledger.md</text>
-    <rect x="1154" y="462" width="160" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="1166" y="482">evidence-map.md</text>
-    <rect x="704" y="500" width="120" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="716" y="520">outline.md</text>
-    <rect x="834" y="500" width="130" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="846" y="520">draft-vN.md</text>
-    <rect x="974" y="500" width="140" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="986" y="520">reviews/rN.md</text>
-    <rect x="1124" y="500" width="120" height="30" rx="6" fill="#cd642d"/><text x="1136" y="520">final.md</text>
-    <rect x="704" y="538" width="120" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="716" y="558">sources.md</text>
-    <rect x="834" y="538" width="180" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="846" y="558">voice-profile.md</text>
-    <rect x="1024" y="538" width="150" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="1036" y="558">deviation-log.md</text>
+    <rect x="704" y="462" width="130" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="716" y="482" font-size="12.0">brief.md</text>
+    <rect x="844" y="462" width="170" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="856" y="482" font-size="12.0">research-plan.md</text>
+    <rect x="1024" y="462" width="120" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="1036" y="482" font-size="12.0">ledger.md</text>
+    <rect x="1154" y="462" width="160" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="1166" y="482" font-size="12.0">evidence-map.md</text>
+    <rect x="704" y="500" width="120" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="716" y="520" font-size="12.0">outline.md</text>
+    <rect x="834" y="500" width="130" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="846" y="520" font-size="12.0">draft-vN.md</text>
+    <rect x="974" y="500" width="140" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="986" y="520" font-size="12.0">reviews/rN.md</text>
+    <rect x="1124" y="500" width="120" height="30" rx="6" fill="#cd642d"/><text x="1136" y="520" font-size="12.0">final.md</text>
+    <rect x="704" y="538" width="120" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="716" y="558" font-size="12.0">sources.md</text>
+    <rect x="834" y="538" width="180" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="846" y="558" font-size="12.0">voice-profile.md</text>
+    <rect x="1024" y="538" width="150" height="30" rx="6" fill="#2f2a24" stroke="#46413b"/><text x="1036" y="558" font-size="12.0">deviation-log.md</text>
   </g>
 
   <!-- 右列：质量三防线 -->
   <rect x="680" y="600" width="712" height="140" rx="16" fill="#2a241d" stroke="#cd642d" stroke-width="1.5"/>
   <text x="704" y="632" font-family="'JetBrains Mono',Consolas,monospace" font-size="13" letter-spacing="2" fill="#eda55f">QA · 质量三防线（事故驱动加固）</text>
   <rect x="704" y="650" width="222" height="30" rx="6" fill="#231e18" stroke="#46413b"/>
-  <text x="718" y="670" font-size="13" fill="#f3eee1">① 样式守卫：画幅定宽校验</text>
+  <text x="718" y="670" font-size="12.0" fill="#f3eee1">① 样式守卫：画幅定宽校验</text>
   <rect x="938" y="650" width="222" height="30" rx="6" fill="#231e18" stroke="#46413b"/>
-  <text x="952" y="670" font-size="13" fill="#f3eee1">② 资源监听：404 当场现形</text>
+  <text x="952" y="670" font-size="12.0" fill="#f3eee1">② 资源监听：404 当场现形</text>
   <rect x="1172" y="650" width="198" height="30" rx="6" fill="#231e18" stroke="#46413b"/>
-  <text x="1186" y="670" font-size="13" fill="#f3eee1">③ 机器 PASS + judge 目检</text>
+  <text x="1186" y="670" font-size="12.0" fill="#f3eee1">③ 机器 PASS + judge 目检</text>
   <text x="704" y="712" font-size="13.5" fill="#a39a8e">配图四防：出边界 · 压线 · 线条紊乱 · 错位重叠 —— diagram-check 机器抓 + 逐图截图目检；密度红线 55–75%</text>
 
   <!-- 底部脚注 -->

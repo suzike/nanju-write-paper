@@ -3,11 +3,12 @@
      用法：浏览器打开本文件 → Ctrl+A 全选 → Ctrl+C → 粘贴到公众号编辑器（格式不丢）
      规则：只用 <section>/<p>/<span> + 内联 style；不用 class/外部资源/absolute/flex；
      图表优先以 base64 data URI 内嵌 PNG（<img src="data:image/png;base64,...">，宽≤1080px、单图≤300KB），
-     粘贴时微信自动转存素材图；无渲染条件才降级为纵向卡片堆叠（见 references/diagram-guide.md §8） -->
+     粘贴时微信自动转存素材图；无渲染条件才降级为纵向卡片堆叠（见 references/diagram-guide.md §8）
+     外层容器禁止 max-width 限宽——限宽会让粘贴后正文两侧出现大片空白，移动端由微信自身约束宽度 -->
 <html lang="zh-CN">
 <head><meta charset="UTF-8"><title>nanju-write-paper · 公众号模板</title></head>
 <body style="margin:0;background:#ffffff;">
-<div style="max-width:677px;margin:0 auto;padding:8px 0;font-family:'Source Han Serif SC','Noto Serif SC','Songti SC','STZhongsong','SimSun',serif;">
+<div style="width:100%;margin:0 auto;padding:8px 0;font-family:'Source Han Serif SC','Noto Serif SC','Songti SC','STZhongsong','SimSun',serif;">
 
   <!-- ═══ 封面头（暗卡） ═══ -->
   <section style="background:#231e18;border-radius:12px;padding:22px 24px;margin-bottom:18px;">

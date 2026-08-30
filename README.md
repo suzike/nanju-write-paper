@@ -100,13 +100,15 @@ references/
 assets/
   theme.css               设计令牌 + 全部模块样式
   template-*.html         A4 / 3:4 卡片 / 16:9 模板
-  wechat-template.html    公众号内联模板
+  wechat-template.html    公众号内联模板（连续文流、base64 图内嵌）
   diagram-check.js        配图机器检查（含样式加载守卫）
+  svg-autofit.js          SVG 分发场景回退字体自适应修正器
 scripts/html2pdf.sh       HTML→PDF（Edge/Chrome headless，已做 Windows 加固）
 examples/                 配图标本 + 渲染预览
-writing/2026-08-29-pi-agent/   端到端实战样例（全产物）
+writing/2026-08-29-pi-agent/   端到端实战样例（全产物：A4 PDF / 16:9 演示稿 / 公众号版 / 调研审查台账）
 writing-samples/          终稿回灌库（文风飞轮）
 000-reference/            风格提取的 8 张原始参考图
+docs/img/                 README 配图源文件与预览
 docs/img/                 README 配图源文件（SVG）
 ```
 

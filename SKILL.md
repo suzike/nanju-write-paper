@@ -62,8 +62,8 @@ description: "南橘写作流水线：从选题输入到深度技术长文再到
    - **跨介质交付规范（style-guide §7 十条例）**：公众号图表一律预渲染 PNG + 随稿封面图/摘要；长图 890-1080px 宽、单张 ≤5000px、超限切分；3:4 安全区；打印场景提示深色页墨耗；A4 显式 @page+页码+break-inside；HTML 带 viewport/color-scheme/letterbox；多画幅交付附**降级地图**（PPT 压缩了什么、细节在完整版哪一章）。
    - PDF：`bash scripts/html2pdf.sh <in.html> <out.pdf>`（或 Playwright `page.pdf`）。导出后核对页数与页尺寸（MediaBox）与 @page 一致。渲染后逐页检查：文字出边界、页底空洞、图被裁切、断行尴尬。**版面密度红线：内容版面占用 55–75%，页底空白 ≤15% 页高，禁止连续两张近空页。**
    - 长图/公众号：整页截图再**按固定高度分段截图检查**（超长截图会失真或超限）。
-   - 公众号交付说明必须包含：等宽/衬线字体在微信端会被归一化（接受降级）；文内图片需用户先上传素材库。
-   - **公众号粘贴安全检查（机检 + 人工）**：无 `class=` / `<style>` / `<script>` / `<link>` / `float` / `box-shadow` / `position:absolute` / 外部资源 / `<img>`（图全走素材库）+ **无 `.page` 固定页容器、无页码元素、无"见 PXX"引用**——发表型必须连续文流（style-guide §7.11）。
+   - 公众号图表 **base64 内嵌**：图先渲染为 PNG（宽 ≤1080px、单图 ≤300KB），以 data URI 内嵌进 HTML，粘贴时微信自动转存素材图——**无需手动上传**（style-guide §7.1）；外部 file:// 链接粘贴必死，严禁。交付说明仍须包含：等宽/衬线字体在微信端会被归一化（接受降级）。
+   - **公众号粘贴安全检查（机检 + 人工）**：无 `class=` / `<style>` / `<script>` / `<link>` / `float` / `box-shadow` / `position:absolute` / 外部资源 / `file://` 图片链接（`<img>` 只允许 data URI 内嵌）+ **无 `.page` 固定页容器、无页码元素、无"见 PXX"引用**——发表型必须连续文流（style-guide §7.11）。
 6. 产物命名：有源文件放同目录 `<name>.pdf` / `<name>.html` / `<name>.wechat.html`；直接粘贴的文案放 `writing/<日期>-<slug>/` 下。
 
 ## 质量红线

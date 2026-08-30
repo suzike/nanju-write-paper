@@ -1,56 +1,58 @@
 <!DOCTYPE html>
-<!-- pi 解剖 · 公众号发表版：全内联样式，浏览器打开 → Ctrl+A → Ctrl+C → 粘贴进公众号编辑器
-     3 张配图上传 wechat-assets/ 内 PNG 后替换正文中 3 个虚线占位框（占位框发布前删除）-->
+<!-- pi 解剖 · 公众号发表版 v2：全内联样式，浏览器打开 → Ctrl+A → Ctrl+C → 粘贴进公众号编辑器
+     3 张配图上传 wechat-assets/ 内 PNG，替换正文中 3 个虚线占位框（占位框发布前删除）
+     发布素材：摘要见 同目录 发布说明.md；封面图 wechat-assets/cover-2.35x1.png -->
 <html lang="zh-CN">
-<head><meta charset="UTF-8"><title>pi 解剖（公众号版）</title></head>
+<head><meta charset="UTF-8"><meta name="color-scheme" content="light"><title>pi 解剖（公众号版 v2）</title></head>
 <body style="margin:0;background:#ffffff;">
 <div style="max-width:677px;margin:0 auto;padding:8px 0;font-family:'Source Han Serif SC','Noto Serif SC','Songti SC','STZhongsong','SimSun',serif;">
 
   <!-- 封面头卡 -->
-  <section style="background:#231e18;border-radius:12px;padding:22px 24px;margin-bottom:18px;">
-    <p style="margin:0;font-size:21px;line-height:1.5;font-weight:900;color:#f3eee1;">pi 解剖：四个工具、六个<span style="border-bottom:6px solid #b97b45;padding-bottom:2px;">"不做"</span>，和一个 9.9 万星的开源实验</p>
+  <section style="background:#231e18;border-radius:12px;padding:22px 24px;margin-bottom:16px;">
+    <p style="margin:0;font-size:21px;line-height:1.55;font-weight:900;color:#f3eee1;">pi 解剖：四个工具、六个<span style="border-bottom:6px solid #b97b45;padding-bottom:2px;">"不做"</span>，和一个 9.9 万星的开源实验</p>
     <p style="margin:10px 0 0;font-family:Consolas,'Courier New',monospace;font-size:13px;letter-spacing:3px;color:#eda55f;">A MINIMAL AGENT HARNESS · DEV NOTES</p>
   </section>
 
+  <!-- 导读三问 -->
+  <section style="background:#f0ede6;border-radius:12px;padding:14px;margin-bottom:14px;">
+    <p style="margin:0 0 8px;font-family:Consolas,monospace;font-size:12px;letter-spacing:2px;color:#77746e;">本文回答三个问题</p>
+    <p style="margin:0 0 6px;font-size:14px;color:#231e18;line-height:1.8;"><span style="font-family:Consolas,monospace;font-weight:700;color:#cd642d;">Q1&nbsp;</span><b>它是什么</b>——libGDX 作者写的极简 agent 底座，默认只给模型四个工具</p>
+    <p style="margin:0 0 6px;font-size:14px;color:#231e18;line-height:1.8;"><span style="font-family:Consolas,monospace;font-weight:700;color:#cd642d;">Q2&nbsp;</span><b>凭什么</b>——极简内核 + 极致可扩展，OpenClaw 在它之上长成爆款</p>
+    <p style="margin:0;font-size:14px;color:#231e18;line-height:1.8;"><span style="font-family:Consolas,monospace;font-weight:700;color:#cd642d;">Q3&nbsp;</span><b>代价是什么</b>——六笔账逐条算，每笔都有出处</p>
+  </section>
   <section style="border:2px dashed #4986a3;border-radius:10px;padding:10px 14px;margin-bottom:20px;">
-    <p style="margin:0;font-size:14px;color:#231e18;line-height:1.8;"><span style="font-family:Consolas,monospace;color:#4986a3;">METHOD&nbsp;</span>本文全部基于公开材料（README、源码、作者博客、第三方批评），每处引用给出处，单一看源的数据当场标注。没跑过基准，没有利益相关。</p>
+    <p style="margin:0;font-size:13px;color:#231e18;line-height:1.8;"><span style="font-family:Consolas,monospace;color:#4986a3;">METHOD&nbsp;</span>全文基于公开材料（README、源码、作者博客、第三方批评），引语保留英文原句，单一看源的数据当场标注。没跑过基准，没有利益相关。</p>
   </section>
 
   <!-- 01 缘起 -->
-  <section style="margin:26px 0 10px;">
-    <p style="margin:0;line-height:1.2;"><span style="font-family:Consolas,monospace;font-weight:700;font-size:22px;color:#cd642d;">01</span><span style="font-size:19px;font-weight:900;color:#231e18;">&nbsp;缘起：为什么又是一个 agent</span></p>
+  <section style="margin:24px 0 10px;">
+    <p style="margin:0;line-height:1.2;"><span style="font-family:Consolas,monospace;font-weight:700;font-size:22px;color:#cd642d;">01</span><span style="font-size:19px;font-weight:900;color:#231e18;">&nbsp;缘起：两年三级跳，从个人项目到爆款底座</span></p>
   </section>
-  <p style="margin:8px 0 14px;font-size:17px;font-weight:900;color:#231e18;line-height:1.6;">"往上下文窗口里塞了太多东西，还把正在发生的事藏起来"——两个不满，两个设计决策</p>
-  <p style="margin:0 0 14px;font-size:15px;color:#3a352c;line-height:1.9;">写 pi 的人叫 Mario Zechner，GitHub ID 是 badlogic，老玩家眼熟：Java 游戏框架 libGDX 就是他的作品，社区养了十几年还活着。这种履历自带一种信用：他见过一个项目怎么长大，也见过它怎么死。</p>
-  <section style="background:#f0ede6;border-radius:12px;padding:14px;margin-bottom:16px;">
+  <p style="margin:8px 0 14px;font-size:15px;color:#3a352c;line-height:1.9;">写 pi 的人叫 Mario Zechner，GitHub ID 是 badlogic——Java 游戏框架 libGDX 就是他的作品，社区养了十几年还活着。这种履历自带信用：他见过一个项目怎么长大，也见过它怎么死。按他自己的说法，做 pi 是因为现有的 coding agent "往上下文窗口里塞了太多东西，还把正在发生的事藏起来"（大意，出自 2025-11-30 的设计博文）。</p>
+  <section style="background:#f0ede6;border-radius:12px;padding:14px;margin-bottom:14px;">
     <p style="margin:0 0 10px;font-family:Consolas,monospace;font-size:12px;letter-spacing:2px;color:#77746e;">TIMELINE · 两年三级跳</p>
     <section style="background:#fbfaf5;border:1px solid #ddd6c6;border-radius:8px;padding:9px 14px;"><p style="margin:0;font-size:14px;color:#231e18;"><b>2025-11-30</b> · 博文宣布 pi，标题自带 opinionated（固执己见）</p></section>
     <p style="margin:4px 0;text-align:center;font-family:Consolas,monospace;color:#cd642d;font-weight:700;">↓</p>
-    <section style="background:#fbfaf5;border:1px solid #ddd6c6;border-radius:8px;padding:9px 14px;"><p style="margin:0;font-size:14px;color:#231e18;"><b>2026-01-31</b> · Flask 作者 Ronacher 发长文评述（软文，立场后述）</p></section>
+    <section style="background:#fbfaf5;border:1px solid #ddd6c6;border-radius:8px;padding:9px 14px;"><p style="margin:0;font-size:14px;color:#231e18;"><b>2026-01-31</b> · Flask 作者 Ronacher 发长文评述："a minimal agent harness"（软文，立场后述）</p></section>
     <p style="margin:4px 0;text-align:center;font-family:Consolas,monospace;color:#cd642d;font-weight:700;">↓</p>
     <section style="background:#f4dd99;border-radius:8px;padding:9px 14px;"><p style="margin:0;font-size:14px;color:#231e18;"><b>2026-04-08</b> · 《I've sold out》：带 pi 加入 Earendil，仓库与 npm 包名迁移</p></section>
     <p style="margin:4px 0;text-align:center;font-family:Consolas,monospace;color:#cd642d;font-weight:700;">↓</p>
     <section style="background:#231e18;border-radius:8px;padding:9px 14px;"><p style="margin:0;font-size:14px;color:#f3eee1;"><b>2026-08-28</b> · v0.84.4，8 月 5 连发，累计约 250 个 release</p></section>
   </section>
-  <p style="margin:0 0 14px;font-size:15px;color:#3a352c;line-height:1.9;">还有个绕不开的引爆点：OpenClaw（2026 年初走红，旁证称病毒式传播，未量化核实），底层 agent 框架就是 pi。第一眼看到 98.8k 的星数（单源抓取，2026-08-29）我以为是写错了，后来想明白，它早就不是"个人项目"三个字能概括的东西。</p>
+  <p style="margin:0 0 14px;font-size:15px;color:#3a352c;line-height:1.9;">引爆点在 OpenClaw（2026 年初走红，旁证称病毒式传播，未量化核实）——它的底层 agent 框架就是 pi。做底盘的项目，因为别人在它上面造出了爆款整车，被更多人看见。第一眼看到 98.8k 的星数（单源抓取，2026-08-29）我以为是写错了，后来想明白，它早就不是"个人项目"三个字能概括的东西。</p>
 
   <!-- 02 架构 -->
-  <section style="margin:26px 0 10px;">
-    <p style="margin:0;line-height:1.2;"><span style="font-family:Consolas,monospace;font-weight:700;font-size:22px;color:#cd642d;">02</span><span style="font-size:19px;font-weight:900;color:#231e18;">&nbsp;架构解剖：一轮对话是一圈循环</span></p>
+  <section style="margin:24px 0 10px;">
+    <p style="margin:0;line-height:1.2;"><span style="font-family:Consolas,monospace;font-weight:700;font-size:22px;color:#cd642d;">02</span><span style="font-size:19px;font-weight:900;color:#231e18;">&nbsp;架构解剖：一轮对话是一圈循环，没有步数上限</span></p>
   </section>
-  <p style="margin:8px 0 14px;font-size:17px;font-weight:900;color:#231e18;line-height:1.6;">agent loop 就住在模型接入层里，循环到模型不再发起工具调用，圈数没有上限</p>
-  <p style="margin:0 0 14px;font-size:15px;color:#3a352c;line-height:1.9;">你在终端敲下"帮我修复这个报错"，消息进入 pi-ai——名字像模型适配库，实际上把 agent loop 也做进去了：发给模型、流式回收、把工具调用的参数碎片聚合成完整对象、执行工具、结果回填、再问一次，循环到模型停手。跨 provider 接力也在这层：上半场用 Claude 读代码库，下半场切 DeepSeek 继续干，上下文跟着走。</p>
-
+  <p style="margin:8px 0 14px;font-size:15px;color:#3a352c;line-height:1.9;">你在终端敲下"帮我修复这个报错"，消息进入 pi-ai——名字像模型适配库，实际上把 agent loop 也做进去了：发给模型、流式回收、把工具调用的参数碎片聚合成完整对象、执行工具、结果回填、再问一次，循环到模型停手。跨 provider 接力也在这层：上半场用 Claude 读代码库，下半场切 DeepSeek 继续干，上下文跟着走。</p>
   <section style="border:2px dashed #cd642d;border-radius:10px;padding:12px;margin-bottom:16px;">
-    <p style="margin:0;font-size:13px;color:#77746e;line-height:1.7;text-align:center;">【 此处上传配图 1：<b>agent-loop-seq.png</b>（一轮对话时序图，1080px 宽）】</p>
+    <p style="margin:0;font-size:13px;color:#77746e;line-height:1.7;text-align:center;">【 此处上传配图 1：<b>agent-loop-seq.png</b>（一轮对话时序图）】</p>
   </section>
-
-  <p style="margin:0 0 14px;font-size:15px;color:#3a352c;line-height:1.9;">整个项目是 TypeScript 单仓，拆成五个能独立安装的包：pi-ai（统一模型 API + loop）、pi-agent-core（事件运行时，口号是 "Everything is an event"）、pi-tui（自研差分渲染终端 UI）、pi-coding-agent（CLI 组装）、pi-telemetry。上下文纪律也很硬：全项目只有 AGENTS.md 会被注入提示词，甚至可以用 .pi/SYSTEM.md 把系统提示词整个换掉。</p>
-
+  <p style="margin:0 0 14px;font-size:15px;color:#3a352c;line-height:1.9;">整个项目是 TypeScript 单仓，拆成五个能独立安装的包：pi-ai（统一模型 API + loop）、pi-agent-core（事件运行时，口号 "Everything is an event"）、pi-tui（自研差分渲染终端 UI）、pi-coding-agent（CLI 组装）、pi-telemetry（遥测契约）。上下文纪律也很硬：全项目只有 AGENTS.md 会被注入提示词，甚至可以用 .pi/SYSTEM.md 把系统提示词整个换掉。</p>
   <section style="border:2px dashed #cd642d;border-radius:10px;padding:12px;margin-bottom:16px;">
-    <p style="margin:0;font-size:13px;color:#77746e;line-height:1.7;text-align:center;">【 此处上传配图 2：<b>arch-layers.png</b>（五层架构图，1080px 宽）】</p>
+    <p style="margin:0;font-size:13px;color:#77746e;line-height:1.7;text-align:center;">【 此处上传配图 2：<b>arch-layers.png</b>（五层架构图）】</p>
   </section>
-
   <section style="background:#f4dd99;border-radius:10px;padding:12px 16px;margin-bottom:18px;">
     <p style="margin:0;font-size:15px;color:#231e18;line-height:1.8;">压轴数字：系统提示词 + 全部工具定义 <b>不到 1000 tokens</b>。省下来的上下文，全留给你的代码。</p>
   </section>
@@ -72,29 +74,29 @@
         <td style="background:#f0ede6;border-radius:8px;text-align:center;padding:12px 4px;"><p style="margin:0;font-family:Consolas,monospace;font-weight:700;font-size:19px;color:#cd642d;">3</p><p style="margin:4px 0 0;font-family:Consolas,monospace;font-size:11px;color:#77746e;">运行模式</p></td>
       </tr>
     </table>
-    <p style="margin:8px 0 0;font-size:12px;color:#77746e;">* 星数单源抓取，未二次核验；「50+」「~30」为官网与 registry 口径。</p>
+    <p style="margin:8px 0 0;font-size:12px;color:#77746e;">* 星数单源抓取，未二次核验；「50+」「~30」为官网与 registry 口径。订阅登录另认 Claude Pro/Max、ChatGPT Codex、Copilot 三家。</p>
   </section>
 
   <!-- 03 四工具 -->
-  <section style="margin:26px 0 10px;">
+  <section style="margin:24px 0 10px;">
     <p style="margin:0;line-height:1.2;"><span style="font-family:Consolas,monospace;font-weight:700;font-size:22px;color:#cd642d;">03</span><span style="font-size:19px;font-weight:900;color:#231e18;">&nbsp;四工具哲学：模糊匹配是 edit 的机关</span></p>
   </section>
-  <p style="margin:8px 0 14px;font-size:17px;font-weight:900;color:#231e18;line-height:1.6;">模型自己的判断力是第一道防线——系统提示词全文不到 1000 tokens</p>
-  <section style="background:#f0ede6;border-radius:12px;padding:14px;margin-bottom:16px;">
+  <p style="margin:8px 0 14px;font-size:15px;color:#3a352c;line-height:1.9;">模型自己的判断力是第一道防线——系统提示词全文不到 1000 tokens。</p>
+  <section style="background:#f0ede6;border-radius:12px;padding:14px;margin-bottom:14px;">
     <p style="margin:0 0 8px;font-size:14px;color:#231e18;"><span style="font-family:Consolas,monospace;font-weight:700;color:#cd642d;">read&nbsp;</span>分页 + 行号，按 offset 翻页，能读图片</p>
     <p style="margin:0 0 8px;font-size:14px;color:#231e18;"><span style="font-family:Consolas,monospace;font-weight:700;color:#cd642d;">write&nbsp;</span>整文件覆盖，没有花活</p>
     <p style="margin:0 0 8px;font-size:14px;color:#231e18;"><span style="font-family:Consolas,monospace;font-weight:700;color:#cd642d;">edit&nbsp;</span>diff 格式 + <b>模糊匹配</b>：容忍模型输出的空格缩进漂移，成功率就上来了</p>
     <p style="margin:0;font-size:14px;color:#231e18;"><span style="font-family:Consolas,monospace;font-weight:700;color:#cd642d;">bash&nbsp;</span>执行命令 + 超时；长驻进程交给 tmux</p>
   </section>
-  <section style="background:#231e18;border-radius:12px;padding:14px 16px;margin-bottom:16px;">
-    <p style="margin:0;font-size:26px;line-height:.4;color:#cd642d;font-family:Georgia,serif;">"</p>
+  <section style="background:#231e18;border-radius:12px;padding:14px 16px;margin-bottom:14px;">
+    <p style="margin:0;font-size:24px;line-height:.4;color:#cd642d;font-family:Georgia,serif;">"</p>
     <p style="margin:6px 0 8px;font-size:14px;color:#f3eee1;line-height:1.85;">You don't need to ask for permission. The user expects you to work autonomously until the task is complete. —— 遇到不认识的符号，先列出候选来源，挨个查证，把理解锚在可验证的代码或文档上。</p>
     <p style="margin:0;font-family:Consolas,monospace;font-size:12px;color:#a39a8e;">SYSTEM PROMPT · 模型自己的判断力是第一道防线</p>
   </section>
-  <p style="margin:0 0 14px;font-size:15px;color:#3a352c;line-height:1.9;">安全思路一脉相承：没有内置权限系统，按启动用户权限直接跑，官方建议放容器（Docker / Gondolin / OpenShell）；轻量玩法是只读模式 pi --tools read,grep,find,ls，只带眼睛不带手；供应链纪律也细，安装命令自带 --ignore-scripts，还有依赖锁版、最小存活期、脚本白名单。风险没有消失，只是从工具侧挪到环境侧，变成你的显式选择。</p>
+  <p style="margin:0 0 14px;font-size:15px;color:#3a352c;line-height:1.9;">安全思路一脉相承：没有内置权限系统，按启动用户权限直接跑，官方建议放容器（Docker / Gondolin / OpenShell）；轻量玩法是只读模式 pi --tools read,grep,find,ls，只带眼睛不带手；供应链纪律也细——安装命令自带 --ignore-scripts，还有依赖锁版、最小存活期、脚本白名单。风险没有消失，只是从工具侧挪到环境侧，变成你的显式选择。</p>
 
-  <!-- 03 六个No -->
-  <section style="margin:26px 0 10px;">
+  <!-- 六个No -->
+  <section style="margin:24px 0 10px;">
     <p style="margin:0;line-height:1.2;"><span style="font-family:Consolas,monospace;font-weight:700;font-size:22px;color:#cd642d;">03</span><span style="font-size:19px;font-weight:900;color:#231e18;">&nbsp;六个"No"是立场，不是缺口</span></p>
   </section>
   <section style="border-radius:10px;overflow:hidden;margin-bottom:8px;">
@@ -108,7 +110,7 @@
   <p style="margin:0 0 18px;font-size:14px;color:#5a5348;line-height:1.9;">第一遍读以为是偷懒的体面说法，第二遍才反应过来：每个 No 后面那句"你可以自己造"才是正主。这六个 No 是立场，不是缺口。</p>
 
   <!-- 04 上手 -->
-  <section style="margin:26px 0 10px;">
+  <section style="margin:24px 0 10px;">
     <p style="margin:0;line-height:1.2;"><span style="font-family:Consolas,monospace;font-weight:700;font-size:22px;color:#cd642d;">04</span><span style="font-size:19px;font-weight:900;color:#231e18;">&nbsp;上手：十分钟跑起来，坑在 Node 版本</span></p>
   </section>
   <section style="background:#231e18;border-radius:12px;padding:14px 16px;margin-bottom:14px;">
@@ -118,10 +120,10 @@
     <p style="margin:0;font-family:Consolas,monospace;font-size:13px;line-height:1.9;color:#8a8172;"># 登录二选一</p>
     <p style="margin:0;font-family:Consolas,monospace;font-size:13px;line-height:1.9;color:#e9e2d4;">export ANTHROPIC_API_KEY=sk-ant-... 然后 pi；或 /login 走订阅</p>
   </section>
-  <p style="margin:0 0 14px;font-size:15px;color:#3a352c;line-height:1.9;">订阅认 Claude Pro/Max、ChatGPT Codex、GitHub Copilot 三家；API key 约 30 家 provider，本地模型走 llama.cpp / Ollama。最有辨识度的是会话系统：会话是 JSONL 树，Esc 按两次进树视图，跳回任意历史节点接着聊；/fork 是"回到过去改个决定"，/clone 是"平行世界再来一遍"。打字时 Enter 排的是纠偏消息，Alt+Enter 排的是完工后消息。从 Claude Code 迁移几乎无痛：CLAUDE.md 它也认，/compact 它也有。</p>
+  <p style="margin:0 0 14px;font-size:15px;color:#3a352c;line-height:1.9;">订阅认 Claude Pro/Max、ChatGPT Codex、GitHub Copilot 三家；API key 约 30 家 provider，本地模型走 llama.cpp / Ollama。最有辨识度的是会话系统：会话是 JSONL 树，Esc 按两次进树视图，跳回任意历史节点接着聊；/fork 是"回到过去改个决定"，/clone 是"平行世界再来一遍"。打字时 Enter 排的是纠偏消息（steering），Alt+Enter 排的是完工后消息（follow-up）。从 Claude Code 迁移几乎无痛：CLAUDE.md 它也认，/compact 它也有，24 个命令 /hotkeys 查全。</p>
 
   <!-- 05 扩展 -->
-  <section style="margin:26px 0 10px;">
+  <section style="margin:24px 0 10px;">
     <p style="margin:0;line-height:1.2;"><span style="font-family:Consolas,monospace;font-weight:700;font-size:22px;color:#cd642d;">05</span><span style="font-size:19px;font-weight:900;color:#231e18;">&nbsp;扩展系统：极简的反面是可编程</span></p>
   </section>
   <p style="margin:8px 0 14px;font-size:15px;color:#3a352c;line-height:1.9;">扩展就是一个默认导出的工厂函数，API 三件事：registerTool 注册工具、registerCommand 注册命令、on("tool_call") 拦截每一次工具调用。官方仓库躺着 50 多个示例——六个"No"每个都有参考实现：subagent/、plan-mode/、permission-gate、sandbox/，甚至有等结果时打 Doom 的扩展。skills 遵循 agentskills.io 标准，/skill:name 调用。</p>
@@ -137,7 +139,7 @@
   <p style="margin:0 0 18px;font-size:15px;color:#3a352c;line-height:1.9;">这段代码我从头读到尾花了半分钟。这才是重点：你真的可以读完你的 agent 的全部行为。社区也已有成型第三方包（oh-my-pi 把 LSP、浏览器、子代理打包进来；pi-mom 接 Slack），作者本人更绝，把自己的开发会话全部公开在 Hugging Face 上——这个项目是被它自己造出来的。</p>
 
   <!-- 06 横向 -->
-  <section style="margin:26px 0 10px;">
+  <section style="margin:24px 0 10px;">
     <p style="margin:0;line-height:1.2;"><span style="font-family:Consolas,monospace;font-weight:700;font-size:22px;color:#cd642d;">06</span><span style="font-size:19px;font-weight:900;color:#231e18;">&nbsp;横向定位：底盘 vs 整车</span></p>
   </section>
   <section style="border-radius:10px;overflow:hidden;margin-bottom:8px;">
@@ -149,17 +151,21 @@
     <section style="background:#fbfaf5;border:1px solid #ddd6c6;border-top:none;padding:8px 14px;"><p style="margin:0;font-size:13px;color:#231e18;"><b>模型</b>&nbsp;·&nbsp;16+ 供应商+本地&nbsp;|&nbsp;Anthropic 为主&nbsp;|&nbsp;多供应商</p></section>
     <section style="background:#fbfaf5;border:1px solid #ddd6c6;border-top:none;padding:8px 14px;"><p style="margin:0;font-size:13px;color:#231e18;"><b>计费</b>&nbsp;·&nbsp;免费无定价页&nbsp;|&nbsp;订阅制&nbsp;|&nbsp;未标注</p></section>
   </section>
-  <p style="margin:0 0 18px;font-size:15px;color:#3a352c;line-height:1.9;">所以 pi 是底盘，另外两家是整车。选底盘意味着每一处都能改，也意味着组装和维护归你；选整车意味着上路就能开，路线归别人。没有对错，只有你想要什么。</p>
+  <section style="background:#f0ede6;border-radius:12px;padding:14px;margin-bottom:8px;">
+    <p style="margin:0 0 8px;font-size:14px;color:#231e18;line-height:1.8;"><b style="border-bottom:4px solid #cd642d;">底盘：pi</b>——每一处都能改，扩展、skills、主题全是你的代码；代价是组装和维护归你。</p>
+    <p style="margin:0;font-size:14px;color:#231e18;line-height:1.8;"><b style="border-bottom:4px solid #231e18;">整车：Claude Code / OpenCode</b>——上路就能开，MCP、sub-agent、权限全是产品功能；代价是路线归别人画。</p>
+  </section>
+  <p style="margin:0 0 18px;font-size:15px;color:#3a352c;line-height:1.9;">模型自由度上还有个差异：pi 的 /model 会话内热切换，配合跨 provider 上下文接力，一条工作流混用两家模型是常规操作。</p>
 
   <!-- 07 批判 -->
-  <section style="margin:26px 0 10px;">
+  <section style="margin:24px 0 10px;">
     <p style="margin:0;line-height:1.2;"><span style="font-family:Consolas,monospace;font-weight:700;font-size:22px;color:#cd642d;">07</span><span style="font-size:19px;font-weight:900;color:#231e18;">&nbsp;批判：极简的账单，六笔都有出处</span></p>
   </section>
   <p style="margin:0 0 12px;font-size:15px;color:#3a352c;line-height:1.9;"><b>第一笔，无 MCP。</b>连头号拥趸都列为第一缺点。这里必须交代立场：那篇好评整体是软文，作者自称 shill，且与 Zechner 同在 Earendil。自己人说"缺失最明显"，分量反而更重。</p>
   <p style="margin:0 0 12px;font-size:15px;color:#3a352c;line-height:1.9;"><b>第二笔，无现成生态。</b>"no community skills, nothing"；Reddit 实测也说没有 find、git、sub-agent（转引，原帖未读全）。能力获取基本等于自己写代码。</p>
   <p style="margin:0 0 12px;font-size:15px;color:#3a352c;line-height:1.9;"><b>第三、四笔，TS 门槛与自建维护。</b>深度定制的入场券是会写 TypeScript；自建扩展是自己的代码，模型升级行为漂移得自己修（这两句是我的推断，非用户引语）。</p>
   <p style="margin:0 0 12px;font-size:15px;color:#3a352c;line-height:1.9;"><b>第五笔，商业化悬念。</b>加入 Earendil 消息出来后，社区立帖"enshitification?"；Zechner 在官宣博文里承诺 MIT 不变，未来商业功能走 Fair Source。截至发稿没有背刺实锤，但包名迁移的成本已经真实发生。</p>
-  <p style="margin:0 0 12px;font-size:15px;color:#3a352c;line-height:1.9;"><b>第六笔，好评的圈层。</b>最重要的几篇好评，作者要么在 Earendil 要么和它互相依存；HN 上流传最广的那句"linear flow 沮丧"我查了原文，是 Zechner 在骂别家。这个圈子的好评要打折听。</p>
+  <p style="margin:0 0 14px;font-size:15px;color:#3a352c;line-height:1.9;"><b>第六笔，好评的圈层。</b>最重要的几篇好评，作者要么在 Earendil 要么和它互相依存；HN 上流传最广的那句"linear flow 沮丧"我查了原文，是 Zechner 在骂别家。这个圈子的好评要打折听。</p>
   <section style="background:#231e18;border-radius:12px;padding:14px 16px;margin-bottom:14px;">
     <p style="margin:0 0 8px;font-family:Consolas,monospace;font-size:12px;letter-spacing:1px;color:#eda55f;">三段原声 · 立场已标注</p>
     <p style="margin:0 0 10px;font-size:13.5px;color:#f3eee1;line-height:1.85;">"The most obvious omission is support for MCP." <span style="color:#a39a8e;">—— Ronacher（利益相关已披露）</span></p>
@@ -169,7 +175,7 @@
   <p style="margin:0 0 18px;font-size:15px;color:#3a352c;line-height:1.9;">收个清单，五种情况别用 pi：团队依赖现成 MCP 生态；要开箱即用的全家桶；不会 TS 又想深度定制；IDE/GUI 重度用户；对许可分层过敏的组织。反过来，想完全掌控 harness、愿意读源码的高级开发者，它可以闭眼试。还有件没查明白的事：Earendil 靠什么把 pi 变成生意——pi.dev 上没有定价页，这是我能确认的全部。</p>
 
   <!-- 提炼 -->
-  <section style="background:#231e18;border-radius:12px;padding:18px 20px;margin-bottom:18px;">
+  <section style="background:#231e18;border-radius:12px;padding:18px 20px;margin-bottom:14px;">
     <p style="margin:0 0 10px;font-size:18px;font-weight:900;color:#f3eee1;">提炼 <span style="display:inline-block;border:1px solid #46413b;border-radius:999px;padding:1px 10px;font-family:Consolas,monospace;font-size:11px;letter-spacing:3px;color:#a39a8e;vertical-align:2px;">SUMMARY</span></p>
     <p style="margin:0 0 4px;padding:8px 0;border-bottom:1px solid #3d372f;font-size:14px;color:#f3eee1;"><span style="font-family:Consolas,monospace;color:#eda55f;font-weight:700;">01&nbsp;</span><b>缘起</b><span style="color:#a39a8e;">&nbsp;对"塞满上下文、黑盒操作"投反对票</span></p>
     <p style="margin:0 0 4px;padding:8px 0;border-bottom:1px solid #3d372f;font-size:14px;color:#f3eee1;"><span style="font-family:Consolas,monospace;color:#eda55f;font-weight:700;">02&nbsp;</span><b>架构</b><span style="color:#a39a8e;">&nbsp;五层薄切，启动不到 1000 tokens</span></p>

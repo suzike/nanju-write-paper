@@ -1,7 +1,7 @@
 # nanju-write-paper · 南橘写作流水线
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-1.1.0-cd642d?style=flat-square" alt="version">
+  <img src="https://img.shields.io/badge/version-1.1.2-cd642d?style=flat-square" alt="version">
   <img src="https://img.shields.io/badge/license-MIT-231e18?style=flat-square" alt="license">
   <img src="https://img.shields.io/badge/phase-写作%20%2B%20排版-f0ede6?style=flat-square" alt="phases">
   <img src="https://img.shields.io/badge/outputs-PDF%20%7C%20HTML%20%7C%20公众号-eda55f?style=flat-square" alt="outputs">
